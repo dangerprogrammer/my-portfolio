@@ -2,4 +2,8 @@ function Skills() {
     return <div>Skills</div>
 };
 
-export default Skills;
+function SkillsDefault() {
+    return <h1>Skills DEFAULT</h1>
+};
+
+export {Skills, SkillsDefault};

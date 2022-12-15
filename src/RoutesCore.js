@@ -1,11 +1,11 @@
-import AboutMe from "./pages/about-me/AboutMe";
-import Skills from "./pages/skills/Skills";
-import MyProjects from "./pages/my-projects/MyProjects";
+import {AboutMe, AboutMeDefault} from "./pages/about-me/AboutMe";
+import {Skills, SkillsDefault} from "./pages/skills/Skills";
+import {MyProjects, MyProjectsDefault} from "./pages/my-projects/MyProjects";
 
-const RoutesCore = [
-    {path: '/about-me', Element: AboutMe},
-    {path: '/skills', Element: Skills},
-    {path: '/my-projects', Element: MyProjects}
+const routesCore = [
+    {path: '/about-me', Element: AboutMe, DefaultElem: AboutMeDefault},
+    {path: '/skills', Element: Skills, DefaultElem: SkillsDefault},
+    {path: '/my-projects', Element: MyProjects, DefaultElem: MyProjectsDefault}
 ];
 
-export default RoutesCore;
+export default routesCore;

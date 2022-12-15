@@ -2,4 +2,8 @@ function AboutMe() {
     return <div>AboutMe</div>
 };
 
-export default AboutMe;
+function AboutMeDefault() {
+    return <h1>AboutMe DEFAULT</h1>
+};
+
+export {AboutMe, AboutMeDefault};
