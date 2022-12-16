@@ -5,7 +5,7 @@ import ScrollDown from "./components/scroll-down/ScrollDown";
 
 function RoutesMap({path, Element, DefaultElem, exact = !1}, ind) {
     return <Route key={ind} path={path} element={<>
-        <Header backToMain/>
+        <Header backToMain={`/#${path.slice(1)}`}/>
         <ScrollDown fixed/>
         <PageContainer>
             <DefaultElem/>
