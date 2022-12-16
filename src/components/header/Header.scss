@@ -4,6 +4,7 @@
     flex-direction: column;
     width: 100%;
     user-select: none;
+    font-family: Inter;
 
     & > * {
         padding: 1.4rem;
@@ -18,14 +19,11 @@
 
         main {
             font-size: 2em;
+            font-weight: 500;
         }
     }
 
     span {
         font-size: 2em;
-    }
-
-    a {
-        text-decoration: none;
     }
 }
