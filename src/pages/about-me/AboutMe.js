@@ -2,7 +2,7 @@ function AboutMe() {
     return <div>AboutMe</div>
 };
 
-function AboutMeDefault() {
+function AboutMeDefault({ownerPage}) {
     return <h1>AboutMe DEFAULT</h1>
 };
 

@@ -2,7 +2,7 @@ function MyProjects() {
     return <div>MyProjects</div>
 };
 
-function MyProjectsDefault() {
+function MyProjectsDefault({ownerPage}) {
     return <h1>MyProjects DEFAULT</h1>
 };
 

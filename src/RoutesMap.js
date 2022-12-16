@@ -8,7 +8,7 @@ function RoutesMap({path, Element, DefaultElem, exact = !1}, ind) {
         <Header backToMain={`/#${path.slice(1)}`}/>
         <ScrollDown fixed/>
         <PageContainer>
-            <DefaultElem/>
+            <DefaultElem ownerPage/>
             <Element/>
         </PageContainer>
     </>} exact={exact}/>
