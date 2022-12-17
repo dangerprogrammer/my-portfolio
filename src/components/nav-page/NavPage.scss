@@ -1,0 +1,24 @@
+#nav-page {
+    position: fixed;
+    top: 50%;
+    translate: 2rem -50%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    a {
+    display: flex;
+    flex-direction: row;
+
+        main {
+            height: .25rem;
+            width: 3rem;
+            background: #eee;
+            transition: width ease-in-out .3s;
+        }
+
+        &.active main {
+            width: 5rem;
+        }
+    }
+}

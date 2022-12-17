@@ -1,5 +1,5 @@
-function PageContent({children, subContent}) {
-    return <div>{children}</div>
+function PageContent({children, subContent, id}) {
+    return <section id={id}>{children}</section>
 };
 
 export default PageContent;

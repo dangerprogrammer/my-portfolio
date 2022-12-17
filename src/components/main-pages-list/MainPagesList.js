@@ -3,11 +3,12 @@ import PageContent from "../page-content/PageContent";
 import RoutesCore from '../../RoutesCore';
 
 function MainPagesList() {
-    return <div>{RoutesCore.length && RoutesCore.map(({path, DefaultElem}, ind) => <MainPagesItem key={ind} path={path} Element={DefaultElem}/>)}</div>
+    const filtredRoutes = RoutesCore.filter(({path}) => path !== '/');
+    return <div>{filtredRoutes.length && filtredRoutes.map(({path, DefaultElem}, ind) => <MainPagesItem key={ind} path={path} Element={DefaultElem}/>)}</div>
 };
 
 function MainPagesItem({path, Element}) {
-    return <PageContent subContent><Element/><Link to={path}>Visite</Link></PageContent>
+    return <PageContent subContent id={path.slice(1)}><Element/><Link to={path}>Visite</Link></PageContent>
 };
 
 export default MainPagesList;

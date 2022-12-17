@@ -1,5 +1,5 @@
 function PageContainer({children}) {
-    return <div>{children}</div>
+    return <div id="page-container">{children}</div>
 };
 
 export default PageContainer;

@@ -11,10 +11,14 @@ function Main() {
         <NavPage/>
         <ScrollDown/>
         <PageContainer>
-            <PageContent>Main</PageContent>
+            <MainContent/>
             <MainPagesList/>
         </PageContainer>
     </>
 };
 
-export default Main;
+function MainContent() {
+    return <PageContent id="main">Main</PageContent>
+};
+
+export {Main, MainContent};
