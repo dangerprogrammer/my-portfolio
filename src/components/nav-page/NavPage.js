@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 
 function NavPage() {
     return <nav id="nav-page">
-        {RoutesCore.length && RoutesCore.map(({backPath}, ind) => <Link key={ind} to={backPath}>
+        {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>
+        <Link key={ind} to={backPath}>
             <main/>
-        </Link>)}
+        </Link>
+        )}
     </nav>
 };
 
