@@ -18,12 +18,28 @@
         width: 100%;
 
         main {
-            font-size: 2em;
+            font-size: 1.6em;
             font-weight: 500;
+            z-index: 1000;
+        }
+
+        aside {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            z-index: 10;
         }
     }
 
     span {
-        font-size: 2em;
+        font-size: 3em;
+    }
+
+    .back-home {
+        transition: translate ease-in-out .3s;
+    }
+
+    .back-home:hover {
+        translate: -.5rem;
     }
 }

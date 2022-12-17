@@ -15,3 +15,11 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+a.hover {
+    transition: opacity ease-in-out .3s;
+}
+
+a.hover:hover {
+    opacity: .5;
+}
