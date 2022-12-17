@@ -18,6 +18,7 @@
         padding: 1.5rem 2rem;
         width: 100%;
         font-size: 1.6em;
+        position: relative;
 
         main {
             font-weight: 500;
@@ -30,6 +31,44 @@
             gap: 2rem;
             z-index: 10;
             font-size: 1.5em;
+
+            li, a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            div {
+                position: absolute;
+                min-height: 10px;
+                min-width: 20px;
+                display: flex;
+                flex-direction: row;
+                top: 100%;
+                right: 0;
+                translate: -2rem -1rem;
+
+                ul {
+                    position: relative;
+                    padding: .3rem .6rem;
+                    font-size: .6em;
+                    font-weight: 400;
+
+                    li {
+                        transition: translate ease-in-out .2s, opacity ease-in-out .2s;
+                        position: absolute;
+                        right: 0;
+                        opacity: 0;
+                        translate: 1rem;
+                        pointer-events: none;
+                    }
+
+                    .appear-hover {
+                        opacity: 1;
+                        translate: 0;
+                    }
+                }
+            }
         }
     }
 

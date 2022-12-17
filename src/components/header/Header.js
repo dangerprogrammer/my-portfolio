@@ -12,6 +12,11 @@ function Header({backToMain}) {
             </main>
             <aside>
                 {socialMediasList.length && socialMediasList.map(({icon, name, link}, ind) => <SocialMedia key={ind} Icon={icon} name={name} link={link}/>)}
+                <div>
+                    <ul>
+                        {socialMediasList.length && socialMediasList.map(({name}, ind) => <li key={ind} data-name={name} className="">{name}</li>)}
+                    </ul>
+                </div>
             </aside>
         </div>
         {backToMain && <span><Link to={backToMain} className="back-home"><BsArrowLeft/></Link></span>}
