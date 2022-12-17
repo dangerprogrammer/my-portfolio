@@ -15,10 +15,11 @@
     }
 
     .first-layer {
+        padding: 1.5rem 2rem;
         width: 100%;
+        font-size: 1.6em;
 
         main {
-            font-size: 1.6em;
             font-weight: 500;
             z-index: 1000;
         }
@@ -26,8 +27,9 @@
         aside {
             display: flex;
             flex-direction: row;
-            gap: 1rem;
+            gap: 2rem;
             z-index: 10;
+            font-size: 1.5em;
         }
     }
 
