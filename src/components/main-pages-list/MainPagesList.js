@@ -4,7 +4,7 @@ import RoutesCore from '../../RoutesCore';
 
 function MainPagesList() {
     const filtredRoutes = RoutesCore.filter(({path}) => path !== '/');
-    return <div>{filtredRoutes.length && filtredRoutes.map(({path, DefaultElem}, ind) => <MainPagesItem key={ind} path={path} Element={DefaultElem}/>)}</div>
+    return filtredRoutes.length && filtredRoutes.map(({path, DefaultElem}, ind) => <MainPagesItem key={ind} path={path} Element={DefaultElem}/>)
 };
 
 function MainPagesItem({path, Element}) {

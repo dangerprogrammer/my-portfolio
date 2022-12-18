@@ -1,9 +1,14 @@
 function activePage(page) {
-    const aTarget = page.parentElement, aSiblings = [...aTarget.parentElement.children];
+    const aTarget = page.parentElement, aSiblings = [...aTarget.parentElement.children],
+        {origin, pathname} = window.location, href = aTarget.href.slice((origin + pathname).length),
+        targetSection = document.querySelector(`section${href}`), sectionTop = targetSection.offsetTop,
+        pageContainer = document.querySelector('#page-container');
 
     aSiblings.forEach(sibling => sibling.classList[sibling.href === aTarget.href ? 'add' : 'remove']('active'));
     
     page.click();
+
+    pageContainer.scrollTo(0, sectionTop);
 };
 
 function activeNextPage() {

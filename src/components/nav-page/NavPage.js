@@ -9,9 +9,7 @@ function NavPage() {
 
     return <nav id="nav-page">
         {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>
-            <Link key={ind} to={backPath} onClick={ev => {
-                activePage(ev.target);
-                }}>
+            <Link key={ind} to={backPath} onClick={ev => activePage(ev.target)}>
             <main/>
         </Link>
         )}
