@@ -8,9 +8,14 @@
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
+    scroll-snap-type: y mandatory;
     z-index: -1;
 
     &::-webkit-scrollbar {
         width: 0;
+    }
+
+    & > * {
+        scroll-snap-align: center;
     }
 }

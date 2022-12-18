@@ -20,7 +20,13 @@ function activeOwnPage() {
     const hasActive = document.querySelector('#nav-page .active main'),
         ownerA = document.querySelector('#nav-page a main'),
         pageContainer = document.querySelector('#page-container');
-    if (!hasActive) activePage(ownerA);
+    if (!hasActive) {
+        const hash = window.location.hash;
+        const siblings = [...ownerA.parentElement.parentElement.children],
+            searchedHash = siblings.find(({href}) => href.endsWith(hash)).firstChild;
+
+        activePage(searchedHash || ownerA);
+    };
     pageContainer.onmousewheel = loadScrolling;
 };
 
