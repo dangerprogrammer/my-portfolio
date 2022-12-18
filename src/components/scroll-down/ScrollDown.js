@@ -1,5 +1,7 @@
+import './ScrollDown.scss';
+
 function ScrollDown() {
-    return <div>ScrollDown</div>
+    return <div id="scroll-down">ScrollDown<span/></div>
 };
 
 export default ScrollDown;

@@ -30,7 +30,7 @@ function activeOwnPage() {
     pageContainer.onmousewheel = loadScrolling;
 };
 
-let delayScroll = 1e3, canScroll = !0;
+let delayScroll = 750, canScroll = !0;
 function loadScrolling(ev) {
     ev.preventDefault();
     const {wheelDeltaY} = ev;

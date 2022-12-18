@@ -1,0 +1,26 @@
+#scroll-down {
+    position: fixed;
+    writing-mode: vertical-rl;
+    left: 2rem;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    gap: 1rem;
+    font-family: Inter;
+    font-size: .8em;
+    pointer-events: none;
+    transition: translate ease-in-out .3s;
+
+    span {
+        display: block;
+        height: 2rem;
+        width: 2px;
+        background: white;
+    }
+
+    &.scrolled {
+        translate: 0 100%;
+    }
+}
