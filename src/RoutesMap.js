@@ -5,9 +5,9 @@ import PageContent from "./components/page-content/PageContent";
 import ScrollDown from "./components/scroll-down/ScrollDown";
 import { Main } from "./pages/main/Main";
 
-function RoutesMap({path, backPath, Element, DefaultElem, exact = !1}, ind) {
+function RoutesMap({path, backPath, pathTitle, Element, DefaultElem, exact = !1}, ind) {
     const defaultRoute = <Route key={ind} path={path} element={<>
-        <Header backToMain={backPath}/>
+        <Header backToMain={backPath} pathTitle={pathTitle}/>
         <ScrollDown fixed/>
         <PageContainer>
             <PageContent id={path.slice(1)}>

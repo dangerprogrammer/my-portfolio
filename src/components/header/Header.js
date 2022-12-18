@@ -4,7 +4,9 @@ import {BsArrowLeft} from 'react-icons/bs';
 import SocialMedia from '../social-media/SocialMedia';
 import socialMediasList from '../../scripts/socialMediasList';
 
-function Header({backToMain}) {
+function Header({backToMain, pathTitle}) {
+    if (pathTitle) document.title = `${pathTitle} | Patrick Léo`;
+    else document.title = 'Patrick Léo - Portfolio';
     return <header id="header">
         <div className="first-layer">
             <main>
