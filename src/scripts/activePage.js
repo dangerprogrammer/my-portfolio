@@ -6,7 +6,7 @@ function activePage(page) {
 
     aSiblings.forEach(sibling => sibling.classList[sibling.href === aTarget.href ? 'add' : 'remove']('active'));
     
-    page.click();
+    if (sectionTop > 0) page.click();
     
     scrollDown.classList.toggle('scrolled', sectionTop > 0);
     pageContainer.scrollTo(0, sectionTop);
