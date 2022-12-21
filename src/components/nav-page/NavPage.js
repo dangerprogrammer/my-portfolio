@@ -8,7 +8,7 @@ import {activePage, activeNextPage, activePrevPage} from '../../scripts/activePa
 
 function NavPage() {
     window.addEventListener("load", activeOwnPage);
-    activeOwnPage();
+    // activeOwnPage();
 
     return <nav id="nav-page">
         {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>
