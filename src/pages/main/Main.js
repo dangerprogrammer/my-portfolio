@@ -1,11 +1,13 @@
 import Header from "../../components/header/Header";
-import MainPagesList from "../../components/main-pages-list/MainPagesList";
+import MainPagesList from "../../components/MainPagesList";
 import NavPage from "../../components/nav-page/NavPage";
 import PageContainer from "../../components/page-container/PageContainer";
 import PageContent from "../../components/page-content/PageContent";
 import ScrollDown from "../../components/scroll-down/ScrollDown";
+import loadWindow from "../../scripts/loadWindow";
 
 function Main() {
+    setTimeout(loadWindow, 1e3);
     return <>
         <Header/>
         <NavPage/>

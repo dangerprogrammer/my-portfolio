@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import PageContent from "../page-content/PageContent";
-import RoutesCore from '../../RoutesCore';
+import PageContent from "./page-content/PageContent";
+import RoutesCore from '../RoutesCore';
 
 function MainPagesList() {
     const filtredRoutes = RoutesCore.filter(({path}) => path !== '/');

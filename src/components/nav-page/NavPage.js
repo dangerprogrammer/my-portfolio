@@ -6,6 +6,7 @@ import {activePage, activeNextPage, activePrevPage} from '../../scripts/activePa
 
 function NavPage() {
     window.addEventListener("load", activeOwnPage);
+    activeOwnPage();
 
     return <nav id="nav-page">
         {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>
@@ -17,6 +18,7 @@ function NavPage() {
 };
 
 function activeOwnPage() {
+    console.log("activeOwnPage");
     const hasActive = document.querySelector('#nav-page .active main'),
         ownerA = document.querySelector('#nav-page a main'),
         pageContainer = document.querySelector('#page-container');
