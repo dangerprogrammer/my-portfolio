@@ -7,7 +7,7 @@ import ScrollDown from "../../components/scroll-down/ScrollDown";
 import loadWindow from "../../scripts/loadWindow";
 
 function Main() {
-    setTimeout(loadWindow, 5e2);
+    loadWindow();
 
     return <>
         <Header/>

@@ -15,7 +15,7 @@ function RoutesMap({path, backPath, pathTitle, Element, DefaultElem, exact = !1}
 };
 
 function DefaultElement({path, backPath, pathTitle, Element, DefaultElem}) {
-    setTimeout(loadWindow, 5e2);
+    loadWindow();
     
     return <>
         <Header backToMain={backPath} pathTitle={pathTitle}/>
