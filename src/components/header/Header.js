@@ -3,7 +3,7 @@ import './Header.scss';
 import {BsArrowLeft} from 'react-icons/bs';
 import SocialMedia from '../social-media/SocialMedia';
 import socialMediasList from '../../scripts/socialMediasList';
-// import PreLoader from '../pre-loader/PreLoader';
+import PreLoader from '../pre-loader/PreLoader';
 
 function Header({backToMain, pathTitle}) {
     if (pathTitle) document.title = `${pathTitle} | Patrick Léo`;
@@ -23,7 +23,7 @@ function Header({backToMain, pathTitle}) {
             </aside>
         </div>
         {backToMain && <span><Link to={backToMain} className="back-home"><BsArrowLeft/></Link></span>}
-        {/* <PreLoader/> */}
+        <PreLoader/>
     </header>
 };
 

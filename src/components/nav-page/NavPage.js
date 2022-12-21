@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import './NavPage.scss';
 
 import RoutesCore from '../../RoutesCore';
@@ -7,8 +5,7 @@ import { Link } from 'react-router-dom';
 import {activePage, activeNextPage, activePrevPage} from '../../scripts/activePage';
 
 function NavPage() {
-    window.addEventListener("load", activeOwnPage);
-    // activeOwnPage();
+    setTimeout(activeOwnPage, 1);
 
     return <nav id="nav-page">
         {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>
@@ -20,7 +17,6 @@ function NavPage() {
 };
 
 function activeOwnPage() {
-    console.log("activeOwnPage");
     const hasActive = document.querySelector('#nav-page .active main'),
         ownerA = document.querySelector('#nav-page a main'),
         pageContainer = document.querySelector('#page-container');

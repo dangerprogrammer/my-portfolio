@@ -5,7 +5,7 @@ import RoutesMap from './RoutesMap';
 function RoutesDir() {
   return <Router>
     <Routes>
-      {RoutesCore.length && RoutesCore.map(RoutesMap)}
+      {RoutesCore.length > 0 && RoutesCore.map(RoutesMap)}
       <Route path="*" element={<Navigate to="/"/>}/>
     </Routes>
   </Router>

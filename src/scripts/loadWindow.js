@@ -1,12 +1,9 @@
 function loadWindow() {
-    window.addEventListener("load", () => {
-        const preLoader = document.querySelector("#pre-loader");
+    const preLoader = document.querySelector("#pre-loader");
 
-        if (!preLoader) return false;
-        
-        preLoader.classList.add("loaded-window");
-        console.log("Loaded Window!");
-    });
+    if (!preLoader) return setTimeout(loadWindow, 5e2);
+
+    preLoader.classList.add("loaded-window");
 };
 
 export default loadWindow;
