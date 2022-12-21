@@ -3,10 +3,12 @@ import './Header.scss';
 import {BsArrowLeft} from 'react-icons/bs';
 import SocialMedia from '../social-media/SocialMedia';
 import socialMediasList from '../../scripts/socialMediasList';
+import PreLoader from '../pre-loader/PreLoader';
 
 function Header({backToMain, pathTitle}) {
     if (pathTitle) document.title = `${pathTitle} | Patrick Léo`;
     else document.title = 'Patrick Léo - Portfolio';
+    loadWindow();
     return <header id="header">
         <div className="first-layer">
             <main>
@@ -22,7 +24,16 @@ function Header({backToMain, pathTitle}) {
             </aside>
         </div>
         {backToMain && <span><Link to={backToMain} className="back-home"><BsArrowLeft/></Link></span>}
+        <PreLoader/>
     </header>
+};
+
+function loadWindow() {
+    window.onload = () => {
+        const preLoader = document.querySelector("#pre-loader");
+
+        console.log(preLoader);
+    };
 };
 
 export default Header;

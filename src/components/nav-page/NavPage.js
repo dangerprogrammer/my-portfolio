@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import {activePage, activeNextPage, activePrevPage} from '../../scripts/activePage';
 
 function NavPage() {
-    setTimeout(activeOwnPage, 1);
+    window.addEventListener("load", activeOwnPage);
 
     return <nav id="nav-page">
         {RoutesCore.length && RoutesCore.map(({backPath}, ind) =>

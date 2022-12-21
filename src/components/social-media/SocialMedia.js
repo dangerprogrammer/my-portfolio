@@ -1,7 +1,5 @@
-// import { Link } from "react-router-dom";
-
 function SocialMedia({Icon, name, link}) {
-    setTimeout(() => loadHoverElem(name, link), 1);
+    window.addEventListener("load", () => loadHoverElem(name, link));
 
     return <li id="social-media"><a href={link} target="_blank" rel="noreferrer" className="hover"><Icon/></a></li>
 };
