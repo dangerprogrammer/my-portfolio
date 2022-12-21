@@ -1,24 +1,56 @@
 #nav-page {
     position: fixed;
-    top: 50%;
-    translate: 2rem -50%;
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
 
     a {
-    display: flex;
-    flex-direction: row;
+        display: flex;
+        flex-direction: row;
 
         main {
-            height: .2rem;
-            width: 2rem;
             background: white;
-            transition: width ease-in-out .15s;
+            transition: width ease-in-out .15s, height ease-in-out .15s;
         }
+    }
+}
 
-        &.active main {
-            width: 3rem;
+@media screen and (min-width: 64rem) {
+    #nav-page {
+        top: 50%;
+        translate: 2rem -50%;
+        align-items: start;
+
+        a {
+            main {
+                height: .2rem;
+                width: 2rem;
+            }
+
+            &.active main {
+                width: 3rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: calc(64rem - 1px)) {
+    #nav-page {
+        flex-direction: row;
+        left: 50%;
+        bottom: 1.5rem;
+        translate: -50%;
+        align-items: end;
+
+        a {
+            main {
+                height: 2rem;
+                width: .2rem;
+            }
+
+            &.active main {
+                height: 3rem;
+            }
         }
     }
 }

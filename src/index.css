@@ -10,6 +10,7 @@
 body {
     background: black;
     color: #eee;
+    font-size: clamp(.8rem, 2vw, 1.2rem);
 }
 
 a {
@@ -28,3 +29,25 @@ a.hover {
 a.hover:hover {
     opacity: .5;
 }
+
+/* 
+Mobile
+@media screen and (min-width: 20rem) and (max-width: 30rem) {
+}
+
+Tablet
+@media screen and (min-width: calc(30rem + 1px)) and (max-width: 48rem) {
+}
+
+Laptop
+@media screen and (min-width: calc(48rem + 1px)) and (max-width: calc(64rem - 1px)) {
+}
+
+Desktop
+@media screen and (min-width: 64rem) and (max-width: 75rem) {
+}
+
+TV / Extra Large
+@media screen and (min-width: calc(75rem + 1px)) {
+}
+*/
