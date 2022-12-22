@@ -6,8 +6,8 @@ import socialMediasList from '../../scripts/socialMediasList';
 import PreLoader from '../pre-loader/PreLoader';
 
 function Header({backToMain, pathTitle}) {
-    if (pathTitle) document.title = `${pathTitle} | Patrick Léo`;
-    else document.title = 'Patrick Léo - Portfolio';
+    document.title = pathTitle ? `${pathTitle} | Patrick Léo` : 'Patrick Léo - Portfolio';
+    
     return <header id="header">
         <div className="first-layer">
             <main>
