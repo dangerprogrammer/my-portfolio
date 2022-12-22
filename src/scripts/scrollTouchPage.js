@@ -24,6 +24,7 @@ function loadTouching(ev) {
     };
     
     if (isUp !== undefined && !freeze) {
+        console.log(isUp);
         if (canTouch) {
             canTouch = !canTouch;
             setTimeout(() => canTouch = !canTouch, delayScroll);
