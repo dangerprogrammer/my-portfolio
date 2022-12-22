@@ -18,7 +18,7 @@
     .first-layer {
         padding: 1.5rem 2rem;
         width: 100%;
-        font-size: 1.6em;
+        font-size: 1.4em;
         position: relative;
 
         main {
@@ -78,10 +78,12 @@
     }
 
     .back-home {
+        display: flex;
+        margin-left: .5em;
         transition: translate ease-in-out .3s;
     }
 
     .back-home:hover {
-        translate: -.5rem;
+        translate: -.25em;
     }
 }
