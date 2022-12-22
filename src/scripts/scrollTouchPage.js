@@ -15,15 +15,12 @@ function loadScrolling(ev) {
 let canTouch = !0, lastY, isUp, freeze = !1;
 function loadTouching(ev) {
     const touchOne = ev.touches[0];
-    if (lastY === undefined) lastY = touchOne.clientY;
-    else {
-        let actY = touchOne.clientY;
-        isUp = actY > lastY;
-        if (lastY === actY) freeze = !freeze;
-        lastY = actY;
-    };
+    let actY = touchOne.clientY;
+    isUp = actY > lastY;
+    if (lastY === actY) freeze = !freeze;
+    lastY = actY;
     
-    if (isUp !== undefined && !freeze) {
+    if (!freeze) {
         console.log(isUp);
         if (canTouch) {
             canTouch = !canTouch;
