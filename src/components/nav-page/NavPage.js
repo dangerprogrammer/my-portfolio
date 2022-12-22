@@ -2,7 +2,8 @@ import './NavPage.scss';
 
 import RoutesCore from '../../RoutesCore';
 import { Link } from 'react-router-dom';
-import {activePage, activeNextPage, activePrevPage} from '../../scripts/activePage';
+import {activePage} from '../../scripts/activePage';
+import { loadScrolling, loadTouchStart, loadTouching } from '../../scripts/scrollTouchPage';
 
 function NavPage() {
     activeOwnPage();
@@ -34,46 +35,6 @@ function activeOwnPage() {
     pageContainer.onmousewheel = loadScrolling;
     pageContainer.ontouchstart = loadTouchStart;
     pageContainer.ontouchmove = loadTouching;
-};
-
-let delayScroll = 750, canScroll = !0;
-function loadScrolling(ev) {
-    ev.preventDefault();
-    const {wheelDeltaY} = ev;
-    if (canScroll) {
-        canScroll = !canScroll;
-        setTimeout(() => canScroll = !canScroll, delayScroll);
-    } else return;
-    if (wheelDeltaY < 0) activeNextPage();
-    else activePrevPage();
-};
-
-let canTouch = !0, lastY, isUp, freeze = !1;
-function loadTouching(ev) {
-    const touchOne = ev.touches[0];
-    if (lastY === undefined) lastY = touchOne.clientY;
-    else {
-        let actY = touchOne.clientY;
-        isUp = actY > lastY;
-        if (lastY === actY) freeze = !freeze;
-        lastY = actY;
-    };
-    
-    if (isUp !== undefined && !freeze) {
-        if (canTouch) {
-            canTouch = !canTouch;
-            setTimeout(() => canTouch = !canTouch, delayScroll);
-        } else return;
-
-        if (!isUp) activeNextPage();
-        else activePrevPage();
-    };
-};
-
-function loadTouchStart(ev) {
-    const touchOne = ev.touches[0];
-
-    lastY = touchOne.clientY;
 };
 
 export default NavPage;
