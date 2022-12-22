@@ -12,6 +12,7 @@
     scroll-snap-type: y mandatory;
     z-index: -1;
     background: #002;
+    scroll-behavior: auto;
 
     &::-webkit-scrollbar {
         width: 0;
@@ -19,5 +20,9 @@
 
     & > * {
         scroll-snap-align: center;
+    }
+
+    .loaded & {
+        scroll-behavior: smooth;
     }
 }

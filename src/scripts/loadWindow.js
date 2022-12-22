@@ -1,9 +1,15 @@
+const intervalTimeout = 5e2;
 function loadWindow() {
-    const preLoader = document.querySelector("#pre-loader");
+    let intervalTest = setInterval(() => {
+        const preLoader = document.querySelector("#pre-loader"),
+            {body} = document;
 
-    if (!preLoader) return setTimeout(loadWindow, 5e2);
-
-    preLoader.classList.add("loaded-window");
+        if (preLoader) {
+            preLoader.classList.add("loaded-window");
+            setTimeout(() => body.classList.add("loaded"), 1e3);
+            clearInterval(intervalTest);
+        };
+    }, intervalTimeout);
 };
 
 export default loadWindow;
