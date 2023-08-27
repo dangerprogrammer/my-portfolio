@@ -1,9 +1,9 @@
 import { aboutMeStyles } from './AboutMe.module.scss';
 
 function AboutMe() {
-    return <main className={aboutMeStyles}>
+    return <section className={aboutMeStyles} id="about-me">
         About Me!
-    </main>
+    </section>
 };
 
 export default AboutMe;

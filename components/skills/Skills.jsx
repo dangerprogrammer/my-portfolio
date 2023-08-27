@@ -1,9 +1,9 @@
 import { skillsStyles } from './Skills.module.scss';
 
 function Skills() {
-    return <main className={skillsStyles}>
+    return <section className={skillsStyles} id="skills">
         Skills!
-    </main>
+    </section>
 };
 
 export default Skills;

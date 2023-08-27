@@ -1,9 +1,9 @@
 import { welcomeStyles } from './Welcome.module.scss';
 
 function Welcome() {
-    return <main className={welcomeStyles}>
+    return <section className={welcomeStyles} id="welcome">
         Welcome!
-    </main>
+    </section>
 };
 
 export default Welcome;

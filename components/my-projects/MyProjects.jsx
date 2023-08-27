@@ -1,9 +1,9 @@
 import { myProjectsStyles } from './MyProjects.module.scss';
 
 function MyProjects() {
-    return <main className={myProjectsStyles}>
+    return <section className={myProjectsStyles} id="my-projects">
         My Projects!
-    </main>
+    </section>
 };
 
 export default MyProjects;

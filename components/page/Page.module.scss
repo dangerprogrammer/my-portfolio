@@ -1,14 +1,24 @@
 .pageStyles {
-    min-height: 100vh;
+    height: 100vh;
     background: #0c101c;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
 
     & > * {
-        height: 100vh;
+        height: 100%;
         flex-shrink: 0;
+        scroll-snap-align: center;
 
-        &:not(:has(#background-canvas)):nth-child(even) {
+        &:nth-child(even) {
             background-color: #101a30;
         }
     }
