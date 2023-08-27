@@ -1,4 +1,4 @@
-import {navbarStyles} from './navbar.module.scss';
+import { navbarStyles } from './Navbar.module.scss';
 
 function Navbar() {
     return <nav className={navbarStyles}></nav>
