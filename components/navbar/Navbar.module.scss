@@ -1,5 +1,44 @@
 .navbarStyles {
+    position: fixed;
+    width: 100%;
+    padding: 1em 2em;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    z-index: 100;
+    font-family: Poppins;
+    user-select: none;
+
+    h1 {
+        z-index: 10;
+    }
+
+    .socialMedia {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        font-size: 3em;
+
+        li {
+            list-style: none;
+            font-size: 1em;
+            color: #eee;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    font-size: 1em;
+                    color: #eee !important;
+                    height: 1em;
+                    width: 1em;
+                    fill: currentColor;
+                    stroke: currentColor;
+                }
+            }
+        }
+    }
 }
