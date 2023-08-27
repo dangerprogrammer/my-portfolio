@@ -33,21 +33,32 @@
             list-style: none;
             font-size: 1em;
             color: #eee;
+            translate: 0 -2em;
+            animation: animateMedia .8s ease-in-out forwards;
 
             a {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                color: #eee;
+                transition: opacity .2s ease-in-out;
 
-                svg {
-                    font-size: 1em;
-                    color: #eee !important;
-                    height: 1em;
-                    width: 1em;
-                    fill: currentColor;
-                    stroke: currentColor;
+                &:hover {
+                    opacity: .6;
                 }
             }
         }
+    }
+}
+
+@keyframes animateMedia {
+    0% {
+        translate: 0 -2em;
+    }
+    85% {
+        translate: 0 .5em;
+    }
+    100% {
+        translate: 0;
     }
 }

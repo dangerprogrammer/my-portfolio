@@ -12,7 +12,7 @@ function Navbar() {
         </span>
         <h1>Patrick Vieira Léo</h1>
         <ul className={socialMedia}>
-            {socialMedias.map(({ link, Icon }, ind) => <li key={ind}>
+            {socialMedias.map(({ link, Icon }, ind) => <li key={ind} style={{animationDelay: `${1e3 + ind * 2e2}ms`}}>
                 <Link href={link}><Icon/></Link>
             </li>)}
         </ul>
