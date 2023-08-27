@@ -1,3 +1,9 @@
 .sidebarStyles {
     position: fixed;
+    background: red;
+    min-height: 10em;
+    min-width: 5em;
+    z-index: 100;
+    top: 50%;
+    translate: 0 -50%;
 }
