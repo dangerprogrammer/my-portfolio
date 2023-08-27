@@ -1,0 +1,15 @@
+.pageStyles {
+    min-height: 100vh;
+    background: #0c101c;
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        height: 100vh;
+        flex-shrink: 0;
+
+        &:not(:has(#background-canvas)):nth-child(even) {
+            background-color: #101a30;
+        }
+    }
+}
