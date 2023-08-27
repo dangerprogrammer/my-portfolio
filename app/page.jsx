@@ -7,15 +7,12 @@ import Page from "@/components/page/Page";
 import Skills from "@/components/skills/Skills";
 import Welcome from "@/components/welcome/Welcome";
 import BackgroundCanvas from "@/components/background-canvas/BackgroundCanvas";
-import { endPreloader, renderScrolling } from "@/scripts/initializePageTools";
+import { renderPage } from "@/scripts/initializePageTools";
 import { useEffect } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 
 function Home() {
-  useEffect(() => {
-    renderScrolling();
-    endPreloader();
-  }, []);
+  useEffect(renderPage, []);
 
   return <>
     <Navbar/>

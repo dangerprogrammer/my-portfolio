@@ -1,5 +1,6 @@
 import { pageStyles } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
+import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id);
@@ -23,4 +24,17 @@ function endPreloader() {
 
 function renderCanvas() {};
 
-export { renderScrolling, endPreloader, renderCanvas };
+function renderMedia() {
+    const mediaContainers = document.querySelectorAll(`[class*="${mediaContainer}"]`);
+
+    mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
+};
+
+function renderPage() {
+    renderScrolling();
+    endPreloader();
+    renderMedia();
+    renderCanvas();
+};
+
+export { renderPage };

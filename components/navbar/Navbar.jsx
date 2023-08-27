@@ -1,6 +1,6 @@
 import socialMedias from '@/assets/socialMedias';
 import PreLoader from '../preloader/PreLoader';
-import { navbarStyles, socialMedia, preloaderContainer } from './Navbar.module.scss';
+import { navbarStyles, socialMedia, preloaderContainer, mediaContainer } from './Navbar.module.scss';
 import Link from 'next/link';
 
 function Navbar() {
@@ -12,7 +12,7 @@ function Navbar() {
         </span>
         <h1>Patrick Vieira Léo</h1>
         <ul className={socialMedia}>
-            {socialMedias.map(({ link, Icon }, ind) => <li key={ind} style={{animationDelay: `${1e3 + ind * 2e2}ms`}}>
+            {socialMedias.map(({ link, Icon }, ind) => <li key={ind} className={mediaContainer} style={{animationDelay: `${5e2 + ind * 1e2}ms`}}>
                 <Link href={link}><Icon/></Link>
             </li>)}
         </ul>

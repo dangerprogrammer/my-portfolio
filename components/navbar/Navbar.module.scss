@@ -29,12 +29,15 @@
         gap: 1rem;
         font-size: 3em;
 
-        li {
+        .mediaContainer {
             list-style: none;
             font-size: 1em;
             color: #eee;
             translate: 0 -2em;
-            animation: animateMedia .8s ease-in-out forwards;
+
+            &.showItem {
+                animation: animateMedia .4s ease-in-out forwards;
+            }
 
             a {
                 display: flex;
@@ -52,13 +55,10 @@
 }
 
 @keyframes animateMedia {
-    0% {
+    from {
         translate: 0 -2em;
     }
-    85% {
-        translate: 0 .5em;
-    }
-    100% {
+    to {
         translate: 0;
     }
 }
