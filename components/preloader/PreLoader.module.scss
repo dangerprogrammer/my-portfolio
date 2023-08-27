@@ -1,0 +1,14 @@
+.preloaderStyles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    translate: 0 100%;
+    transition: translate .5s ease-in-out;
+}
+
+.notRendered {
+    translate: 0 0;
+}

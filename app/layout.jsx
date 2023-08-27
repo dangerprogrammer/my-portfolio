@@ -5,7 +5,7 @@ const metadata = {
     template: '%s | Patrick',
     default: 'Patrick Portfolio'
   },
-  description: 'Website criado para meu portfolio!',
+  description: 'A website for my portfolio',
 };
 
 export {metadata};
@@ -13,7 +13,9 @@ export {metadata};
 function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   )
 };
