@@ -24,7 +24,6 @@
 
                 .svgContainer {
                     scale: 1;
-                    padding-left: .75em !important;
                 }
             }
 
@@ -33,7 +32,6 @@
                     pointer-events: none;
 
                     .itemSection {
-                        background: #eee;
                         color: #111;
                     }
 
@@ -48,18 +46,6 @@
 
     &:not(:hover) {
         .itemPage {
-            .itemSection {
-                span {
-                    opacity: 0;
-                }
-
-                .svgContainer {
-                    scale: .75;
-                    background: #457a;
-                    padding-left: .5em;
-                }
-            }
-        
             &.showPage.activePage {
                 a {
                     pointer-events: none;
@@ -102,7 +88,7 @@
                 overflow: hidden;
                 border-radius: .75em;
                 align-items: center;
-                transition: .5s, color 0s;
+                transition: .5s, color 0s, scale 0s;
 
                 .svgContainer {
                     display: flex;
@@ -117,7 +103,6 @@
                 }
 
                 span {
-                    display: flex;
                     align-items: center;
                     font-weight: 800;
                     position: relative;
@@ -160,5 +145,70 @@
         translate: 0;
         scale: 1;
         opacity: 1;
+    }
+}
+
+@media screen and (min-width: 30rem) {
+    .sidebarStyles {
+        &:hover {
+            .itemPage.showPage.activePage .itemSection {
+                background: #eee;
+            }
+            .svgContainer {
+                padding-left: .75em !important;
+            }
+        }
+
+        span {
+            display: flex;
+        }
+
+        &:not(:hover) {
+            .itemPage {
+                .itemSection {
+                    span {
+                        opacity: 0;
+                    }
+    
+                    .svgContainer {
+                        scale: .75;
+                        background: #457a;
+                        padding-left: .5em;
+                    }
+                }
+            
+                &.showPage.activePage {
+                    a {
+                        pointer-events: none;
+    
+                        .svgContainer {
+                            background: #eee;
+                            color: #111;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 30rem) {
+    .sidebarStyles {
+        .itemPage.showPage.activePage .svgContainer {
+            background-color: #eee;
+        }
+
+        ul {
+            opacity: 1;
+
+            span {
+                display: none;
+            }
+
+            .svgContainer {
+                scale: 1;
+                background-color: transparent;
+            }
+        }
     }
 }
