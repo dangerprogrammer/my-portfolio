@@ -1,6 +1,7 @@
 import { pageStyles } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
+import { itemPage, showPage } from '@/components/sidebar/Sidebar.module.scss';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id);
@@ -16,32 +17,42 @@ function renderScrolling() {
     };
 };
 
-function endPreloader() {
-    const preloaders = document.querySelectorAll(`[class*="${preloaderStyles}"]`);
+function renderNav() {
+    const preloaders = document.querySelectorAll(`[class*="${preloaderStyles}"]`),
+        mediaContainers = document.querySelectorAll(`[class*="${mediaContainer}"]`);
 
     preloaders.forEach(preloader => preloader.classList.remove(notRendered));
+    mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
 };
 
 function renderCanvas() {};
 
-function renderMedia() {
-    const mediaContainers = document.querySelectorAll(`[class*="${mediaContainer}"]`);
+function renderNavScroll(ev) {
+    const target = ev.target || ev, { origin, pathname } = document.location, fullOrigin = origin + pathname,
+        searchHref = target.href.slice(fullOrigin.length + 1), refElement = document.getElementById(searchHref),
+        { parentElement, offsetTop } = refElement;
 
-    mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
+    parentElement.scrollTo(0, offsetTop);
+};
+
+function renderSidebar() {
+    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+
+    itemPages.forEach(itemPage => itemPage.classList.add(showPage));
 };
 
 function renderPage() {
     renderScrolling();
 
-    endPreloader();
-    renderMedia();
+    renderNav();
+
+    renderSidebar();
 
     renderCanvas();
 };
 
 function renderSecPage() {
-    endPreloader();
-    renderMedia();
+    renderNav();
 };
 
-export { renderPage, renderSecPage };
+export { renderPage, renderSecPage, renderNavScroll };
