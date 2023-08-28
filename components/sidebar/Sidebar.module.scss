@@ -23,6 +23,7 @@
 
             .svgContainer {
                 scale: 1;
+                padding-left: .75em !important;
             }
         }
     }
@@ -36,6 +37,7 @@
             .svgContainer {
                 scale: .75;
                 background: #457a;
+                padding-left: .5em;
             }
         }
     }
