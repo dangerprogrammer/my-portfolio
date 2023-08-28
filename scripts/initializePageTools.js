@@ -3,7 +3,7 @@ import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.m
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving } from '@/components/background-canvas/BackgroundCanvas.module.scss';
-import randomNumbers from '@/tools/randomNumbers';
+import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id), itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
@@ -80,13 +80,15 @@ function renderCanvas() {
         const myDot = document.createElement('span'), { offsetWidth, offsetHeight } = canvas,
             [left, top, pLeft, pTop] = randomNumbers({}, {}, {}, {}),
             distanceX = (left - pLeft) * offsetWidth, distanceY = (top - pTop) * offsetHeight,
-            distance = (distanceX ** 2 + distanceY ** 2) ** (1 / 2), duration = distance * 50;
+            distance = (distanceX ** 2 + distanceY ** 2) ** (1 / 2), duration = distance * 50,
+            scale = randomNumber({min: .6, max: 1.2});
 
         myDot.style.setProperty('--left', `${left * 100}%`);
         myDot.style.setProperty('--top', `${top * 100}%`);
         myDot.style.setProperty('--pLeft', `${pLeft * 100}%`);
         myDot.style.setProperty('--pTop', `${pTop * 100}%`);
         myDot.style.setProperty('--duration', `${duration}ms`);
+        myDot.style.setProperty('scale', `${scale}`);
 
         myDot.classList.add(canvasDot);
 
