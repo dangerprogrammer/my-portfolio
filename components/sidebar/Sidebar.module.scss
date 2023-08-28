@@ -136,7 +136,7 @@
 
 @keyframes spawnItem {
     from {
-        translate: -100%;
+        translate: min(-100%, -10em);
         scale: 1.3;
         opacity: 0;
     }
