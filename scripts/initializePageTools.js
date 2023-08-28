@@ -1,13 +1,19 @@
 import { pageStyles } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
-import { itemPage, showPage } from '@/components/sidebar/Sidebar.module.scss';
+import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
 
 function renderScrolling() {
-    const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id);
+    const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id), itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
 
-    page.onscroll = () => {
-        const findedSection = sections.find(filterSection);
+    scrollPage();
+    page.onscroll = scrollPage;
+
+    function scrollPage() {
+        const sectionIndex = sections.findIndex(filterSection), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex);
+
+        anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
+        page.classList.add(activePage);
     };
 
     function filterSection({ offsetTop, offsetHeight }) {
