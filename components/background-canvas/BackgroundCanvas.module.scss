@@ -1,7 +1,48 @@
 .backgroundCanvas {
     position: fixed;
     z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
     pointer-events: none;
-    // background: #f003;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .2;
+    transition: opacity 1s ease;
+
+    &.moving {
+        opacity: .5;
+    }
+
+    .canvasDot {
+        $size: .4em;
+        position: absolute;
+        top: var(--top);
+        left: var(--left);
+        height: $size;
+        width: $size;
+        border-radius: 50%;
+        background: white;
+        translate: var(--tX) var(--tY);
+        animation: moveDot var(--duration) linear forwards;
+    }
+}
+
+@keyframes moveDot {
+    0% {
+        top: var(--top);
+        left: var(--left);
+    }
+    0%, 100% {
+        opacity: 0;
+    }
+    20%, 80% {
+        opacity: 1;
+    }
+    100% {
+        top: var(--pTop);
+        left: var(--pLeft);
+    }
 }
