@@ -32,9 +32,16 @@ function renderMedia() {
 
 function renderPage() {
     renderScrolling();
+
     endPreloader();
     renderMedia();
+
     renderCanvas();
 };
 
-export { renderPage };
+function renderSecPage() {
+    endPreloader();
+    renderMedia();
+};
+
+export { renderPage, renderSecPage };

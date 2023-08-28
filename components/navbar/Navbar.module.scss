@@ -19,8 +19,18 @@
         pointer-events: none;
     }
 
-    h1 {
+    .titleNav {
         z-index: 10;
+    }
+
+    a.titleNav {
+        text-decoration: none;
+        color: inherit;
+        transition: opacity .2s ease-in-out;
+
+        &:hover {
+            opacity: .8;
+        }
     }
 
     .socialMedia {
