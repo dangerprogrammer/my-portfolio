@@ -1,10 +1,95 @@
 .welcomeStyles {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    background-color: black;
+    padding: 5em 5em;
 
     &.welcomeActive {
         background-color: black;
+    }
+
+    .imageContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+
+        img {
+            position: relative;
+            top: 0;
+            height: 100vh;
+            width: auto;
+        }
+    }
+
+    .textContainer {
+        z-index: 10;
+
+        .mainTitle {
+            font-size: 2em;
+
+            strong {
+                font-weight: 900;
+                font-size: 2em;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 80rem) {
+    .imageContainer img {
+        scale: 2.5;
+        left: 15vw;
+    }
+}
+
+@media screen and (min-width: 60rem) and (max-width: calc(80rem - 1px)) {
+    .imageContainer img {
+        scale: 1.5;
+        left: 5em;
+    }
+}
+
+@media screen and (min-width: 60rem) {
+    .welcomeStyles {
+        align-items: flex-end;
+
+        .textContainer {
+            text-align: end;
+        }
+    }
+}
+
+@media screen and (max-width: calc(60rem - 1px)) {
+    .welcomeStyles {
+        align-items: flex-start;
+
+        .imageContainer {
+            opacity: .75;
+            filter: blur(.15rem);
+        }
+
+        .textContainer {
+            text-align: start;
+        }
+    }
+}
+
+@media screen and (min-width: 30rem) and (max-width: calc(60rem - 1px)) {
+    .imageContainer img {
+        scale: 1.2;
+        left: 50%;
+        translate: -45%;
+    }
+}
+
+@media screen and (max-width: calc(30rem - 1px)) {
+    .imageContainer img {
+        left: 50%;
+        translate: -45%;
     }
 }

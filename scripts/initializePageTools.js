@@ -35,7 +35,7 @@ function renderScrolling() {
 };
 
 function renderMousemove() {
-    const canvas = document.getElementById('background-canvas')
+    const canvas = document.getElementById('background-canvas');
     let canvasChildrens = [...canvas.children];
 
     let lastX, lastY, timeout = setTimeout(() => canvas.classList.remove(moving), 5e3);
