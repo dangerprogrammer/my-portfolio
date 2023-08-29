@@ -147,7 +147,7 @@
     }
 }
 
-@media screen and (min-width: 30rem) {
+@media screen and (min-width: 40rem) {
     .sidebarStyles {
         &:hover {
             .itemPage.showPage.activePage .itemSection {
@@ -191,7 +191,7 @@
     }
 }
 
-@media screen and (max-width: 30rem) {
+@media screen and (max-width: 40rem) {
     .sidebarStyles {
         .itemPage.showPage.activePage .svgContainer {
             background-color: #eee;

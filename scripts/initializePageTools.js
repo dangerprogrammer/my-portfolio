@@ -1,9 +1,10 @@
-import { pageStyles, activeContainer } from '@/components/page/Page.module.scss';
+import { pageStyles } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
+import sectionsClass from '@/tools/sectionsClass';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id), itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
@@ -14,10 +15,11 @@ function renderScrolling() {
     function scrollPage() {
         const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex);
 
+
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
-        sections.forEach(sec => sec.classList.remove(activeContainer));
+        sections.forEach(sec => sec.classList.remove(sectionsClass[sec.id]));
         page.classList.add(activePage);
-        section.classList.add(activeContainer);
+        section.classList.add(sectionsClass[section.id]);
     };
 
     function filterSection(bigger, ref) {
