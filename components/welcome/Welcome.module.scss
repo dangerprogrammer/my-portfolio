@@ -31,7 +31,9 @@
 
         .mainTitle {
             font-size: 2em;
-            border-radius: .25em;
+            display: flex;
+            flex-direction: column;
+            gap: .5em;
 
             strong {
                 font-weight: 900;

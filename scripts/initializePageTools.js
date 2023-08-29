@@ -74,8 +74,12 @@ function renderNav() {
 };
 
 function renderShowComponents() {
-    const allShowElements = [...document.querySelectorAll('[data-show]')];
+    const allShowElements = [...document.querySelectorAll('[data-show]')],
+        showElementsBySection = [];
 
+    allShowElements.forEach(showElem => {
+        const show = document.querySelectorAll(`[class*="${pageStyles}"] > section [data-show]`)
+    });
     allShowElements.forEach(showElem => {
         const showSpan = document.createElement('span');
 

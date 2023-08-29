@@ -25,6 +25,7 @@
         *:has(> .elementViewer) {
             position: relative !important;
             overflow: hidden;
+            border-radius: .25em;
 
             & > *:not(.elementViewer) {
                 opacity: 0;
