@@ -22,8 +22,53 @@
             z-index: 10;
         }
 
+        *:has(> .elementViewer) {
+            position: relative !important;
+            overflow: hidden;
+
+            & > *:not(.elementViewer) {
+                opacity: 0;
+                pointer-events: none;
+                animation: showSiblings .75s ease-in 1s forwards;
+            }
+
+            .elementViewer {
+                background: white;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                translate: -101%;
+                pointer-events: none;
+                animation: showElement .75s ease-in 1s forwards;
+            }
+        }
+
         &:nth-child(even) {
             background-color: #101a30;
         }
+    }
+}
+
+@keyframes showSiblings {
+    0%, 50% {
+        opacity: 0;
+    }
+    51%, 100% {
+        opacity: 1;
+        pointer-events: initial;
+    }
+}
+
+@keyframes showElement {
+    0% {
+        translate: -101%;
+    }
+    50% {
+        translate: 0;
+    }
+    100% {
+        translate: 101%;
     }
 }

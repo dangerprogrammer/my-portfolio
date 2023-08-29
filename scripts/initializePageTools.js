@@ -1,4 +1,4 @@
-import { pageStyles } from '@/components/page/Page.module.scss';
+import { pageStyles, elementViewer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
@@ -73,6 +73,20 @@ function renderNav() {
     mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
 };
 
+function renderShowComponents() {
+    const allShowElements = [...document.querySelectorAll('[data-show]')];
+
+    allShowElements.forEach(showElem => {
+        const showSpan = document.createElement('span');
+
+        showSpan.classList.add(elementViewer);
+
+        showElem.append(showSpan);
+    });
+
+    console.log(...allShowElements);
+};
+
 function renderCanvas() {
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
     let limit = Math.round((offsetHeight * offsetWidth) / 2e4);
@@ -133,6 +147,8 @@ function renderPage() {
     renderNav();
 
     renderSidebar();
+
+    renderShowComponents();
 
     renderCanvas();
 };
