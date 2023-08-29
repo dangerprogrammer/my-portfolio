@@ -10,10 +10,15 @@
     align-items: center;
     justify-content: center;
     opacity: .2;
-    transition: opacity 1s ease;
+    filter: blur(1em);
+    transition: opacity 1s ease, filter 1s ease 1s;
 
     &.moving {
         opacity: .5;
+    }
+
+    &.activeCanvas {
+        filter: blur(0em);
     }
 
     .canvasDot {

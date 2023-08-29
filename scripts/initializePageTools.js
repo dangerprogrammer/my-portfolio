@@ -2,7 +2,7 @@ import { pageStyles } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
-import { canvasDot, moving } from '@/components/background-canvas/BackgroundCanvas.module.scss';
+import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import sectionsClass from '@/tools/sectionsClass';
 
@@ -80,6 +80,8 @@ function renderCanvas() {
     generateDots(limit - canvasChildrens.length);
 
     renderMousemove();
+
+    canvas.classList.add(activeCanvas);
 
     function generateDots(total) {
         for (let i = 0; i < total; i++) generateDot();
