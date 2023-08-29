@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: black;
-    padding: 5em 5em;
+    padding: 5em max(5vw, 5em);
 
     &.welcomeActive {
         background-color: black;
