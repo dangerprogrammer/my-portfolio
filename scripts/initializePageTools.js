@@ -1,4 +1,4 @@
-import { pageStyles } from '@/components/page/Page.module.scss';
+import { pageStyles, activeContainer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
@@ -12,16 +12,23 @@ function renderScrolling() {
     page.onscroll = scrollPage;
 
     function scrollPage() {
-        const sectionIndex = sections.findIndex(filterSection), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex);
+        const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex);
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
+        sections.forEach(sec => sec.classList.remove(activeContainer));
         page.classList.add(activePage);
+        section.classList.add(activeContainer);
     };
 
-    function filterSection({ offsetTop, offsetHeight }) {
-        const { scrollTop } = page;
+    function filterSection(bigger, ref) {
+        const { scrollTop, offsetHeight } = page, scrollBottom = scrollTop + offsetHeight,
+            biggerTop = bigger.offsetTop, biggerHeight = bigger.offsetHeight, 
+            biggerBottom = biggerTop + biggerHeight,
+            biggerOnScreen = biggerBottom <= scrollBottom ? biggerBottom - scrollTop : scrollBottom - biggerTop,
+            refTop = ref.offsetTop, refHeight = ref.offsetHeight, refBottom = refTop + refHeight,
+            refOnScreen = refBottom <= scrollBottom ? refBottom - scrollTop : scrollBottom - refTop;
 
-        return scrollTop >= offsetTop && scrollTop < offsetTop + offsetHeight;
+        return biggerOnScreen > refOnScreen ? bigger : ref;
     };
 };
 

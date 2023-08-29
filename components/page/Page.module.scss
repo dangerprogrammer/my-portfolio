@@ -18,6 +18,10 @@
         flex-shrink: 0;
         scroll-snap-align: center;
 
+        &.activeContainer {
+            z-index: 10;
+        }
+
         &:nth-child(even) {
             background-color: #101a30;
         }
