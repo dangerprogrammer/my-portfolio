@@ -38,7 +38,8 @@ function renderMousemove() {
     const canvas = document.getElementById('background-canvas')
     let canvasChildrens = [...canvas.children];
 
-    let lastX, lastY, timeout;
+    let lastX, lastY, timeout = setTimeout(() => canvas.classList.remove(moving), 5e3);
+    canvas.classList.add(moving);
     window.onmousemove = ({ offsetX, offsetY }) => {
         canvasChildrens = [...canvas.children];
         if (lastX && lastY) {
