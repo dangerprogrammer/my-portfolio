@@ -83,8 +83,6 @@ function renderShowComponents() {
 
         showElem.append(showSpan);
     });
-
-    console.log(...allShowElements);
 };
 
 function renderCanvas() {
