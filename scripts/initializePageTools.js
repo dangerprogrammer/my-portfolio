@@ -13,13 +13,17 @@ function renderScrolling() {
     page.onscroll = scrollPage;
 
     function scrollPage() {
-        const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex);
+        const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex), firstSection = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
 
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
-        sections.forEach(sec => sec.classList.remove(sectionsClass[sec.id]));
+        sections.forEach(sec => {
+            sec.classList.remove(sectionsClass[sec.id]);
+            resetShowSection(sec);
+        });
         page.classList.add(activePage);
         section.classList.add(sectionsClass[section.id]);
+        renderShowSection(section, firstSection);
     };
 
     function filterSection(bigger, ref) {
@@ -73,17 +77,26 @@ function renderNav() {
     mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
 };
 
-function renderShowComponents() {
-    const allShowElements = [...document.querySelectorAll('[data-show]')],
-        showElementsBySection = [];
+function resetShowSection({ id }) {
+    const viewersInSection = [...document.querySelectorAll(`[id*="${id}"] [class*="${elementViewer}"]`)];
 
-    allShowElements.forEach(showElem => {
-        const show = document.querySelectorAll(`[class*="${pageStyles}"] > section [data-show]`)
+    viewersInSection.forEach(viewer => {
+        const { parentElement } = viewer;
+
+        parentElement.removeChild(viewer);
     });
-    allShowElements.forEach(showElem => {
-        const showSpan = document.createElement('span');
+};
+
+function renderShowSection({ id }, firstSection) {
+    const showsInSection = [...document.querySelectorAll(`[id*="${id}"] [data-show]`)];
+
+    showsInSection.forEach((showElem, ind) => {
+        const showSpan = document.createElement('span'), showSiblings = [...showElem.children],
+            delay = (firstSection ? 1e3 : 0) + ind * 2e2;
 
         showSpan.classList.add(elementViewer);
+        showSpan.style.setProperty('animation-delay', `${delay}ms`);
+        showSiblings.forEach(sibling => sibling.style.setProperty('animation-delay', `${delay}ms`));
 
         showElem.append(showSpan);
     });
@@ -149,8 +162,6 @@ function renderPage() {
     renderNav();
 
     renderSidebar();
-
-    renderShowComponents();
 
     renderCanvas();
 };

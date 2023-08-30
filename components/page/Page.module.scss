@@ -22,7 +22,7 @@
             z-index: 10;
         }
 
-        *:has(> .elementViewer) {
+        [data-show] {
             position: relative !important;
             overflow: hidden;
             border-radius: .25em;
@@ -30,20 +30,23 @@
             & > *:not(.elementViewer) {
                 opacity: 0;
                 pointer-events: none;
-                animation: showSiblings .75s ease-in 1s forwards;
             }
+        }
 
-            .elementViewer {
-                background: white;
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                width: 100%;
-                translate: -101%;
-                pointer-events: none;
-                animation: showElement .75s ease-in 1s forwards;
-            }
+        .elementViewer {
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            translate: -101%;
+            pointer-events: none;
+            animation: showElement .75s ease-in forwards;
+        }
+
+        *:has(> .elementViewer) > *:not(.elementViewer) {
+            animation: showSiblings .75s ease-in forwards;
         }
 
         &:nth-child(even) {

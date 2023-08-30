@@ -7,7 +7,7 @@ function Welcome() {
         <article className={textContainer}>
             <h1 className={mainTitle}>
                 <div data-show><span>Hi, i'm <br /></span></div>
-                <div data-show><strong data-show>Patrick</strong></div>
+                <div data-show><strong>Patrick</strong></div>
             </h1>
         </article>
         <article className={imageContainer}>
