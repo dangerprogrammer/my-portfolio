@@ -27,18 +27,26 @@
     }
 
     .textContainer {
+        position: relative;
         z-index: 10;
+        font-size: clamp(0.8em, 2vw, 1.4em);
 
         .mainTitle {
             font-size: 2em;
             display: flex;
             flex-direction: column;
-            gap: .5em;
 
             strong {
                 font-weight: 900;
                 font-size: 2em;
+                letter-spacing: .02em;
             }
+        }
+
+        .titleDesc {
+            color: transparent;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(135deg, #38f, #50f);
         }
     }
 }
@@ -63,6 +71,10 @@
 
         .textContainer {
             text-align: end;
+
+            .mainTitle {
+                align-items: flex-end;
+            }
         }
     }
 }
@@ -78,6 +90,11 @@
 
         .textContainer {
             text-align: start;
+            left: 5vw;
+
+            .mainTitle {
+                align-items: flex-start;
+            }
         }
     }
 }
