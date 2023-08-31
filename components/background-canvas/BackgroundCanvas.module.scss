@@ -31,6 +31,7 @@
         border-radius: 50%;
         background: white;
         translate: var(--tX) var(--tY);
+        transition: translate .1s ease;
         animation: moveDot var(--duration) linear forwards;
     }
 }
