@@ -47,7 +47,7 @@ function renderMousemove() {
     window.onmousemove = ({ offsetX, offsetY }) => {
         canvasChildrens = [...canvas.children];
         if (lastX && lastY) {
-            const distX = offsetX - lastX, distY = offsetY - lastY, speed = 2e-2;
+            const distX = offsetX - lastX, distY = offsetY - lastY, speed = 5e-2;
 
             canvasChildrens.forEach(canvaChild => {
                 canvaChild.style.setProperty('--tX', `${distX * speed}px`);
