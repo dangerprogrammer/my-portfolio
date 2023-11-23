@@ -1,9 +1,8 @@
+import PageContent from '../pages-content/PageContent';
 import { aboutMeStyles } from './AboutMe.module.scss';
 
 function AboutMe() {
-    return <section className={aboutMeStyles} id="about-me">
-        About Me!
-    </section>
+    return <PageContent titlePage="See more about me" className={aboutMeStyles} id="about-me"/>
 };
 
 export default AboutMe;
