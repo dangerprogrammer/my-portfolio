@@ -15,7 +15,6 @@ function renderScrolling() {
     function scrollPage() {
         const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex), firstSection = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
 
-
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach(sec => {
             sec.classList.remove(sectionsClass[sec.id]);

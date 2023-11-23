@@ -1,8 +1,21 @@
 import Image from 'next/image';
-import { welcomeStyles, imageContainer, textContainer, mainTitle, titleDesc, titleName } from './Welcome.module.scss';
+import { welcomeStyles, imageContainer, textContainer, mainTitle, titleDesc, titleName, buttonScroll } from './Welcome.module.scss';
 import Wallpaper from '@/assets/images/abstract-wallpaper.jpg';
+import ArrowDown from '@/assets/svgs/arrow-down-outline.svg';
+import { renderNavScroll } from '@/scripts/initializePageTools';
+import { useEffect } from 'react';
+import { itemPage } from '../sidebar/Sidebar.module.scss';
+import { usePathname } from 'next/navigation';
 
 function Welcome() {
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const { children } = document.querySelector(`[class*="${itemPage}"]`).parentElement.children[1];
+        console.log(pathname);
+        // renderNavScroll(children[0]);
+    }, []);
+
     return <section className={welcomeStyles} id="welcome">
         <article className={textContainer}>
             <h1 className={mainTitle}>
@@ -22,6 +35,7 @@ function Welcome() {
         <article className={imageContainer}>
             <Image {...Wallpaper}/>
         </article>
+        <button className={buttonScroll} id="scroll-down">Scroll<ArrowDown/></button>
     </section>
 };
 

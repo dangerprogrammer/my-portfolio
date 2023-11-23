@@ -8,7 +8,7 @@ const metadata = {
   description: 'A website for my portfolio',
 };
 
-export {metadata};
+export { metadata };
 
 function RootLayout({ children }) {
   return (
