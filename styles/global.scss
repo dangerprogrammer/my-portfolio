@@ -23,3 +23,7 @@ svg {
     fill: currentColor;
     stroke: currentColor;
 }
+
+[data-click] > * {
+    pointer-events: none;
+}

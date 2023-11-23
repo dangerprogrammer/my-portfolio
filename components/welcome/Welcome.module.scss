@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: black;
+    color: #eee;
     padding: 5em max(6vw, 5em);
 
     &.welcomeActive {
@@ -11,6 +12,7 @@
             opacity: 1;
             scale: 1;
             pointer-events: auto;
+            transition: all .2s ease-out, scale .1s, .5s opacity 3s;
         }
     }
 
@@ -19,6 +21,7 @@
             opacity: 0;
             scale: .5;
             pointer-events: none;
+            transition-delay: 0;
         }
     }
 
@@ -75,7 +78,7 @@
 
     .buttonScroll {
         position: absolute;
-        bottom: .5em;
+        bottom: 1em;
         left: 50%;
         translate: -50%;
         letter-spacing: .1em;
@@ -84,26 +87,24 @@
         outline: none;
         border: none;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: .2em;
+        justify-content: center;
+        gap: .5em;
+        padding: .5em .75em;
+        border-radius: 2em;
         font-size: 1.1em;
         font-weight: 700;
         cursor: pointer;
-        transition: .2s ease-out;
+        transition: all .2s ease-out, scale .1s;
+        background: #eee;
 
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            translate: -50% calc(100% - 3.5em);
-            z-index: -1;
-            background: white;
-            border-radius: 50%;
-            filter: blur(1.5em);
-            height: 12em;
-            width: 12em;
+        &:hover {
+            background: #eeec;
+        }
+
+        &:active {
+            scale: .95;
         }
 
         svg {

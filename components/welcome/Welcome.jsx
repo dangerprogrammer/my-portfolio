@@ -5,37 +5,45 @@ import ArrowDown from '@/assets/svgs/arrow-down-outline.svg';
 import { renderNavScroll } from '@/scripts/initializePageTools';
 import { useEffect } from 'react';
 import { itemPage } from '../sidebar/Sidebar.module.scss';
-import { usePathname } from 'next/navigation';
+import DataShow from '../data-show/DataShow';
 
 function Welcome() {
-    const pathname = usePathname();
+    const { blurWidth, blurHeight, ...wallpaper } = Wallpaper;
 
     useEffect(() => {
-        const { children } = document.querySelector(`[class*="${itemPage}"]`).parentElement.children[1];
-        console.log(pathname);
-        // renderNavScroll(children[0]);
+        const sideList = [...document.querySelector(`[class*="${itemPage}"]`).parentElement.children],
+            scrollElem = (sideList.find(({ children }) => children[0].href == location.href) || sideList[0]).children[0],
+            aboutSection = sideList[1].children[0], scrollDown = document.getElementById('scroll-down');
+
+        scrollDown.addEventListener('click', () => renderNavScroll(aboutSection));
+
+        renderNavScroll(scrollElem);
     }, []);
 
     return <section className={welcomeStyles} id="welcome">
         <article className={textContainer}>
             <h1 className={mainTitle}>
-                <div data-show><span>Hi, i'm <br /></span></div>
-                <div data-show className={titleName}><strong>Patrick</strong></div>
+                <DataShow>
+                    <span>Hi, i'm <br /></span>
+                </DataShow>
+                <DataShow className={titleName}>
+                    <strong>Patrick</strong>
+                </DataShow>
             </h1>
-            <div data-show>
+            <DataShow>
                 <h2 className={titleDesc}>Full-stack web dev</h2>
-            </div>
-            <div data-show>
+            </DataShow>
+            <DataShow>
                 <p>Do you want to know more about me?</p>
-            </div>
-            <div data-show>
+            </DataShow>
+            <DataShow>
                 <p>Scroll page for see more</p>
-            </div>
+            </DataShow>
         </article>
         <article className={imageContainer}>
-            <Image {...Wallpaper}/>
+            <Image {...{...wallpaper, alt: 'Welcome image', priority: !0}}/>
         </article>
-        <button className={buttonScroll} id="scroll-down">Scroll<ArrowDown/></button>
+        <button className={buttonScroll} id="scroll-down" data-click>Scroll<ArrowDown/></button>
     </section>
 };
 

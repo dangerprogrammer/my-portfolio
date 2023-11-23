@@ -7,13 +7,18 @@ import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import sectionsClass from '@/tools/sectionsClass';
 
 function renderScrolling() {
-    const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id), itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+    const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
+        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
 
     scrollPage();
     page.onscroll = scrollPage;
 
     function scrollPage() {
-        const section = sections.reduce(filterSection, sections[0]), sectionIndex = sections.indexOf(section), page = itemPages[sectionIndex], anotherPages = [...itemPages].filter((p, index) => index != sectionIndex), firstSection = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
+        const section = sections.reduce(filterSection, sections[0]),
+            sectionIndex = sections.indexOf(section),
+            page = itemPages[sectionIndex],
+            anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
+            firstSection = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach(sec => {
