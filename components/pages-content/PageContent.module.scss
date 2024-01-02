@@ -4,4 +4,18 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 5rem max(6vw, 5rem);
+}
+
+.imageContainer {
+    width: 60%;
+    aspect-ratio: 3 / 2;
+    background: blue;
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: calc(80rem - 1px)) {
+    .pageContent {
+        background: #f002;
+    }
 }

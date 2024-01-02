@@ -1,14 +1,14 @@
 import { pageStyles, elementViewer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
-import { itemPage, showPage, activePage } from '@/components/sidebar/Sidebar.module.scss';
+import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import sectionsClass from '@/tools/sectionsClass';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
-        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement;
 
     scrollPage();
     page.onscroll = scrollPage;
@@ -18,7 +18,9 @@ function renderScrolling() {
             sectionIndex = sections.indexOf(section),
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
-            firstSection = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
+            firstRender = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
+
+        sidebar.classList.toggle(firstSide, sectionIndex);
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach(sec => {
@@ -27,7 +29,7 @@ function renderScrolling() {
         });
         page.classList.add(activePage);
         section.classList.add(sectionsClass[section.id]);
-        renderShowSection(section, firstSection);
+        renderShowSection(section, firstRender);
     };
 
     function filterSection(bigger, ref) {
@@ -91,12 +93,12 @@ function resetShowSection({ id }) {
     });
 };
 
-function renderShowSection({ id }, firstSection) {
+function renderShowSection({ id }, firstRender) {
     const showsInSection = [...document.querySelectorAll(`[id*="${id}"] [data-show]`)];
 
     showsInSection.forEach((showElem, ind) => {
         const showSpan = document.createElement('span'), showSiblings = [...showElem.children],
-            delay = (firstSection ? 1e3 : 0) + ind * 2e2;
+            delay = (firstRender ? 1e3 : 0) + ind * 2e2;
 
         showSpan.classList.add(elementViewer);
         showSpan.style.setProperty('animation-delay', `${delay}ms`);
@@ -167,7 +169,7 @@ function renderPage() {
 
     renderSidebar();
 
-    renderCanvas();
+    // renderCanvas();
 };
 
 function renderSecPage() {
