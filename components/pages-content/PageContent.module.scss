@@ -8,10 +8,37 @@
 }
 
 .imageContainer {
+    position: relative;
     width: 60%;
     aspect-ratio: 3 / 2;
-    background: blue;
+    background: #00f8;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .preLoaders {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        translate: 70% -50%;
+        transition: .75s 0s ease-in-out;
+        pointer-events: auto;
+        border-radius: 50%;
+        height: 100vmax;
+        width: 100vmax;
+        scale: 0;
+    }
+}
+
+*:has(> .pageContent).rendered {
+    .preLoaders {
+        transition: .75s calc(1s + var(--delay)) ease-in-out;
+        scale: 1;
+        translate: 40% -50%;
+    }
 }
 
 @media screen and (max-width: calc(80rem - 1px)) {

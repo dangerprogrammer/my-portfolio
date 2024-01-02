@@ -1,9 +1,7 @@
-import { skillsStyles } from './Skills.module.scss';
+import PageContent from '../pages-content/PageContent';
 
 function Skills() {
-    return <section className={skillsStyles} id="skills">
-        Skills!
-    </section>
+    return <PageContent titlePage="Here are my skills" id="skills"/>
 };
 
 export default Skills;

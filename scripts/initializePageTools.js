@@ -4,11 +4,12 @@ import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss
 import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
-import sectionsClass from '@/tools/sectionsClass';
+import { imageContainer, rendered } from '@/components/pages-content/PageContent.module.scss';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
-        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement;
+        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
+        asideImage = document.querySelector(`[class*="${imageContainer}"]`);
 
     scrollPage();
     page.onscroll = scrollPage;
@@ -18,17 +19,17 @@ function renderScrolling() {
             sectionIndex = sections.indexOf(section),
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
-            firstRender = !sections.find(sec => sec.classList.contains(sectionsClass[sec.id]));
+            firstRender = !sections.find(sec => sec.classList.contains(rendered));
 
         sidebar.classList.toggle(firstSide, sectionIndex);
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach(sec => {
-            sec.classList.remove(sectionsClass[sec.id]);
+            sec.classList.remove(rendered);
             resetShowSection(sec);
         });
         page.classList.add(activePage);
-        section.classList.add(sectionsClass[section.id]);
+        section.classList.add(rendered);
         renderShowSection(section, firstRender);
     };
 
