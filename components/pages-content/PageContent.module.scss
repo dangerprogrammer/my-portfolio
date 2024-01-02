@@ -1,18 +1,27 @@
 .pageContent {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 2rem;
     width: 100%;
     padding: 5rem max(6vw, 5rem);
+}
+
+.mainTitle {
+    position: absolute;
+    left: max(6vw, 5rem);
+    font-size: clamp(1em, 3vw, 4em);
+    font-weight: 500;
+    letter-spacing: .1em;
 }
 
 .imageContainer {
     position: relative;
     width: 60%;
+    max-width: 60rem;
     aspect-ratio: 3 / 2;
-    background: #00f8;
-    border-radius: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -31,18 +40,34 @@
         width: 100vmax;
         scale: 0;
     }
+
+    .contentImage {
+        position: absolute;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        inset: 0;
+        z-index: 75;
+    }
 }
 
 *:has(> .pageContent).rendered {
     .preLoaders {
-        transition: .75s calc(1s + var(--delay)) ease-in-out;
+        transition: .75s var(--delay) ease-in-out;
         scale: 1;
         translate: 40% -50%;
+    }
+
+    .contentImage {
+        transition: .75s 1s ease-in-out;
+        opacity: 1;
     }
 }
 
 @media screen and (max-width: calc(80rem - 1px)) {
     .pageContent {
-        background: #f002;
+        flex-direction: column;
+        justify-content: center;
     }
 }

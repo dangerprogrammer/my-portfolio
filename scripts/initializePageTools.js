@@ -116,7 +116,7 @@ function renderCanvas() {
 
     generateDots(limit - canvasChildrens.length);
 
-    renderMousemove();
+    // renderMousemove();
 
     canvas.classList.add(activeCanvas);
 
@@ -170,7 +170,7 @@ function renderPage() {
 
     renderSidebar();
 
-    // renderCanvas();
+    renderCanvas();
 };
 
 function renderSecPage() {

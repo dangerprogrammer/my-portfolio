@@ -1,9 +1,7 @@
-import { myProjectsStyles } from './MyProjects.module.scss';
+import PageContent from '../pages-content/PageContent';
 
 function MyProjects() {
-    return <section className={myProjectsStyles} id="my-projects">
-        My Projects!
-    </section>
+    return <PageContent titlePage="My Projects" id="my-projects"/>
 };
 
 export default MyProjects;
