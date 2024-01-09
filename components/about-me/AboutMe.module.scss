@@ -5,7 +5,7 @@
     justify-content: center;
     inset: 0;
 
-    &.renderedAboutMe {
+    .renderedAboutMe & {
         background: red;
     }
     

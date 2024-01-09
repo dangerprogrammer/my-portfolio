@@ -26,9 +26,10 @@ function renderScrolling() {
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach(sec => {
-            sec.classList.remove(rendered);
+            sec.classList.remove(rendered, listClasses[sec.id]);
             resetShowSection(sec);
         });
+        console.log(section, pageRender);
         page.classList.add(activePage);
         section.classList.add(rendered, pageRender);
         renderShowSection(section, firstRender);
