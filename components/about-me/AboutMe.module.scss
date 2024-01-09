@@ -1,0 +1,28 @@
+.hoverContent {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    
+    .person {
+        color: transparent;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    .person {
+        font-size: 35vw;
+    }
+}
+
+@media screen and (max-width: calc(64rem - 1px)) {
+    .person {
+        font-size: 60vw;
+    }
+}

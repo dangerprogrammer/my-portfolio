@@ -1,10 +1,6 @@
 import { pageContent, imageContainer, preLoaders, contentImage, mainTitle } from './PageContent.module.scss';
-import Image from 'next/image';
-import Wallpaper from '@/assets/images/abstract-wallpaper.jpg';
 
-function PageContent({ titlePage, notClicking, ...contexts }) {
-    const { blurWidth, blurHeight, ...wallpaper } = Wallpaper;
-
+function PageContent({ titlePage, notClicking, children, ...contexts }) {
     return <section {...contexts} style={{display: 'flex'}}>
         <main className={pageContent} style={{zIndex: 50}}>
             <h1 className={mainTitle}>{titlePage}</h1>
@@ -13,7 +9,7 @@ function PageContent({ titlePage, notClicking, ...contexts }) {
                 <div className={preLoaders} style={{'--delay': '.075s', backgroundColor: 'red', zIndex: 1}}></div>
                 <div className={preLoaders} style={{'--delay': '0s', backgroundColor: 'white', zIndex: 0}}></div>
                 <div className={contentImage}>
-                    <Image {...{...wallpaper, alt: 'Welcome image', priority: !0}}/>
+                    {children}
                 </div>
             </aside>
         </main>

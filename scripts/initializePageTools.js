@@ -4,12 +4,11 @@ import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss
 import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
-import { imageContainer, rendered } from '@/components/pages-content/PageContent.module.scss';
+import { rendered } from '@/components/pages-content/PageContent.module.scss';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
-        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
-        asideImage = document.querySelector(`[class*="${imageContainer}"]`);
+        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement;
 
     scrollPage();
     page.onscroll = scrollPage;
