@@ -37,8 +37,8 @@
         transition: .75s 0s ease-in-out;
         pointer-events: auto;
         border-radius: 50%;
-        height: 100vmax;
-        width: 100vmax;
+        height: 100vw;
+        width: 100vw;
         scale: 0;
     }
 
@@ -73,7 +73,15 @@
     }
 
     .pageContent {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
+    }
+
+    .imageContainer {
+        width: 100%;
+    }
+
+    *:has(> .pageContent).rendered .preLoaders {
+        scale: 2;
     }
 }

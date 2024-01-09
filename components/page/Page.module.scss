@@ -49,10 +49,6 @@
         *:has(> .elementViewer) > *:not(.elementViewer) {
             animation: showSiblings .75s ease-in forwards;
         }
-
-        &:nth-child(even) {
-            background-color: #101a30;
-        }
     }
 }
 
