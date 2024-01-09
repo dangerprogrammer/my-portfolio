@@ -4,6 +4,10 @@
     align-items: center;
     justify-content: center;
     inset: 0;
+
+    &.renderedAboutMe {
+        background: red;
+    }
     
     .person {
         color: transparent;

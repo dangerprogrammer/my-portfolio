@@ -5,6 +5,7 @@ import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered } from '@/components/pages-content/PageContent.module.scss';
+import listClasses from '@/tools/listClasses';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
@@ -18,7 +19,8 @@ function renderScrolling() {
             sectionIndex = sections.indexOf(section),
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
-            firstRender = !sections.find(sec => sec.classList.contains(rendered));
+            firstRender = !sections.find(sec => sec.classList.contains(rendered)),
+            pageRender = listClasses[section.id];
 
         sidebar.classList.toggle(firstSide, sectionIndex);
 
@@ -28,7 +30,7 @@ function renderScrolling() {
             resetShowSection(sec);
         });
         page.classList.add(activePage);
-        section.classList.add(rendered);
+        section.classList.add(rendered, pageRender);
         renderShowSection(section, firstRender);
     };
 
