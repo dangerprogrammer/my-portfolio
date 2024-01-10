@@ -5,6 +5,7 @@ import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered } from '@/components/pages-content/PageContent.module.scss';
+import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import listClasses from '@/tools/listClasses';
 
 function renderScrolling() {
@@ -17,11 +18,11 @@ function renderScrolling() {
     function scrollPage() {
         const section = sections.reduce(filterSection, sections[0]),
             sectionIndex = sections.indexOf(section),
+            { id: sectionID } = section,
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
-            renderedSection = sections.find(sec => sec.classList.contains(rendered)),
-            firstRender = !renderedSection,
-            pageRender = listClasses[section.id],
+            firstRender = !sections.find(sec => sec.classList.contains(rendered)),
+            pageRender = listClasses[sectionID],
             hoverParent = section.firstChild.lastChild.lastChild;
 
         sidebar.classList.toggle(firstSide, sectionIndex);
@@ -29,13 +30,13 @@ function renderScrolling() {
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach((sec, secInd) => {
             if (secInd == sectionIndex) return;
-            sec.classList.remove(rendered);
+            sec.classList.remove(rendered, welcomeActive);
             sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
-        if (renderedSection && renderedSection.id == 'about-me') (console.clear(), console.log(renderedSection));
         page.classList.add(activePage);
         section.classList.add(rendered);
+        if (sectionID == 'welcome') section.classList.add(welcomeActive);
         setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
         renderShowSection(section, firstRender);
     };
@@ -54,32 +55,14 @@ function renderScrolling() {
 
 function renderMousemove() {
     const canvas = document.getElementById('background-canvas');
-    let canvasChildrens = [...canvas.children];
 
-    let lastX, lastY, timeout = setTimeout(() => canvas.classList.remove(moving), 5e3);
+    let timeout = setTimeout(() => canvas.classList.remove(moving), 5e3);
     canvas.classList.add(moving);
-    window.onmousemove = ({ offsetX, offsetY }) => {
-        canvasChildrens = [...canvas.children];
-        if (lastX && lastY) {
-            const distX = offsetX - lastX, distY = offsetY - lastY, speed = 5e-2;
 
-            canvasChildrens.forEach(canvaChild => {
-                canvaChild.style.setProperty('--tX', `${distX * speed}px`);
-                canvaChild.style.setProperty('--tY', `${distY * speed}px`);
-            });
-        } else {
-            lastX = offsetX;
-            lastY = offsetY;
-        };
-
+    window.onmousemove = () => {
         clearTimeout(timeout);
         canvas.classList.add(moving);
         timeout = setTimeout(() => canvas.classList.remove(moving), 2e3);
-    };
-
-    window.onmouseout = () => {
-        lastX = undefined;
-        lastY = undefined;
     };
 };
 
@@ -123,7 +106,7 @@ function renderCanvas() {
 
     generateDots(limit - canvasChildrens.length);
 
-    // renderMousemove();
+    renderMousemove();
 
     canvas.classList.add(activeCanvas);
 

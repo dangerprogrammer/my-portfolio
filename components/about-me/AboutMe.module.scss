@@ -45,8 +45,9 @@
 
     .blob3 {
         z-index: 1;
-        translate: -.03em .15em;
+        translate: -.05em .15em;
         font-size: 1.7em;
+        rotate: -15deg;
     }
 }
 
@@ -74,7 +75,7 @@
         }
 
         .blob3 {
-            rotate: -15deg;
+            rotate: -25deg;
         }
     }
 }
