@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { renderSecPage } from "@/scripts/initializePageTools";
 import { useEffect } from "react";
 
-function MyProjects() {
+function Skills() {
     useEffect(renderSecPage, []);
 
     return <>
@@ -12,4 +12,4 @@ function MyProjects() {
     </>
 };
 
-export default MyProjects;
+export default Skills;

@@ -7,7 +7,7 @@ function PageContent({ titlePage, notClicking: notClick, children, id, ...contex
     return <section {...{id, ...contexts}} style={{display: 'flex'}}>
         <main className={pageContent} style={{zIndex: 50}}>
             <h1 className={mainTitle}>{titlePage}</h1>
-            <aside className={[imageContainer, notClick ? notClickStyles : undefined].join(' ')} onClick={() => router.push(`/${id}`)}>
+            <aside className={[imageContainer, notClick ? notClickStyles : undefined].join(' ')} onClick={() => router.push(`/${id}`, { scroll: !1 })}>
                 <div className={preLoaders} style={{'--delay': '.15s', backgroundColor: 'black', zIndex: 2}}></div>
                 <div className={preLoaders} style={{'--delay': '.075s', backgroundColor: 'red', zIndex: 1}}></div>
                 <div className={preLoaders} style={{'--delay': '0s', backgroundColor: 'white', zIndex: 0}}></div>
