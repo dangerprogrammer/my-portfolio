@@ -29,7 +29,8 @@
     }
 
     .blobs > * {
-        transition: .4s ease;
+        transition: 0s ease;
+        scale: .5;
         bottom: 0%;
     }
 
@@ -55,6 +56,11 @@
     .person {
         transition: translate .65s ease-in-out, scale .35s ease;
         translate: 0;
+    }
+
+    .blobs > * {
+        transition: .4s ease;
+        scale: 1;
     }
 
     &:hover {
