@@ -4,29 +4,89 @@
     align-items: center;
     justify-content: center;
     inset: 0;
+    color: transparent;
 
-    .renderedAboutMe & {
-        background: red;
+    * {
+        pointer-events: none;
     }
-    
-    .person {
-        color: transparent;
+
+    .person, .blobs, .blobs > * {
         position: absolute;
-        bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
     }
+    
+    .person {
+        bottom: 0;
+        translate: 0 10rem;
+        transition: 0s ease-in-out;
+        z-index: 20;
+    }
+
+    .blobs {
+        bottom: -20%;
+    }
+
+    .blobs > * {
+        transition: .4s ease;
+        bottom: 0%;
+    }
+
+    .blob1 {
+        z-index: 3;
+    }
+
+    .blob2 {
+        z-index: 2;
+        translate:  .05em .25em;
+        font-size: 1.4em;
+    }
+
+    .blob3 {
+        z-index: 1;
+        translate: -.03em .15em;
+        font-size: 1.7em;
+    }
+}
+
+*:has(> .hoverContent).renderedAboutMe .hoverContent {
+    .person {
+        transition: translate .65s ease-in-out, scale .35s ease;
+        translate: 0;
+    }
+
+    &:hover {
+        .person {
+            scale: 1.1;
+        }
+
+        .blobs > * {
+            scale: 1.1;
+        }
+
+        .blob1 {
+            rotate: 14deg;
+        }
+
+        .blob2 {
+            rotate: 10deg;
+        }
+
+        .blob3 {
+            rotate: -15deg;
+        }
+    }
 }
 
 @media screen and (min-width: 64rem) {
-    .person {
+    .person, .blobs {
         font-size: 35vw;
     }
 }
 
 @media screen and (max-width: calc(64rem - 1px)) {
-    .person {
+    .person, .blobs {
         font-size: 60vw;
     }
 }

@@ -19,18 +19,24 @@ function renderScrolling() {
             sectionIndex = sections.indexOf(section),
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
-            firstRender = !sections.find(sec => sec.classList.contains(rendered)),
-            pageRender = listClasses[section.id];
+            renderedSection = sections.find(sec => sec.classList.contains(rendered)),
+            firstRender = !renderedSection,
+            pageRender = listClasses[section.id],
+            hoverParent = section.firstChild.lastChild.lastChild;
 
         sidebar.classList.toggle(firstSide, sectionIndex);
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
-        sections.forEach(sec => {
-            sec.classList.remove(rendered, listClasses[sec.id]);
+        sections.forEach((sec, secInd) => {
+            if (secInd == sectionIndex) return;
+            sec.classList.remove(rendered);
+            sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
+        if (renderedSection && renderedSection.id == 'about-me') (console.clear(), console.log(renderedSection));
         page.classList.add(activePage);
-        section.classList.add(rendered, pageRender);
+        section.classList.add(rendered);
+        setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
         renderShowSection(section, firstRender);
     };
 
