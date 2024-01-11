@@ -6,8 +6,11 @@ import { renderSecPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 
 function AboutMe() {
-    const { history, setHistory } = useContext(ContextApp);
-    useEffect(renderSecPage, []);
+    const { history } = useContext(ContextApp);
+    useEffect(() => {
+        renderSecPage();
+        console.log(history);
+    }, []);
 
     return <>
         <Navbar/>
