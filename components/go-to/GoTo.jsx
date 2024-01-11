@@ -1,12 +1,11 @@
-import Link from 'next/link';
-import { useContext } from 'react';
-import { ContextApp } from '../context/ContextApp';
+const { Link } = require("react-router-dom");
 
-function GoTo({ url:href, back, ...content }) {
+function GoTo({ url: href, back, ...content }) {
     const { setHistory, backHistory } = useContext(ContextApp);
 
     if (back) backHistory();
 
+    console.log('new historic!', href);
     setHistory(oldHistory => [...oldHistory, href]);
 
     return <Link {...{href, ...content}}/>
