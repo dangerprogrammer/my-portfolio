@@ -7,10 +7,9 @@ import { navbarStyles, socialMedia, preloaderContainer, mediaContainer, titleNav
 import Link from 'next/link';
 import goTo from '@/tools/goTo';
 
-function Navbar({ ...contexts }) {
+function Navbar({ setHistory, backHistory }) {
     const pathname = usePathname(), { push } = useRouter();
 
-    console.log(contexts)
     return <nav className={navbarStyles}>
         <span className={preloaderContainer}>
             <PreLoader zIndex='2'/>

@@ -6,14 +6,14 @@ import { renderSecPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 
 function AboutMe() {
-    const { history } = useContext(ContextApp);
+    const { history, ...contexts } = useContext(ContextApp);
     useEffect(() => {
         renderSecPage();
         console.log(history);
     }, []);
 
     return <>
-        <Navbar/>
+        <Navbar { ...contexts }/>
     </>
 };
 
