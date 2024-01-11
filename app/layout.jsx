@@ -1,4 +1,5 @@
 import '@/styles/global.scss';
+import ContextProvider from '@/components/context/ContextApp';
 
 const metadata = {
   title: {
@@ -14,7 +15,9 @@ function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        {children}
+        <ContextProvider>
+          {children}
+        </ContextProvider>
       </body>
     </html>
   )

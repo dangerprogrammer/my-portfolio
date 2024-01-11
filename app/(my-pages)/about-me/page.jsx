@@ -1,16 +1,13 @@
 'use client';
 
+import { ContextApp } from "@/components/context/ContextApp";
 import Navbar from "@/components/navbar/Navbar";
 import { renderSecPage } from "@/scripts/initializePageTools";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
 
 function AboutMe() {
-    const router = useRouter();
+    const { history, setHistory } = useContext(ContextApp);
     useEffect(renderSecPage, []);
-
-    console.log("Opa!")
-    console.log(router);
 
     return <>
         <Navbar/>
