@@ -19,10 +19,19 @@
     user-select: none;
     overflow: hidden;
 
-    span {
-        position: relative;
-        translate: -100% 0;
+    div {
         display: flex;
+        flex-direction: row;
+
+        span {
+            position: relative;
+            display: inline;
+            translate: -10em 0;
+
+            &.space {
+                width: .35em;
+            }
+        }
     }
 }
 
