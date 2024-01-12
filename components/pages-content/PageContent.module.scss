@@ -12,24 +12,123 @@
 .mainTitle {
     position: absolute;
     left: max(10vw, 5rem);
-    font-size: clamp(1em, 5vw, 5em);
+    font-size: clamp(1em, 6vw, 6em);
     font-weight: 500;
     letter-spacing: .1em;
     z-index: 80;
     user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     overflow: hidden;
 
-    div {
+    .titleContainer {
         display: flex;
         flex-direction: row;
 
         span {
             position: relative;
+            pointer-events: none;
             display: inline;
             translate: -10em 0;
 
             &.space {
                 width: .35em;
+            }
+        }
+    }
+
+    .buttonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        .aboutPage {
+            position: relative;
+            translate: 0 101%;
+            background: #30f;
+            border: none;
+            outline: none;
+            padding: .5em 1.5em;
+            border-radius: 4em;
+            font-size: .3em;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            * {
+                pointer-events: none;
+            }
+
+            .clip {
+                position: absolute;
+                inset: 0;
+                background: white;
+                color: #111;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: .5s;
+
+                &.left {
+                    clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
+                    clip-path: circle(0% at 0 50%);
+
+                    &.left1, &.left2 {
+                        opacity: .5;
+                    }
+                    &.left3 {
+                        opacity: 1;
+                    }
+                }
+
+                &.right {
+                    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                    clip-path: circle(0% at 100% 50%);
+
+                    &.right1, &.right2 {
+                        opacity: .5;
+                    }
+                    &.right3 {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &:hover {
+                .left {
+                    clip-path: polygon(0 0, 51% 0, 51% 100%, 0% 100%);
+                    clip-path: circle(75% at 0 50%);
+
+                    &.left1 {
+                        transition-delay: .1s;
+                    }
+                    &.left2 {
+                        transition-delay: .2s;
+                    }
+                    &.left3 {
+                        transition-delay: .3s;
+                    }
+                }
+
+                .right {
+                    clip-path: polygon(49% 0, 100% 0, 100% 100%, 49% 100%);
+                    clip-path: circle(75% at 100% 50%);
+
+                    &.right1 {
+                        transition-delay: .1s;
+                    }
+                    &.right2 {
+                        transition-delay: .2s;
+                    }
+                    &.right3 {
+                        transition-delay: .3s;
+                    }
+                }
             }
         }
     }
@@ -78,9 +177,16 @@
 }
 
 *:has(> .pageContent).rendered {
-    .mainTitle span {
-        transition: .5s .5s ease-out;
-        translate: 0;
+    .mainTitle {
+        span {
+            transition: .5s .5s ease-out;
+            translate: 0;
+        }
+
+        .aboutPage {
+            transition: .5s .75s ease-out;
+            translate: 0;
+        }
     }
 
     .preLoaders {
