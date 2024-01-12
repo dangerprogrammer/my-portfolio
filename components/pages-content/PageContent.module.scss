@@ -29,6 +29,11 @@
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
+    pointer-events: none;
+
+    &.imgActions {
+        pointer-events: initial;
+    }
 
     .preLoaders {
         position: absolute;

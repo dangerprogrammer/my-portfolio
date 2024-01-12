@@ -7,12 +7,6 @@
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
 
-    &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-        display: none;
-    }
-
     & > * {
         height: 100%;
         flex-shrink: 0;

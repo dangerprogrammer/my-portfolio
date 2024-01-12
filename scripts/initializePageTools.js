@@ -1,16 +1,19 @@
 import { pageStyles, elementViewer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
-import { itemPage, showPage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
+import { itemPage, showPage, hidePage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
-import { rendered } from '@/components/pages-content/PageContent.module.scss';
+import { rendered, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import listClasses from '@/tools/listClasses';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
-        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement;
+        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
+        imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`);
+
+    let timeoutRender = [], timeoutImg = [];
 
     scrollPage();
     page.onscroll = scrollPage;
@@ -18,6 +21,7 @@ function renderScrolling() {
     function scrollPage() {
         const section = sections.reduce(filterSection, sections[0]),
             sectionIndex = sections.indexOf(section),
+            imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
             page = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
@@ -29,15 +33,19 @@ function renderScrolling() {
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach((sec, secInd) => {
+            clearTimeout(timeoutImg[secInd]);
+            clearTimeout(timeoutRender[secInd]);
             if (secInd == sectionIndex) return;
+            sec.firstChild.lastChild.classList.remove(imgActions);
             sec.classList.remove(rendered, welcomeActive);
             sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
+        if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
         page.classList.add(activePage);
         section.classList.add(rendered);
         if (sectionID == 'welcome') section.classList.add(welcomeActive);
-        setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
+        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
         renderShowSection(section, firstRender);
     };
 
@@ -153,6 +161,12 @@ function renderSidebar() {
     itemPages.forEach(itemPage => itemPage.classList.add(showPage));
 };
 
+function hideSidebar() {
+    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+
+    itemPages.forEach(itemPage => itemPage.classList.add(hidePage));
+};
+
 function renderPage() {
     renderScrolling();
 
@@ -167,4 +181,8 @@ function renderSecPage() {
     renderNav();
 };
 
-export { renderPage, renderSecPage, renderNavScroll };
+function hiddenPage() {
+    hideSidebar();
+};
+
+export { renderPage, renderSecPage, renderNavScroll, hiddenPage };

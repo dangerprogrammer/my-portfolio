@@ -5,6 +5,26 @@
     translate: 0 -50%;
     padding: 2em 1em;
 
+    &.hideSidebar {
+        &, & * {
+            pointer-events: none;
+        }
+
+        .itemPage:not(.hidePage) {
+            translate: min(-100%, -10em);
+            scale: 1.3;
+            opacity: 0;
+        }
+    }
+
+    &:not(.hideSidebar) {
+        .itemPage {
+            translate: min(-100%, -10em);
+            scale: 1.3;
+            opacity: 0;
+        }
+    }
+
     ul {
         display: flex;
         flex-direction: column;
@@ -13,7 +33,7 @@
     }
 
     &.firstSide ul {
-        .itemPage.showPage.activePage .svgContainer {
+        .itemPage:is(.showPage, .hidePage).activePage .svgContainer {
             background-color: #eee;
         }
         
@@ -41,7 +61,7 @@
                 }
             }
 
-            &.showPage.activePage {
+            &:is(.showPage, .hidePage).activePage {
                 a {
                     pointer-events: none;
 
@@ -60,7 +80,7 @@
 
     &:not(:hover) {
         .itemPage {
-            &.showPage.activePage {
+            &:is(.showPage, .hidePage).activePage {
                 a {
                     pointer-events: none;
 
@@ -77,12 +97,13 @@
         position: relative;
         display: flex;
         list-style: none;
-        translate: -100%;
-        scale: 1.3;
-        opacity: 0;
 
         &.showPage {
             animation: spawnItem .6s ease-in-out forwards;
+        }
+
+        &.hidePage {
+            animation: spawnItem .6s ease-in-out reverse forwards;
         }
 
         a {
@@ -165,7 +186,7 @@
 @media screen and (min-width: 50rem) {
     .sidebarStyles {
         &:hover:not(.firstSide) {
-            .itemPage.showPage.activePage .itemSection {
+            .itemPage:is(.showPage, .hidePage).activePage .itemSection {
                 background: #eee;
             }
             .svgContainer {
@@ -191,7 +212,7 @@
                     }
                 }
             
-                &.showPage.activePage {
+                &:is(.showPage, .hidePage).activePage {
                     a {
                         pointer-events: none;
     
@@ -208,7 +229,7 @@
 
 @media screen and (max-width: calc(50rem - 1px)) {
     .sidebarStyles {
-        .itemPage.showPage.activePage .svgContainer {
+        .itemPage:is(.showPage, .hidePage).activePage .svgContainer {
             background-color: #eee;
         }
 
