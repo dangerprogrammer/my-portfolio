@@ -29,10 +29,11 @@
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
-    pointer-events: none;
 
-    &.imgActions {
-        pointer-events: initial;
+    &:not(.imgActions) {
+        &, & * {
+            pointer-events: none !important;
+        }
     }
 
     .preLoaders {
@@ -67,7 +68,7 @@
     }
 
     .contentImage {
-        transition: .75s 1s ease-in-out;
+        transition: opacity .75s 1s ease-in-out;
         opacity: 1;
     }
 }
