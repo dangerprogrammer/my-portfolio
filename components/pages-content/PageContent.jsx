@@ -1,4 +1,4 @@
-import { pageContent, imageContainer, preLoaders, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3, right, right1, right2, right3 } from './PageContent.module.scss';
+import { pageContent, imageContainer, preLoaders, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
 function PageContent({ titlePage, children, id, ...contexts }) {
@@ -12,9 +12,6 @@ function PageContent({ titlePage, children, id, ...contexts }) {
                         <span className={[clip, left, left2].join(' ')}>Show me more</span>
                         <span className={[clip, left, left3].join(' ')}>Show me more</span>
                         <p>Show me more</p>
-                        <span className={[clip, right, right1].join(' ')}>Show me more</span>
-                        <span className={[clip, right, right2].join(' ')}>Show me more</span>
-                        <span className={[clip, right, right3].join(' ')}>Show me more</span>
                     </button>
                 </div>
             </h1>

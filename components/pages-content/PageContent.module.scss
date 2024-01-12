@@ -77,57 +77,27 @@
                 &.left {
                     clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
                     clip-path: circle(0% at 0 50%);
-
-                    &.left1, &.left2 {
-                        opacity: .5;
-                    }
-                    &.left3 {
-                        opacity: 1;
-                    }
                 }
 
-                &.right {
-                    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-                    clip-path: circle(0% at 100% 50%);
-
-                    &.right1, &.right2 {
-                        opacity: .5;
-                    }
-                    &.right3 {
-                        opacity: 1;
-                    }
+                &.left1, &.left2 {
+                    opacity: .5;
                 }
             }
 
             &:hover {
                 .left {
                     clip-path: polygon(0 0, 51% 0, 51% 100%, 0% 100%);
-                    clip-path: circle(75% at 0 50%);
-
-                    &.left1 {
-                        transition-delay: .1s;
-                    }
-                    &.left2 {
-                        transition-delay: .2s;
-                    }
-                    &.left3 {
-                        transition-delay: .3s;
-                    }
+                    clip-path: circle(150% at 0 50%);
                 }
 
-                .right {
-                    clip-path: polygon(49% 0, 100% 0, 100% 100%, 49% 100%);
-                    clip-path: circle(75% at 100% 50%);
-
-                    &.right1 {
-                        transition-delay: .1s;
-                    }
-                    &.right2 {
-                        transition-delay: .2s;
-                    }
-                    &.right3 {
-                        transition-delay: .3s;
-                    }
+                .left1 {
+                    transition-delay: .1s;
+                }
+                .left2 {
+                    transition-delay: .2s;
+                }
+                .left3 {
+                    transition-delay: .3s;
                 }
             }
         }
