@@ -16,6 +16,14 @@
     font-weight: 500;
     letter-spacing: .1em;
     z-index: 80;
+    user-select: none;
+    overflow: hidden;
+
+    span {
+        position: relative;
+        translate: -100% 0;
+        display: flex;
+    }
 }
 
 .imageContainer {
@@ -61,6 +69,11 @@
 }
 
 *:has(> .pageContent).rendered {
+    .mainTitle span {
+        transition: .5s .5s ease-out;
+        translate: 0;
+    }
+
     .preLoaders {
         transition: .75s var(--delay) ease-in-out;
         scale: 1;
