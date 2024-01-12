@@ -11,18 +11,19 @@ import { renderPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
+import { useRouter } from "next/navigation";
 
 function Home() {
-  const { ...contexts } = useContext(ContextApp);
+  const { history, ...contexts } = useContext(ContextApp), { push } = useRouter();
   useEffect(renderPage, []);
-
+  
   return <>
-    <Navbar { ...contexts }/>
+    <Navbar { ...{useEffect, push, ...contexts} }/>
     <Page>
       <Welcome/>
-      <AboutMe/>
-      <Skills/>
-      <MyProjects/>
+      <AboutMe { ...{useEffect, push, ...contexts} }/>
+      <Skills { ...{useEffect, push, ...contexts} }/>
+      <MyProjects { ...{useEffect, push, ...contexts} }/>
     </Page>
     <BackgroundCanvas/>
     <Sidebar/>
