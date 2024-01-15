@@ -11,13 +11,14 @@
     justify-content: center;
     opacity: .2;
     filter: blur(1em);
-    transition: opacity 1s ease, filter 1s ease 1s;
+    transition: opacity 1s ease, filter 1s ease;
 
     &.moving {
         opacity: .5;
     }
 
     &.activeCanvas {
+        transition: opacity 1s ease, filter 1s ease 1s;
         filter: blur(0em);
     }
 

@@ -2,7 +2,7 @@
 
 import { ContextApp } from "@/components/context/ContextApp";
 import Navbar from "@/components/navbar/Navbar";
-import Sidebar from "@/components/sidebar/Sidebar";
+import SecPage from "@/components/sec-page/SecPage";
 import { hiddenPage, renderSecPage } from "@/scripts/initializePageTools";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
@@ -19,7 +19,7 @@ function AboutMe() {
 
     return <>
         <Navbar { ...{useEffect, push, ...contexts} }/>
-        <Sidebar noAction/>
+        <SecPage/>
     </>
 };
 
