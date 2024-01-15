@@ -8,6 +8,7 @@ import { rendered, imageContainer, imgActions } from '@/components/pages-content
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import listClasses from '@/tools/listClasses';
 
+let section;
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
         itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
@@ -19,8 +20,8 @@ function renderScrolling() {
     page.onscroll = scrollPage;
 
     function scrollPage() {
-        const section = sections.reduce(filterSection, sections[0]),
-            sectionIndex = sections.indexOf(section),
+        section = sections.reduce(filterSection, sections[0]);
+        const sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
             page = itemPages[sectionIndex],
@@ -62,7 +63,13 @@ function renderScrolling() {
 };
 
 function hideScrolling() {
-    
+    const page = document.querySelector(`[class*="${pageStyles}"]`),
+        imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`);
+
+    page.onscroll = ({ preventDefault }) => {
+        console.log(preventDefault);
+        preventDefault();
+    };
 };
 
 function renderMousemove() {
@@ -117,6 +124,7 @@ function renderShowSection({ id }, firstRender) {
 
 let stopDot;
 function renderCanvas() {
+    if (stopDot) return;
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
     let limit = Math.round((offsetHeight * offsetWidth) / 2e4);
     let canvasChildrens = [...canvas.children];
@@ -186,6 +194,8 @@ function hideSidebar() {
     itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };
 
+function loadSecPage() {};
+
 function renderPage() {
     renderScrolling();
 
@@ -201,6 +211,8 @@ function renderSecPage() {
 };
 
 function hiddenPage() {
+    hideScrolling();
+
     hideSidebar();
 
     hideCanvas();

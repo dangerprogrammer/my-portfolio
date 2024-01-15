@@ -7,7 +7,7 @@ function PageContent({ titlePage, children, id, ...contexts }) {
             <h1 className={mainTitle}>
                 <div className={titleContainer}>{[...titlePage].map((l, ind) => <span className={l == ' ' ? space : undefined} style={{transitionDelay: `calc(${titlePage.length - ind}ms * 35)`}}>{l}</span>)}</div>
                 <div className={buttonContainer}>
-                    <button className={aboutPage} onClick={() => goTo({url: `/${id}`, prevURL: `/#${id}`, ...contexts})}>
+                    <button className={aboutPage} onClick={({ target }) => goTo({url: `/${id}`, prevURL: `/#${id}`, ...contexts}, target)}>
                         <span className={[clip, left, left1].join(' ')}>Show me more</span>
                         <span className={[clip, left, left2].join(' ')}>Show me more</span>
                         <span className={[clip, left, left3].join(' ')}>Show me more</span>
@@ -15,7 +15,7 @@ function PageContent({ titlePage, children, id, ...contexts }) {
                     </button>
                 </div>
             </h1>
-            <aside className={imageContainer} onClick={() => goTo({url: `/${id}`, prevURL: `/#${id}`, ...contexts})}>
+            <aside className={imageContainer} onClick={({ target }) => goTo({url: `/${id}`, prevURL: `/#${id}`, ...contexts}, target)}>
                 <div className={preLoaders} style={{'--delay': '.15s', backgroundColor: 'black', zIndex: 2}}></div>
                 <div className={preLoaders} style={{'--delay': '.075s', backgroundColor: 'red', zIndex: 1}}></div>
                 <div className={preLoaders} style={{'--delay': '0s', backgroundColor: 'white', zIndex: 0}}></div>

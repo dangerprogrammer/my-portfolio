@@ -29,4 +29,8 @@ function AboutMe({ ...contexts }) {
     </PageContent>
 };
 
+function PageAboutMe() {};
+
+export { PageAboutMe };
+
 export default AboutMe;
