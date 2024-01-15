@@ -1,4 +1,4 @@
-import listTitles from "@/components/context/listTitles";
+import { listTitles } from "@/components/context/listPages";
 
 async function generateMetadata({ params: { pageName } }) {
     return {
@@ -7,7 +7,6 @@ async function generateMetadata({ params: { pageName } }) {
 };
 
 export { generateMetadata };
-
 
 function RootLayout({ children }) {
     return <>

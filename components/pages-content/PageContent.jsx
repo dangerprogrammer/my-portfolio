@@ -1,4 +1,4 @@
-import listTitles from '../context/listTitles';
+import { listTitles } from '../context/listPages';
 import { pageContent, imageContainer, preLoaders, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 

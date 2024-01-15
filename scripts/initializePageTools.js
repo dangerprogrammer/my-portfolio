@@ -6,9 +6,8 @@ import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
-import listClasses from '@/tools/listClasses';
+import { listClasses } from '@/components/context/listPages';
 
-let section;
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
         itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
@@ -20,8 +19,8 @@ function renderScrolling() {
     page.onscroll = scrollPage;
 
     function scrollPage() {
-        section = sections.reduce(filterSection, sections[0]);
-        const sectionIndex = sections.indexOf(section),
+        const section = sections.reduce(filterSection, sections[0]),
+            sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
             page = itemPages[sectionIndex],
@@ -198,6 +197,16 @@ function hideSidebar() {
     itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };
 
+function renderSecSection() {
+    const section = document.querySelector('section[id]'),
+        imgContainer = document.querySelector(`[class*="${imageContainer}"]`);
+
+    section.classList.add(rendered);
+    renderShowSection(section, !0);
+
+    setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
+};
+
 function loadSecPage() {};
 
 function renderPage() {
@@ -210,8 +219,12 @@ function renderPage() {
     renderCanvas();
 };
 
-function renderSecPage() {
+function renderSecPage(isTruly) {
     renderNav();
+
+    if (!isTruly) return;
+
+    renderSecSection();
 };
 
 function hiddenPage() {

@@ -12,7 +12,7 @@
 .mainTitle {
     position: absolute;
     left: max(10vw, 5rem);
-    font-size: clamp(1.5em, 6vw, 6em);
+    font-size: clamp(3em, 6vw, 6em);
     font-weight: 500;
     letter-spacing: .1em;
     z-index: 80;
@@ -54,7 +54,7 @@
             outline: none;
             padding: .5em 1.5em;
             border-radius: 4em;
-            font-size: clamp(1.5rem, 2vw, 20rem);
+            font-size: clamp(1.5rem, 2vw, 2rem);
             font-weight: 700;
             cursor: pointer;
             display: flex;
@@ -188,8 +188,12 @@
     .pageContent {
         flex-direction: column-reverse;
         justify-content: center;
-        padding-right: 1rem;
         align-items: flex-start;
+
+        &.notSidebar {
+            padding-left: 1rem;
+            background: red;
+        }
     }
 
     .imageContainer {

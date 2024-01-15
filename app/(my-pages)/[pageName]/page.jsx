@@ -2,23 +2,33 @@
 
 import BackgroundCanvas from "@/components/background-canvas/BackgroundCanvas";
 import { ContextApp } from "@/components/context/ContextApp";
+import { listComponents } from "@/components/context/listPages";
+import Error from "@/components/error/Error";
 import Navbar from "@/components/navbar/Navbar";
-import AboutMe from "@/components/pages/about-me/AboutMe";
 import SecPage from "@/components/sec-page/SecPage";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { renderSecPage } from "@/scripts/initializePageTools";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
-function Page() {
-    const { history, ...contexts } = useContext(ContextApp), { push } = useRouter();
+async function getServerSideProps({ params }) {
+    return {
+        props: params
+    }
+};
 
-    useEffect(renderSecPage, []);
+export { getServerSideProps };
+
+function Page({ params: { pageName } }) {
+    const { history, ...contexts } = useContext(ContextApp), { push } = useRouter(),
+        PageComponent = listComponents[pageName] || Error;
+
+    useEffect(() => renderSecPage(!!listComponents[pageName]), []);
 
     return <>
         <Navbar { ...{useEffect, push, ...contexts} }/>
         <SecPage>
-            <AboutMe { ...{useEffect, push, ...contexts} }/>
+            <PageComponent { ...{useEffect, push, ...contexts} }/>
         </SecPage>
         <BackgroundCanvas/>
         <Sidebar/>
