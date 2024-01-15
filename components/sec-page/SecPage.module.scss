@@ -1,3 +1,10 @@
 .secPageStyles {
+    height: 100vh;
     background: #0c101c;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
 }
