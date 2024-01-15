@@ -2,20 +2,20 @@
 
 import { ContextApp } from "@/components/context/ContextApp";
 import Navbar from "@/components/navbar/Navbar";
+import SecPage from "@/components/sec-page/SecPage";
 import { renderSecPage } from "@/scripts/initializePageTools";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 
-function Skills() {
+function Page() {
     const { history, ...contexts } = useContext(ContextApp), { push } = useRouter();
-    useEffect(() => {
-        const backPage = history[history.length - 2];
-        renderSecPage();
-    }, []);
+
+    useEffect(renderSecPage, []);
 
     return <>
         <Navbar { ...{useEffect, push, ...contexts} }/>
+        <SecPage/>
     </>
 };
 
-export default Skills;
+export default Page;

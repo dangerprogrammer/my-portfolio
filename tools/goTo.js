@@ -3,6 +3,8 @@ import { hiddenPage } from "@/scripts/initializePageTools";
 function goTo({ url: href, back, setHistory, backHistory, push, prevURL }, target) {
     hiddenPage();
 
+    if (!target) return;
+
     console.log(target);
     target.style.pointerEvents = 'none !important';
 

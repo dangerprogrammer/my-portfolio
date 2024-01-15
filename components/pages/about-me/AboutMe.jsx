@@ -2,8 +2,8 @@ import PageContent from '../../pages-content/PageContent';
 import { hoverContent, person, blobs, blob1, blob2, blob3 } from './AboutMe.module.scss';
 import Person from '@/assets/svgs/person-bighead.svg';
 
-function AboutMe({ ...contexts }) {
-    return <PageContent titlePage="About Me" id="about-me" { ...contexts }>
+function AboutMe({ id = 'about-me', ...contexts }) {
+    return <PageContent { ...{id, ...contexts} }>
         <main className={hoverContent}>
             <section className={person}>
                 <Person/>
@@ -29,7 +29,9 @@ function AboutMe({ ...contexts }) {
     </PageContent>
 };
 
-function PageAboutMe() {};
+function PageAboutMe() {
+    return <div>Opa!</div>
+};
 
 export { PageAboutMe };
 

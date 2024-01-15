@@ -1,7 +1,7 @@
 import PageContent from '../../pages-content/PageContent';
 
-function MyProjects({ ...contexts }) {
-    return <PageContent titlePage="My Projects" id="my-projects" { ...contexts }/>
+function MyProjects({ id = "my-projects", ...contexts }) {
+    return <PageContent { ...{id, ...contexts} }/>
 };
 
 export default MyProjects;

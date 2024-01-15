@@ -66,7 +66,9 @@ function hideScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`),
         imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`);
 
-    page.onscroll = ({ preventDefault }) => {
+    if (!page) return;
+
+    if (page) page.onscroll = ({ preventDefault }) => {
         console.log(preventDefault);
         preventDefault();
     };
@@ -166,6 +168,8 @@ function renderCanvas() {
 
 function hideCanvas() {
     const canvas = document.getElementById('background-canvas');
+
+    if (!canvas) return;
 
     stopDot = !0;
 

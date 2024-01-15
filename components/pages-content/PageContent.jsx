@@ -1,7 +1,10 @@
+import listTitles from '../context/listTitles';
 import { pageContent, imageContainer, preLoaders, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
-function PageContent({ titlePage, children, id, ...contexts }) {
+function PageContent({ children, id, ...contexts }) {
+    const titlePage = listTitles[id];
+
     return <section {...{id, ...contexts}} style={{display: 'flex'}}>
         <main className={pageContent} style={{zIndex: 50}}>
             <h1 className={mainTitle}>
