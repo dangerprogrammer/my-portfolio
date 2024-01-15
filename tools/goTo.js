@@ -1,4 +1,9 @@
+import { hiddenPage } from "@/scripts/initializePageTools";
+
 function goTo({ url: href, back, setHistory, backHistory, push, prevURL }) {
+    hiddenPage();
+
+    return;
     if (back) backHistory();
 
     setHistory(oldHistory => {

@@ -21,6 +21,7 @@
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
+    pointer-events: none;
 
     .titleContainer {
         display: flex;
@@ -43,6 +44,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        pointer-events: auto;
 
         .aboutPage {
             position: relative;
@@ -74,9 +76,16 @@
                 justify-content: center;
                 transition: .5s;
 
-                &.left {
-                    clip-path: polygon(0 0, 0% 0, 0% 100%, 0% 100%);
-                    clip-path: circle(0% at 0 50%);
+                &.left1 {
+                    clip-path: circle(14% at 0% 50%);
+                }
+
+                &.left2 {
+                    clip-path: circle(11% at 0% 50%);
+                }
+
+                &.left3 {
+                    clip-path: circle(8% at 0% 50%);
                 }
 
                 &.left1, &.left2 {
@@ -86,18 +95,17 @@
 
             &:hover {
                 .left {
-                    clip-path: polygon(0 0, 51% 0, 51% 100%, 0% 100%);
-                    clip-path: circle(150% at 0 50%);
+                    clip-path: circle(100% at 50% 50%);
                 }
 
                 .left1 {
-                    transition-delay: .1s;
+                    transition-delay: .075s;
                 }
                 .left2 {
-                    transition-delay: .2s;
+                    transition-delay: .15s;
                 }
                 .left3 {
-                    transition-delay: .3s;
+                    transition-delay: .225s;
                 }
             }
         }

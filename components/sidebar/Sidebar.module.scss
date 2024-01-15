@@ -18,7 +18,7 @@
     }
 
     &:not(.hideSidebar) {
-        .itemPage {
+        .itemPage:not(.hidePage) {
             translate: min(-100%, -10em);
             scale: 1.3;
             opacity: 0;
@@ -103,7 +103,7 @@
         }
 
         &.hidePage {
-            animation: spawnItem .6s ease-in-out reverse forwards;
+            animation: hideItem .6s ease-in-out forwards;
         }
 
         a {
@@ -176,10 +176,25 @@
         scale: 1.3;
         opacity: 0;
     }
+
     to {
         translate: 0;
         scale: 1;
         opacity: 1;
+    }
+}
+
+@keyframes hideItem {
+    from {
+        translate: 0;
+        scale: 1;
+        opacity: 1;
+    }
+    
+    to {
+        translate: min(-100%, -10em);
+        scale: 1.3;
+        opacity: 0;
     }
 }
 

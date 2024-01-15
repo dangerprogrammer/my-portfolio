@@ -61,6 +61,10 @@ function renderScrolling() {
     };
 };
 
+function hideScrolling() {
+    
+};
+
 function renderMousemove() {
     const canvas = document.getElementById('background-canvas');
 
@@ -72,6 +76,10 @@ function renderMousemove() {
         canvas.classList.add(moving);
         timeout = setTimeout(() => canvas.classList.remove(moving), 2e3);
     };
+};
+
+function hideMousemove() {
+    window.onmousemove = () => {};
 };
 
 function renderNav() {
@@ -107,6 +115,7 @@ function renderShowSection({ id }, firstRender) {
     });
 };
 
+let stopDot;
 function renderCanvas() {
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
     let limit = Math.round((offsetHeight * offsetWidth) / 2e4);
@@ -142,9 +151,19 @@ function renderCanvas() {
 
         setTimeout(() => {
             canvas.removeChild(myDot);
-            generateDot();
+            if (!stopDot) generateDot();
         }, duration);
     };
+};
+
+function hideCanvas() {
+    const canvas = document.getElementById('background-canvas');
+
+    stopDot = !0;
+
+    hideMousemove();
+
+    canvas.classList.remove(activeCanvas);
 };
 
 function renderNavScroll(ev) {
@@ -164,7 +183,7 @@ function renderSidebar() {
 function hideSidebar() {
     const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
 
-    itemPages.forEach(itemPage => itemPage.classList.add(hidePage));
+    itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };
 
 function renderPage() {
@@ -183,6 +202,8 @@ function renderSecPage() {
 
 function hiddenPage() {
     hideSidebar();
+
+    hideCanvas();
 };
 
 export { renderPage, renderSecPage, renderNavScroll, hiddenPage };
