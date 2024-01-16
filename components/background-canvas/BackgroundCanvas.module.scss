@@ -9,17 +9,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: .2;
     filter: blur(1em);
     transition: opacity 1s ease, filter 1s ease;
 
-    &.moving {
-        opacity: .5;
+    &:not(.activeCanvas) {
+        opacity: 0;
     }
 
     &.activeCanvas {
+        opacity: .2;
         transition: opacity 1s ease, filter 1s ease 1s;
         filter: blur(0em);
+
+        &.moving {
+            opacity: .5;
+        }
     }
 
     .canvasDot {

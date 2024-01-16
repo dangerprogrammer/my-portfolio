@@ -1,7 +1,7 @@
 import { pageStyles, elementViewer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
-import { itemPage, showPage, hidePage, activePage, firstSide } from '@/components/sidebar/Sidebar.module.scss';
+import { itemPage, showPage, hidePage, activePage, firstSide, hideSidebarStyles } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
@@ -186,24 +186,30 @@ function renderNavScroll(ev) {
 };
 
 function renderSidebar() {
-    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), { parentElement: sidebar } = itemPages[0].parentElement;
 
-    itemPages.forEach(itemPage => itemPage.classList.add(showPage));
+    sidebar.classList.remove(hideSidebarStyles);
+    itemPages.forEach(itemPage => (itemPage.classList.remove(hidePage), itemPage.classList.add(showPage)));
 };
 
 function hideSidebar() {
-    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`);
+    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), { parentElement: sidebar } = itemPages[0].parentElement;
 
+    sidebar.classList.add(hideSidebarStyles);
     itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };
 
 function renderSecSection() {
     const section = document.querySelector('section[id]'),
-        imgContainer = document.querySelector(`[class*="${imageContainer}"]`);
+        { id: sectionID } = section,
+        imgContainer = document.querySelector(`[class*="${imageContainer}"]`),
+        pageRender = listClasses[sectionID],
+        { lastChild: hoverParent } = section.firstChild.lastChild;
 
     section.classList.add(rendered);
     renderShowSection(section, !0);
 
+    setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
     setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
 };
 

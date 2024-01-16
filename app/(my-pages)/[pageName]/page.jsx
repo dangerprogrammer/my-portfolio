@@ -28,10 +28,10 @@ function Page({ params: { pageName } }) {
     return <>
         <Navbar { ...{useEffect, push, ...contexts} }/>
         <SecPage>
-            <PageComponent { ...{useEffect, push, ...contexts} }/>
+            <PageComponent { ...{useEffect, push, secPage: !0, ...contexts} }/>
         </SecPage>
         <BackgroundCanvas/>
-        <Sidebar/>
+        <Sidebar noAction/>
     </>
 };
 

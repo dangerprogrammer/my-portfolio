@@ -124,6 +124,10 @@
     overflow: hidden;
     cursor: pointer;
 
+    &.fullImage {
+        background: red;
+    }
+
     &:not(.imgActions) {
         &, & * {
             pointer-events: none !important;
