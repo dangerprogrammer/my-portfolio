@@ -1,5 +1,5 @@
 import { listTitles } from '../context/listPages';
-import { pageContent, imageContainer, preLoaders, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3, fullImage } from './PageContent.module.scss';
+import { pageContent, imageContainer, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3, fullImage } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
 function PageContent({ children, id, secPage = !1, ...contexts }) {
@@ -19,9 +19,6 @@ function PageContent({ children, id, secPage = !1, ...contexts }) {
                 </div>
             </h1>
             <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={({ target }) => secPage ? undefined : goTo(goToSettings, target)}>
-                <div className={preLoaders} style={{'--delay': '.15s', backgroundColor: 'black', zIndex: 2}}></div>
-                <div className={preLoaders} style={{'--delay': '.075s', backgroundColor: 'red', zIndex: 1}}></div>
-                <div className={preLoaders} style={{'--delay': '0s', backgroundColor: 'white', zIndex: 0}}></div>
                 <div className={contentImage}>
                     {children}
                 </div>

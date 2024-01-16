@@ -134,19 +134,6 @@
         }
     }
 
-    .preLoaders {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        translate: 70% -50%;
-        transition: 0s 0s ease-in-out;
-        pointer-events: auto;
-        border-radius: 50%;
-        height: 100vw;
-        width: 100vw;
-        scale: 0;
-    }
-
     .contentImage {
         position: absolute;
         opacity: 0;
