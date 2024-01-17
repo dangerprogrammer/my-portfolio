@@ -1,3 +1,4 @@
+import AnimatedButton from '../animated-button/AnimatedButton';
 import { listComponents, listTitles } from '../context/listPages';
 import {
     sectionStyles,
@@ -15,12 +16,7 @@ function PageContent({ children, id, secPage = !1, ...contexts }) {
             <h1 className={mainTitle}>
                 <div className={titleContainer}>{[...titlePage].map((l, ind) => <span className={l == ' ' ? space : undefined} style={{transitionDelay: `calc(${titlePage.length - ind}ms * 35)`}}>{l}</span>)}</div>
                 <div className={buttonContainer}>
-                    <button className={aboutPage} onClick={({ target }) => goTo(goToSettings, target)}>
-                        <span className={[clip, left, left1].join(' ')}>{secPage ? 'Back' : 'Show me more'}</span>
-                        <span className={[clip, left, left2].join(' ')}>{secPage ? 'Back' : 'Show me more'}</span>
-                        <span className={[clip, left, left3].join(' ')}>{secPage ? 'Back' : 'Show me more'}</span>
-                        <p>{secPage ? 'Back' : 'Show me more'}</p>
-                    </button>
+                    <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={({ target }) => goTo(goToSettings, target)}/>
                 </div>
             </h1>
             <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={({ target }) => secPage ? undefined : goTo(goToSettings, target)}>

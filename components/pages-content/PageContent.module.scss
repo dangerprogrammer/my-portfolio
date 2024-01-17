@@ -14,13 +14,12 @@
     gap: 2rem;
     height: 100vh;
     width: 100%;
+    flex-shrink: 0;
     padding: 5rem max(6vw, 5em);
 }
 
 .pageContent {
-    position: absolute;
     width: 100%;
-    translate: 0 10%;
     bottom: 0;
 }
 
@@ -60,70 +59,6 @@
         justify-content: center;
         overflow: hidden;
         pointer-events: auto;
-
-        .aboutPage {
-            position: relative;
-            translate: 0 101%;
-            background: linear-gradient(45deg, #50f, #02f);
-            border: none;
-            outline: none;
-            padding: .5em 1.5em;
-            border-radius: 4em;
-            font-size: clamp(1.5rem, 2vw, 2rem);
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-
-            * {
-                pointer-events: none;
-            }
-
-            .clip {
-                position: absolute;
-                inset: 0;
-                background: white;
-                color: #111;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: .5s;
-
-                &.left1 {
-                    clip-path: circle(10.5% at 2% 50%);
-                }
-
-                &.left2 {
-                    clip-path: circle(8% at 2% 50%);
-                }
-
-                &.left3 {
-                    clip-path: circle(5% at 2% 50%);
-                }
-
-                &.left1, &.left2 {
-                    opacity: .5;
-                }
-            }
-
-            &:hover {
-                .left {
-                    clip-path: circle(100% at 50% 50%);
-                }
-
-                .left1 {
-                    transition-delay: .075s;
-                }
-                .left2 {
-                    transition-delay: .15s;
-                }
-                .left3 {
-                    transition-delay: .225s;
-                }
-            }
-        }
     }
 }
 
@@ -174,6 +109,7 @@
     &.contentActive {
         position: fixed;
         z-index: 10;
+        overflow-y: auto;
 
         .pageContent {
             display: flex;
@@ -182,13 +118,13 @@
 
     &.rendered {
         .mainTitle {
-            span {
+            .titleContainer span {
                 transition: .5s .5s ease-out;
                 translate: 0;
             }
 
             .aboutPage {
-                transition: .5s .75s ease-out;
+                transition: translate .5s .75s ease-out;
                 translate: 0;
             }
         }
