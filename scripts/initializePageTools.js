@@ -11,20 +11,26 @@ import { listClasses } from '@/components/context/listPages';
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
         itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
-        imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`);
+        imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`),
+        hasRender = sections.find(sec => sec.classList.contains(rendered));
 
     let timeoutRender = [], timeoutImg = [];
 
-    scrollPage();
-    page.onscroll = scrollPage;
+    scrollPage(hasRender);
+    page.onscroll = () => scrollPage();
 
-    function scrollPage() {
-        const section = sections.reduce(filterSection, sections[0]),
-            sectionIndex = sections.indexOf(section),
+    function scrollPage(section) {
+        let canScroll = !1, oldSection = !1;
+        if (section) (canScroll = !0, oldSection = section);
+
+        section = section || sections.reduce(filterSection, sections[0]);
+        if (oldSection) console.log(oldSection, section);
+        const sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
-            page = itemPages[sectionIndex],
+            itemPage = itemPages[sectionIndex],
             anotherPages = [...itemPages].filter((p, index) => index != sectionIndex),
+            anotherSections = sections.filter((sec, secInd) => secInd != sectionIndex),
             firstRender = !sections.find(sec => sec.classList.contains(rendered)),
             pageRender = listClasses[sectionID],
             hoverParent = section.firstChild.lastChild.lastChild;
@@ -36,18 +42,28 @@ function renderScrolling() {
             clearTimeout(timeoutImg[secInd]);
             clearTimeout(timeoutRender[secInd]);
             sec.classList.remove(contentActive);
-            if (secInd == sectionIndex) return;
+        });
+        anotherSections.forEach(sec => {
             sec.firstChild.lastChild.classList.remove(imgActions);
             sec.classList.remove(rendered, welcomeActive);
             sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
-        if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
-        page.classList.add(activePage);
-        section.classList.add(rendered);
-        if (sectionID == 'welcome') section.classList.add(welcomeActive);
-        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
-        renderShowSection(section, firstRender);
+        if ((canScroll && oldSection != section) || !canScroll) {
+            // console.log(oldSection);
+            if (canScroll) console.log('NÃO RESETAAA!!!');
+            if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
+            itemPage.classList.add(activePage);
+            section.classList.add(rendered);
+            if (sectionID == 'welcome') section.classList.add(welcomeActive);
+            timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
+            renderShowSection(section, firstRender);
+        };
+
+        if (canScroll) {
+            console.log(canScroll);
+            page.scrollTo({ top: oldSection.offsetTop, behavior: 'auto' });
+        };
     };
 
     function filterSection(bigger, ref) {
@@ -123,7 +139,6 @@ function renderShowSection({ id }, firstRender) {
 
 let stopDot;
 function renderCanvas() {
-    if (stopDot) return;
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
     let limit = Math.round((offsetHeight * offsetWidth) / 2e4);
     let canvasChildrens = [...canvas.children];

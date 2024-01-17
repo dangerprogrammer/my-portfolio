@@ -54,11 +54,19 @@
     }
 
     .buttonContainer {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         pointer-events: auto;
+        
+        .aboutPage, .backPage {
+            transition: .5s ease-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     }
 }
 
@@ -96,7 +104,9 @@
 }
 
 *:has(> .sectionStyles.contentActive) > *:not(.contentActive) {
-    display: none;
+    // display: none;
+    pointer-events: none;
+    z-index: -1;
 } 
 
 .sectionStyles {
@@ -114,6 +124,11 @@
         .pageContent {
             display: flex;
         }
+
+        .backPage {
+            transition: .5s .75s ease-out;
+            translate: 0;
+        }
     }
 
     &.rendered {
@@ -122,16 +137,18 @@
                 transition: .5s .5s ease-out;
                 translate: 0;
             }
-
-            .aboutPage {
-                transition: translate .5s .75s ease-out;
-                translate: 0;
-            }
         }
 
         .contentImage {
             transition: opacity .75s 1s ease-in-out;
             opacity: 1;
+        }
+
+        &:not(.contentActive) {
+            .aboutPage {
+                transition: .5s .75s ease-out;
+                translate: 0;
+            }
         }
     }
 }

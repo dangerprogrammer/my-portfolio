@@ -1,12 +1,9 @@
-import { hiddenPage } from "@/scripts/initializePageTools";
+import { hiddenPage, renderPage } from "@/scripts/initializePageTools";
 
-function goTo({ url: href, back, setHistory, backHistory, push, prevURL }, target) {
-    hiddenPage();
+function goTo({ url: href, back, setHistory, backHistory, push, prevURL }) {
+    const action = (href.startsWith('/#') || href == '/') ? renderPage : hiddenPage;
 
-    if (!target) return;
-
-
-    return;
+    return action();
     if (back) backHistory();
 
     setHistory(oldHistory => {

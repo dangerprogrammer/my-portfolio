@@ -14,6 +14,10 @@
     justify-content: center;
     overflow: hidden;
 
+    &.shadow {
+        pointer-events: none;
+    }
+
     * {
         pointer-events: none;
     }

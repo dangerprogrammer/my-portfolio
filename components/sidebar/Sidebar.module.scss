@@ -9,22 +9,6 @@
         &, & * {
             pointer-events: none;
         }
-
-        .itemPage:not(.hidePage, .showPage) {
-            translate: min(-100%, -10em);
-            scale: 1.3;
-            opacity: 0;
-            pointer-events: none;
-        }
-    }
-
-    &:not(.hideSidebarStyles) {
-        .itemPage:not(.hidePage, .showPage) {
-            translate: min(-100%, -10em);
-            scale: 1.3;
-            opacity: 0;
-            pointer-events: none;
-        }
     }
 
     ul {
@@ -102,11 +86,21 @@
 
         &.showPage {
             animation: spawnItem .6s ease-in-out forwards;
+            translate: min(-100%, -10em);
+            scale: 1.3;
+            opacity: 0;
             pointer-events: auto;
         }
 
         &.hidePage {
             animation: hideItem .6s ease-in-out forwards;
+        }
+
+        &:not(.hidePage, .showPage) {
+            translate: min(-100%, -10em);
+            scale: 1.3;
+            opacity: 0;
+            pointer-events: none;
         }
 
         a {
