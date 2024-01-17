@@ -5,11 +5,11 @@ import { ContextApp } from "@/components/context/ContextApp";
 import { listComponents } from "@/components/context/listPages";
 import Error from "@/components/error/Error";
 import Navbar from "@/components/navbar/Navbar";
-import SecPage from "@/components/sec-page/SecPage";
+import Page from "@/components/page/Page";
 import Sidebar from "@/components/sidebar/Sidebar";
+import Welcome from "@/components/welcome/Welcome";
 import { renderSecPage } from "@/scripts/initializePageTools";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 async function getServerSideProps({ params }) {
     return {
@@ -19,21 +19,24 @@ async function getServerSideProps({ params }) {
 
 export { getServerSideProps };
 
-function Page({ params: { pageName } }) {
-    const { history, ...contexts } = useContext(ContextApp), { push } = useRouter(),
-        pageHead = listComponents[pageName],
-        PageComponent = pageHead?.head || Error;
+function SecPage({ params: { pageName } }) {
+    const pageHead = listComponents[pageName], hasComponent = pageHead?.head,
+        PageComponent = hasComponent || Error;
 
-    useEffect(() => renderSecPage(!!pageHead), []);
+    let otherComponents = [];
+    for (const name in listComponents) if (hasComponent && pageName != name) otherComponents.push(listComponents[name].head);
+    useEffect(() => renderSecPage(!hasComponent || pageName), []);
 
     return <>
-        <Navbar { ...{useEffect, push, ...contexts} }/>
-        <SecPage>
-            <PageComponent { ...{useEffect, push, secPage: !0, ...contexts} }/>
-        </SecPage>
+        <Navbar/>
+        <Page>
+            {hasComponent && <Welcome/>}
+            <PageComponent { ...{secPage: !0} }/>
+            {otherComponents.map(Element => <Element { ...{secPage: !0} }/>)}
+        </Page>
         <BackgroundCanvas/>
         <Sidebar noAction/>
     </>
 };
 
-export default Page;
+export default SecPage;

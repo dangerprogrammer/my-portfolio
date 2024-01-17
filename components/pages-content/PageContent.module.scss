@@ -125,9 +125,11 @@
             display: flex;
         }
 
-        .backPage {
-            transition: .5s .75s ease-out;
-            translate: 0;
+        .buttonContainer {
+            &:not(.reverseButton) .backPage, &.reverseButton .aboutPage {
+                transition: .5s .75s ease-out;
+                translate: 0;
+            }
         }
     }
 
@@ -145,9 +147,11 @@
         }
 
         &:not(.contentActive) {
-            .aboutPage {
-                transition: .5s .75s ease-out;
-                translate: 0;
+            .buttonContainer {
+                &:not(.reverseButton) .aboutPage, &.reverseButton .backPage {
+                    transition: .5s .75s ease-out;
+                    translate: 0;
+                }
             }
         }
     }

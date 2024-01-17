@@ -199,14 +199,14 @@ function hideSidebar() {
     itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };
 
-function renderSecSection() {
-    const section = document.querySelector('section[id]'),
-        { id: sectionID } = section,
+function renderSecSection(pageID) {
+    const section = document.querySelector(`section[id*="${pageID}"]`),
+        { id: sectionID, parentElement: page } = section,
         imgContainer = document.querySelector(`[class*="${imageContainer}"]`),
         pageRender = listClasses[sectionID],
         { lastChild: hoverParent } = section.firstChild.lastChild;
 
-    section.classList.add(rendered);
+    section.classList.add(rendered, contentActive);
     renderShowSection(section, !0);
 
     setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
@@ -225,12 +225,12 @@ function renderPage() {
     renderCanvas();
 };
 
-function renderSecPage(isTruly) {
+function renderSecPage(pageID) {
     renderNav();
 
-    if (!isTruly) return;
+    if (!pageID) return;
 
-    renderSecSection();
+    renderSecSection(pageID);
 };
 
 function hiddenPage() {

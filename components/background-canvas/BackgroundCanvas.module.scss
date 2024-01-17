@@ -18,7 +18,7 @@
 
     &.activeCanvas {
         opacity: .2;
-        transition: opacity 1s ease, filter 1s ease 1s;
+        transition: opacity 1s ease, filter 1s ease .5s;
         filter: blur(0em);
 
         &.moving {
