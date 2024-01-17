@@ -104,7 +104,7 @@
 }
 
 *:has(> .sectionStyles.contentActive) > *:not(.contentActive) {
-    // display: none;
+    position: absolute;
     pointer-events: none;
     z-index: -1;
 } 
@@ -117,7 +117,7 @@
     }
 
     &.contentActive {
-        position: fixed;
+        // position: fixed;
         z-index: 10;
         overflow-y: auto;
 

@@ -20,11 +20,7 @@ function renderScrolling() {
     page.onscroll = () => scrollPage();
 
     function scrollPage(section) {
-        let canScroll = !1, oldSection = !1;
-        if (section) (canScroll = !0, oldSection = section);
-
         section = section || sections.reduce(filterSection, sections[0]);
-        if (oldSection) console.log(oldSection, section);
         const sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
@@ -49,21 +45,12 @@ function renderScrolling() {
             sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
-        if ((canScroll && oldSection != section) || !canScroll) {
-            // console.log(oldSection);
-            if (canScroll) console.log('NÃO RESETAAA!!!');
-            if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
-            itemPage.classList.add(activePage);
-            section.classList.add(rendered);
-            if (sectionID == 'welcome') section.classList.add(welcomeActive);
-            timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
-            renderShowSection(section, firstRender);
-        };
-
-        if (canScroll) {
-            console.log(canScroll);
-            page.scrollTo({ top: oldSection.offsetTop, behavior: 'auto' });
-        };
+        if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
+        itemPage.classList.add(activePage);
+        section.classList.add(rendered);
+        if (sectionID == 'welcome') section.classList.add(welcomeActive);
+        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
+        renderShowSection(section, firstRender);
     };
 
     function filterSection(bigger, ref) {
