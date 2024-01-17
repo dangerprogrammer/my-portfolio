@@ -1,4 +1,4 @@
-.pageContent {
+.pageHead {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -125,7 +125,7 @@
     cursor: pointer;
 
     &.fullImage {
-        background: red;
+        pointer-events: none;
     }
 
     &:not(.imgActions) {
@@ -145,7 +145,7 @@
     }
 }
 
-*:has(> .pageContent).rendered {
+*:has(> .pageHead).rendered {
     .mainTitle {
         span {
             transition: .5s .5s ease-out;
@@ -156,12 +156,6 @@
             transition: .5s .75s ease-out;
             translate: 0;
         }
-    }
-
-    .preLoaders {
-        transition: .75s var(--delay) ease-in-out;
-        scale: 1;
-        translate: 40% -50%;
     }
 
     .contentImage {
@@ -176,7 +170,7 @@
         left: initial;
     }
 
-    .pageContent {
+    .pageHead {
         flex-direction: column-reverse;
         justify-content: center;
         align-items: flex-start;
@@ -191,7 +185,7 @@
         width: 100%;
     }
 
-    *:has(> .pageContent).rendered .preLoaders {
+    *:has(> .pageHead).rendered .preLoaders {
         scale: 2;
     }
 }

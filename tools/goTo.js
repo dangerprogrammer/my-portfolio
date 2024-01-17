@@ -5,8 +5,6 @@ function goTo({ url: href, back, setHistory, backHistory, push, prevURL }, targe
 
     if (!target) return;
 
-    console.log(target);
-    target.style.pointerEvents = 'none !important';
 
     return;
     if (back) backHistory();

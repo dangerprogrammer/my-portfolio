@@ -1,12 +1,15 @@
 import { listTitles } from '../context/listPages';
-import { pageContent, imageContainer, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3, fullImage } from './PageContent.module.scss';
+import {
+    pageHead, imageContainer, contentImage, mainTitle, space, aboutPage, titleContainer, buttonContainer, clip, left, left1, left2, left3, fullImage,
+    pageContent
+} from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
 function PageContent({ children, id, secPage = !1, ...contexts }) {
     const titlePage = listTitles[id], goToSettings = secPage ? {url: '/', ...contexts} : {url: `/${id}`, prevURL: `/#${id}`, ...contexts};
 
     return <section {...{id, ...contexts}} style={{display: 'flex'}}>
-        <main className={pageContent} style={{zIndex: 50}}>
+        <main className={pageHead} style={{zIndex: 50}}>
             <h1 className={mainTitle}>
                 <div className={titleContainer}>{[...titlePage].map((l, ind) => <span className={l == ' ' ? space : undefined} style={{transitionDelay: `calc(${titlePage.length - ind}ms * 35)`}}>{l}</span>)}</div>
                 <div className={buttonContainer}>
@@ -24,6 +27,7 @@ function PageContent({ children, id, secPage = !1, ...contexts }) {
                 </div>
             </aside>
         </main>
+        <section className={pageContent}></section>
     </section>
 };
 

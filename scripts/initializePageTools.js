@@ -62,15 +62,12 @@ function renderScrolling() {
 };
 
 function hideScrolling() {
-    const page = document.querySelector(`[class*="${pageStyles}"]`),
-        imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`);
+    const page = document.querySelector(`[class*="${pageStyles}"]`), section = document.querySelector(`section[class*="${rendered}"]`),
+        { id: sectionID } = section, pageRender = listClasses[sectionID];
 
     if (!page) return;
 
-    if (page) page.onscroll = ({ preventDefault }) => {
-        console.log(preventDefault);
-        preventDefault();
-    };
+    console.log(section);
 };
 
 function renderMousemove() {

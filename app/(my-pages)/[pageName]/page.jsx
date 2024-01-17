@@ -21,9 +21,10 @@ export { getServerSideProps };
 
 function Page({ params: { pageName } }) {
     const { history, ...contexts } = useContext(ContextApp), { push } = useRouter(),
-        PageComponent = listComponents[pageName] || Error;
+        pageHead = listComponents[pageName],
+        PageComponent = pageHead?.head || Error;
 
-    useEffect(() => renderSecPage(!!listComponents[pageName]), []);
+    useEffect(() => renderSecPage(!!pageHead), []);
 
     return <>
         <Navbar { ...{useEffect, push, ...contexts} }/>

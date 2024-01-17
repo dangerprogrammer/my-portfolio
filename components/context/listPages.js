@@ -1,7 +1,7 @@
-import AboutMe from '../pages/about-me/AboutMe';
-import { renderedAboutMe } from '../pages/about-me/AboutMe.module.scss';
-import MyProjects from '../pages/my-projects/MyProjects';
-import Skills from '../pages/skills/Skills';
+import AboutMe, { PageAboutMe } from '../pages/about-me/AboutMe';
+import { renderedAboutMe, contentAboutMe } from '../pages/about-me/AboutMe.module.scss';
+import MyProjects, { PageMyProjects } from '../pages/my-projects/MyProjects';
+import Skills, { PageSkills } from '../pages/skills/Skills';
 
 const listTitles = {
     'about-me': 'About Me',
@@ -10,9 +10,18 @@ const listTitles = {
 }, listClasses = {
     'about-me': renderedAboutMe
 }, listComponents = {
-    'about-me': AboutMe,
-    'skills': Skills,
-    'my-projects': MyProjects
+    'about-me': {
+        head: AboutMe,
+        content: PageAboutMe
+    },
+    'skills': {
+        head: Skills,
+        content: PageSkills
+    },
+    'my-projects': {
+        head: MyProjects,
+        content: PageMyProjects
+    }
 };
 
 export { listTitles, listClasses, listComponents };
