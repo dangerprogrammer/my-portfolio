@@ -25,7 +25,7 @@ function Home() {
       <MyProjects { ...{history, ...contexts} }/>
     </Page>
     <BackgroundCanvas/>
-    <Sidebar/>
+    <Sidebar { ...{history, ...contexts} }/>
   </>
 };
 

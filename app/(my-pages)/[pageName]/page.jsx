@@ -36,7 +36,7 @@ function SecPage({ params: { pageName } }) {
             {otherComponents.map(Element => <Element { ...{secPage: !0, history, ...contexts} }/>)}
         </Page>
         <BackgroundCanvas/>
-        <Sidebar noAction/>
+        <Sidebar noAction { ...{history, ...contexts} }/>
     </>
 };
 

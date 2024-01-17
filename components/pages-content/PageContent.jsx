@@ -1,3 +1,5 @@
+'use client';
+
 import AnimatedButton from '../animated-button/AnimatedButton';
 import { listComponents, listTitles } from '../context/listPages';
 import {
@@ -7,7 +9,7 @@ import {
 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
-function PageContent({ children, id, secPage = !1, setHistory, ...contexts }) {
+function PageContent({ children, id, secPage = !1, history, setHistory, ...contexts }) {
     const titlePage = listTitles[id], ComponentPage = listComponents[id].content,
         goToSettings = secPage ? {url: `/#${id}`} : {url: `/${id}`},
         goToSettings2 = secPage ? {url: `/${id}`} : {url: `/#${id}`};
