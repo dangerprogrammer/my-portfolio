@@ -5,7 +5,7 @@ function MyProjects({ id = "my-projects", ...contexts }) {
 };
 
 function PageMyProjects() {
-    return <div>Opa!</div>
+    return <div>My Projects!</div>
 };
 
 export { PageMyProjects };

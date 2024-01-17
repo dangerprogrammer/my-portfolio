@@ -30,7 +30,7 @@ function AboutMe({ id = 'about-me', ...contexts }) {
 };
 
 function PageAboutMe() {
-    return <div>Opa!</div>
+    return <div>About Me!</div>
 };
 
 export { PageAboutMe };

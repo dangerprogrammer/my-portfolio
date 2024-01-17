@@ -1,4 +1,6 @@
 .sectionStyles {
+    position: relative;
+    inset: 0;
     display: flex;
     flex-direction: column;
 }
@@ -13,6 +15,13 @@
     height: 100vh;
     width: 100%;
     padding: 5rem max(6vw, 5em);
+}
+
+.pageContent {
+    position: absolute;
+    width: 100%;
+    translate: 0 10%;
+    bottom: 0;
 }
 
 .mainTitle {
@@ -151,22 +160,43 @@
     }
 }
 
-*:has(> .pageHead).rendered {
-    .mainTitle {
-        span {
-            transition: .5s .5s ease-out;
-            translate: 0;
-        }
+*:has(> .sectionStyles.contentActive) > *:not(.contentActive) {
+    display: none;
+} 
 
-        .aboutPage {
-            transition: .5s .75s ease-out;
-            translate: 0;
+.sectionStyles {
+    &:not(.contentActive) {
+        .pageContent {
+            display: none;
         }
     }
 
-    .contentImage {
-        transition: opacity .75s 1s ease-in-out;
-        opacity: 1;
+    &.contentActive {
+        position: fixed;
+        z-index: 10;
+
+        .pageContent {
+            display: flex;
+        }
+    }
+
+    &.rendered {
+        .mainTitle {
+            span {
+                transition: .5s .5s ease-out;
+                translate: 0;
+            }
+
+            .aboutPage {
+                transition: .5s .75s ease-out;
+                translate: 0;
+            }
+        }
+
+        .contentImage {
+            transition: opacity .75s 1s ease-in-out;
+            opacity: 1;
+        }
     }
 }
 
@@ -189,9 +219,5 @@
 
     .imageContainer {
         width: 100%;
-    }
-
-    *:has(> .pageHead).rendered .preLoaders {
-        scale: 2;
     }
 }

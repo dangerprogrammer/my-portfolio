@@ -4,7 +4,7 @@ import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss
 import { itemPage, showPage, hidePage, activePage, firstSide, hideSidebarStyles } from '@/components/sidebar/Sidebar.module.scss';
 import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
-import { rendered, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
+import { rendered, contentActive, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import { listClasses } from '@/components/context/listPages';
 
@@ -35,6 +35,7 @@ function renderScrolling() {
         sections.forEach((sec, secInd) => {
             clearTimeout(timeoutImg[secInd]);
             clearTimeout(timeoutRender[secInd]);
+            sec.classList.remove(contentActive);
             if (secInd == sectionIndex) return;
             sec.firstChild.lastChild.classList.remove(imgActions);
             sec.classList.remove(rendered, welcomeActive);
@@ -62,12 +63,12 @@ function renderScrolling() {
 };
 
 function hideScrolling() {
-    const page = document.querySelector(`[class*="${pageStyles}"]`), section = document.querySelector(`section[class*="${rendered}"]`),
-        { id: sectionID } = section, pageRender = listClasses[sectionID];
+    const page = document.querySelector(`[class*="${pageStyles}"]`), section = document.querySelector(`section[class*="${rendered}"]`);
 
     if (!page) return;
 
-    console.log(section);
+    page.onscroll = () => {};
+    section.classList.add(contentActive);
 };
 
 function renderMousemove() {

@@ -5,7 +5,7 @@ function Skills({ id = "skills", ...contexts }) {
 };
 
 function PageSkills() {
-    return <div>Opa!</div>
+    return <div>Skills!</div>
 };
 
 export { PageSkills };
