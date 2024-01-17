@@ -21,6 +21,10 @@
     .titleNav {
         z-index: 10;
 
+        &.noClick {
+            pointer-events: none;
+        }
+
         > * {
             cursor: pointer;
         }

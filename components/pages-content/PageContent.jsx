@@ -7,7 +7,7 @@ import {
 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
 
-function PageContent({ children, id, secPage = !1, ...contexts }) {
+function PageContent({ children, id, secPage = !1, setHistory, ...contexts }) {
     const titlePage = listTitles[id], ComponentPage = listComponents[id].content,
         goToSettings = secPage ? {url: `/#${id}`} : {url: `/${id}`},
         goToSettings2 = secPage ? {url: `/${id}`} : {url: `/#${id}`};
@@ -17,12 +17,12 @@ function PageContent({ children, id, secPage = !1, ...contexts }) {
             <h1 className={mainTitle}>
                 <div className={titleContainer}>{[...titlePage].map((l, ind) => <span key={ind} className={l == ' ' ? space : undefined} style={{transitionDelay: `calc(${titlePage.length - ind}ms * 35)`}}>{l}</span>)}</div>
                 <div className={[buttonContainer, secPage ? reverseButton : undefined].join(' ')}>
-                    <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={() => goTo(goToSettings)}/>
-                    <AnimatedButton text={secPage ? 'Show me more' : 'Back'} className={backPage} onClick={() => goTo(goToSettings2)}/>
+                    <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={() => goTo(goToSettings, setHistory)}/>
+                    <AnimatedButton text={secPage ? 'Show me more' : 'Back'} className={backPage} onClick={() => goTo(goToSettings2, setHistory)}/>
                     <AnimatedButton text={'Show me more'} shadow/>
                 </div>
             </h1>
-            <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={() => secPage ? undefined : goTo(goToSettings)}>
+            <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={() => secPage ? undefined : goTo(goToSettings, setHistory)}>
                 <div className={contentImage}>
                     {children}
                 </div>

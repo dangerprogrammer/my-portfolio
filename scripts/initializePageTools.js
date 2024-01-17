@@ -7,6 +7,7 @@ import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered, contentActive, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import { listClasses } from '@/components/context/listPages';
+import { titleNav, noClick } from '@/components/navbar/Navbar.module.scss';
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
@@ -93,8 +94,10 @@ function hideMousemove() {
 
 function renderNav() {
     const preloaders = document.querySelectorAll(`[class*="${preloaderStyles}"]`),
-        mediaContainers = document.querySelectorAll(`[class*="${mediaContainer}"]`);
+        mediaContainers = document.querySelectorAll(`[class*="${mediaContainer}"]`),
+        navbarTitle = document.querySelector(`[class*="${titleNav}"]`), { pathname } = location;
 
+    navbarTitle.classList.toggle(noClick, pathname == '/');
     preloaders.forEach(preloader => preloader.classList.remove(notRendered));
     mediaContainers.forEach(mediaContainer => mediaContainer.classList.add(showItem));
 };
@@ -193,8 +196,10 @@ function renderSidebar() {
 };
 
 function hideSidebar() {
-    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), { parentElement: sidebar } = itemPages[0].parentElement;
+    const itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), { parentElement: sidebar } = itemPages[0].parentElement,
+        navbarTitle = document.querySelector(`[class*="${titleNav}"]`);
 
+    navbarTitle.classList.remove(noClick);
     sidebar.classList.add(hideSidebarStyles);
     itemPages.forEach(itemPage => (itemPage.classList.remove(showPage), itemPage.classList.add(hidePage)));
 };

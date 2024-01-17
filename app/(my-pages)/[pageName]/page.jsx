@@ -9,7 +9,7 @@ import Page from "@/components/page/Page";
 import Sidebar from "@/components/sidebar/Sidebar";
 import Welcome from "@/components/welcome/Welcome";
 import { renderSecPage } from "@/scripts/initializePageTools";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 async function getServerSideProps({ params }) {
     return {
@@ -20,7 +20,8 @@ async function getServerSideProps({ params }) {
 export { getServerSideProps };
 
 function SecPage({ params: { pageName } }) {
-    const pageHead = listComponents[pageName], hasComponent = pageHead?.head,
+    const { history, ...contexts } = useContext(ContextApp),
+        pageHead = listComponents[pageName], hasComponent = pageHead?.head,
         PageComponent = hasComponent || Error;
 
     let otherComponents = [];
@@ -31,8 +32,8 @@ function SecPage({ params: { pageName } }) {
         <Navbar/>
         <Page>
             {hasComponent && <Welcome/>}
-            <PageComponent { ...{secPage: !0} }/>
-            {otherComponents.map(Element => <Element { ...{secPage: !0} }/>)}
+            <PageComponent { ...{secPage: !0, history, ...contexts} }/>
+            {otherComponents.map(Element => <Element { ...{secPage: !0, history, ...contexts} }/>)}
         </Page>
         <BackgroundCanvas/>
         <Sidebar noAction/>
