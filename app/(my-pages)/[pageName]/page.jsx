@@ -12,20 +12,20 @@ import { renderSecPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 
 function SecPage({ params: { pageName } }) {
-    const { ...contexts } = useContext(ContextApp),
-        pageHead = listComponents[pageName], hasComponent = pageHead?.head,
-        PageComponent = hasComponent || Error;
+    // const { ...contexts } = useContext(ContextApp),
+    //     pageHead = listComponents[pageName], hasComponent = pageHead?.head,
+    //     PageComponent = hasComponent || Error;
 
-    let otherComponents = [];
-    for (const name in listComponents) if (hasComponent && pageName != name) otherComponents.push(listComponents[name].head);
-    useEffect(() => renderSecPage(!hasComponent || pageName), []);
+    // let otherComponents = [];
+    // for (const name in listComponents) if (hasComponent && pageName != name) otherComponents.push(listComponents[name].head);
+    // useEffect(() => renderSecPage(!hasComponent || pageName), []);
 
     return <>
         <Navbar/>
         <Page>
-            {hasComponent && <Welcome/>}
+            {/* {hasComponent && <Welcome/>}
             <PageComponent { ...{secPage: !0, ...contexts} }/>
-            {otherComponents.map((Element, ind) => <Element key={ind} { ...{secPage: !0, ...contexts} }/>)}
+            {otherComponents.map((Element, ind) => <Element key={ind} { ...{secPage: !0, ...contexts} }/>)} */}
         </Page>
         <BackgroundCanvas/>
         <Sidebar noAction/>
