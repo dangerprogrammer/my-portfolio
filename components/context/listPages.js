@@ -11,7 +11,7 @@ const listTitles = {
     'about-me': renderedAboutMe
 }, listComponents = {
     'about-me': {
-        main: PageAboutMe,
+        main: () => AboutMe,
         content: PageAboutMe
     },
     'skills': {
