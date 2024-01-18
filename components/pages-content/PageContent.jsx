@@ -11,16 +11,15 @@ import goTo from '@/tools/goTo';
 
 function PageContent({ children, id, secPage = !1, history, setHistory, ...contexts }) {
     const titlePage = listTitles[id], ComponentPage = listComponents[id].content,
-        goToSettings = secPage ? {url: `/#${id}`} : {url: `/${id}`},
-        goToSettings2 = secPage ? {url: `/${id}`} : {url: `/#${id}`};
+        goToSettings = verif => verif ? {url: `/#${id}`} : {url: `/${id}`};
 
     return <section {...{id, ...contexts}} className={sectionStyles}>
         <main className={pageHead} style={{zIndex: 50}}>
             <h1 className={mainTitle}>
                 <div className={titleContainer}>{[...titlePage].map((l, ind) => <span key={ind} className={l == ' ' ? space : undefined} style={{transitionDelay: `calc(${titlePage.length - ind}ms * 35)`}}>{l}</span>)}</div>
                 <div className={[buttonContainer, secPage ? reverseButton : undefined].join(' ')}>
-                    <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={() => goTo(goToSettings, setHistory)}/>
-                    <AnimatedButton text={secPage ? 'Show me more' : 'Back'} className={backPage} onClick={() => goTo(goToSettings2, setHistory)}/>
+                    <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={() => goTo(goToSettings(secPage), setHistory)}/>
+                    <AnimatedButton text={secPage ? 'Show me more' : 'Back'} className={backPage} onClick={() => goTo(goToSettings(!secPage), setHistory)}/>
                     <AnimatedButton text={'Show me more'}/>
                 </div>
             </h1>
