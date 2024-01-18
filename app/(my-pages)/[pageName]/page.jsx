@@ -15,6 +15,7 @@ import { useContext, useEffect } from "react";
 import { listComponents } from "@/components/context/listPages";
 
 function SecPage({ params: { pageName } }) {
+    const { ...contexts } = useContext(ContextApp)
     //     pageHead = listComponents[pageName], hasComponent = pageHead?.head,
     //     PageComponent = hasComponent || Error;
 
