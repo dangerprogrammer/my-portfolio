@@ -13,19 +13,19 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
 
 function Home() {
-  // const { history, ...contexts } = useContext(ContextApp);
-  // useEffect(renderPage, []);
+  const { history, ...contexts } = useContext(ContextApp);
+  useEffect(renderPage, []);
   
   return <>
-    {/* <Navbar/>
+    <Navbar/>
     <Page>
-      <Welcome/> */}
-      {/* <AboutMe { ...{history, ...contexts} }/>
+      <Welcome/>
+      <AboutMe { ...{history, ...contexts} }/>
       <Skills { ...{history, ...contexts} }/>
-      <MyProjects { ...{history, ...contexts} }/> */}
-    {/* </Page>
+      <MyProjects { ...{history, ...contexts} }/>
+    </Page>
     <BackgroundCanvas/>
-    <Sidebar/> */}
+    <Sidebar/>
   </>
 };
 
