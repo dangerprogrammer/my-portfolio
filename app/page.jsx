@@ -13,7 +13,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
 
 function Home() {
-  const { ...contexts } = useContext(ContextApp);
+  // const { ...contexts } = useContext(ContextApp);
   // useEffect(renderPage, []);
   
   return <>
