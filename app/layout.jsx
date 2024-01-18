@@ -16,6 +16,7 @@ function RootLayout({ children }) {
     <html lang="pt-BR">
       <body>
         <ContextProvider>
+          <div>Opa!</div>
           {/* {children} */}
         </ContextProvider>
       </body>
