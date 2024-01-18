@@ -14,7 +14,7 @@ import { ContextApp } from "@/components/context/ContextApp";
 
 function Home() {
   const { ...contexts } = useContext(ContextApp);
-  useEffect(renderPage, []);
+  // useEffect(renderPage, []);
   
   return <>
   <div>Opa!</div>
