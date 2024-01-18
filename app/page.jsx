@@ -17,15 +17,15 @@ function Home() {
   // useEffect(renderPage, []);
   
   return <>
-    <Navbar/>
+    {/* <Navbar/>
     <Page>
-      <Welcome/>
+      <Welcome/> */}
       {/* <AboutMe { ...{history, ...contexts} }/>
       <Skills { ...{history, ...contexts} }/>
       <MyProjects { ...{history, ...contexts} }/> */}
-    </Page>
+    {/* </Page>
     <BackgroundCanvas/>
-    <Sidebar/>
+    <Sidebar/> */}
   </>
 };
 
