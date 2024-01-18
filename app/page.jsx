@@ -13,12 +13,11 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
 
 function Home() {
-  // const { ...contexts } = useContext(ContextApp);
-  // useEffect(renderPage, []);
+  const { ...contexts } = useContext(ContextApp);
+  useEffect(renderPage, []);
   
   return <>
-  <div>Opa!</div>
-    {/* <Navbar/>
+    <Navbar/>
     <Page>
       <Welcome/>
       <AboutMe { ...contexts }/>
@@ -26,7 +25,7 @@ function Home() {
       <MyProjects { ...contexts }/>
     </Page>
     <BackgroundCanvas/>
-    <Sidebar/> */}
+    <Sidebar/>
   </>
 };
 

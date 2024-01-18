@@ -1,5 +1,5 @@
 import AboutMe, { PageAboutMe } from '../pages/about-me/AboutMe';
-import { renderedAboutMe, contentAboutMe } from '../pages/about-me/AboutMe.module.scss';
+import { renderedAboutMe } from '../pages/about-me/AboutMe.module.scss';
 import MyProjects, { PageMyProjects } from '../pages/my-projects/MyProjects';
 import Skills, { PageSkills } from '../pages/skills/Skills';
 
@@ -11,15 +11,15 @@ const listTitles = {
     'about-me': renderedAboutMe
 }, listComponents = {
     'about-me': {
-        head: AboutMe,
+        // head: AboutMe,
         content: PageAboutMe
     },
     'skills': {
-        head: Skills,
+        // head: Skills,
         content: PageSkills
     },
     'my-projects': {
-        head: MyProjects,
+        // head: MyProjects,
         content: PageMyProjects
     }
 };
