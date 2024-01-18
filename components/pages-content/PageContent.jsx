@@ -24,7 +24,7 @@ function PageContent({ children, id, secPage = !1, history, setHistory, ...conte
                     <AnimatedButton text={'Show me more'}/>
                 </div>
             </h1>
-            <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={() => secPage ? undefined : goTo(goToSettings, setHistory)}>
+            <aside className={imageContainer} onClick={() => secPage ? undefined : goTo(goToSettings, setHistory)}>
                 <div className={contentImage}>
                     {children}
                 </div>
