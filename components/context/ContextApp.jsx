@@ -9,7 +9,7 @@ function ContextProvider({ children }) {
         values = { history, setHistory },
         { Provider } = ContextApp;
 
-    return <Provider value={{ ...values }}>
+    return <Provider value={values}>
         { children }
     </Provider>
 };
