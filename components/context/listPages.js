@@ -11,15 +11,15 @@ const listTitles = {
     'about-me': renderedAboutMe
 }, listComponents = {
     'about-me': {
-        main: () => AboutMe,
+        main: ({ ...contexts }) => <AboutMe { ...contexts }/>,
         content: PageAboutMe
     },
     'skills': {
-        main: PageSkills,
+        main: ({ ...contexts }) => <Skills { ...contexts }/>,
         content: PageSkills
     },
     'my-projects': {
-        main: PageMyProjects,
+        main: ({ ...contexts }) => <MyProjects { ...contexts }/>,
         content: PageMyProjects
     }
 };
