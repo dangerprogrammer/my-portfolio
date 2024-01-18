@@ -13,11 +13,11 @@ import { useContext, useEffect } from "react";
 
 function SecPage({ params: { pageName } }) {
     const { ...contexts } = useContext(ContextApp),
-        pageHead = listComponents[pageName], hasComponent = pageHead?.head,
+        pageHead = listComponents[pageName], hasComponent = pageHead?.main,
         PageComponent = hasComponent || Error;
 
     let otherComponents = [];
-    for (const name in listComponents) if (hasComponent && pageName != name) otherComponents.push(listComponents[name].head);
+    for (const name in listComponents) if (hasComponent && pageName != name) otherComponents.push(listComponents[name].main);
     useEffect(() => renderSecPage(!hasComponent || pageName), []);
 
     return <>
