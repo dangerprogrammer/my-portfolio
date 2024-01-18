@@ -4,7 +4,7 @@ import AnimatedButton from '../animated-button/AnimatedButton';
 import { listComponents, listTitles } from '../context/listPages';
 import {
     sectionStyles,
-    pageHead, imageContainer, contentImage, mainTitle, space, aboutPage, backPage, titleContainer, buttonContainer, reverseButton, fullImage,
+    pageHead, imageContainer, contentImage, mainTitle, space, aboutPage, backPage, titleContainer, buttonContainer, reverseButton,
     pageContent
 } from './PageContent.module.scss';
 import goTo from '@/tools/goTo';
