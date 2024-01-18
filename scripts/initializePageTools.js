@@ -79,13 +79,26 @@ function hideScrolling() {
 function renderMousemove() {
     const canvas = document.getElementById('background-canvas');
 
-    let timeout = setTimeout(() => canvas.classList.remove(moving), 5e3);
+    let timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 5e3);
     canvas.classList.add(moving);
 
-    window.onmousemove = () => {
-        clearTimeout(timeout);
+    console.clear();
+    window.onmousemove = ({ clientX: mouseLeft, clientY: mouseTop }) => {
+        const dots = [...canvas.children];
         canvas.classList.add(moving);
-        timeout = setTimeout(() => canvas.classList.remove(moving), 2e3);
+        clearTimeout(timeoutMoving);
+
+        dots.forEach(dot => {
+            const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
+                dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
+                limit = 30, range = 1e4,
+                sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
+
+            dot.style.setProperty('--sLeft', sLeft + 'px');
+            dot.style.setProperty('--sTop', sTop + 'px');
+        });
+
+        timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 2e3);
     };
 };
 
@@ -131,7 +144,7 @@ function renderShowSection({ id }, firstRender) {
 let stopDot;
 function renderCanvas() {
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
-    let limit = Math.round((offsetHeight * offsetWidth) / 2e4);
+    let limit = Math.round((offsetHeight * offsetWidth) / 1e4);
     let canvasChildrens = [...canvas.children];
 
     generateDots(limit - canvasChildrens.length);
