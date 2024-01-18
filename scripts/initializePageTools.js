@@ -88,15 +88,15 @@ function renderMousemove() {
         canvas.classList.add(moving);
         clearTimeout(timeoutMoving);
 
-        dots.forEach(dot => {
-            const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
-                dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
-                limit = 30, range = 1e4,
-                sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
+        // dots.forEach(dot => {
+        //     const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
+        //         dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
+        //         limit = 30, range = 1e4,
+        //         sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
 
-            dot.style.setProperty('--sLeft', sLeft + 'px');
-            dot.style.setProperty('--sTop', sTop + 'px');
-        });
+        //     dot.style.setProperty('--sLeft', sLeft + 'px');
+        //     dot.style.setProperty('--sTop', sTop + 'px');
+        // });
 
         timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 2e3);
     };
