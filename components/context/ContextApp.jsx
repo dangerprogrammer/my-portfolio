@@ -6,8 +6,7 @@ import { useState, createContext } from "react";
 const ContextApp = createContext();
 
 function ContextProvider({ children }) {
-    const pathname = usePathname(),
-        [ history, setHistory ] = useState([pathname]),
+    const [ history, setHistory ] = useState([]),
         values = { history, setHistory },
         { Provider } = ContextApp;
 

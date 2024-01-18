@@ -11,18 +11,23 @@ import { renderPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
+import { usePathname } from "next/navigation";
 
 function Home() {
-  const { history, ...contexts } = useContext(ContextApp);
+  const pathname = usePathname(),
+    { ...contexts } = useContext(ContextApp),
+    { history, setHistory } = contexts;
   useEffect(renderPage, []);
+
+  if (!history.length) setHistory(oldHistory => [...oldHistory, pathname]);
   
   return <>
     <Navbar/>
     <Page>
       <Welcome/>
-      <AboutMe { ...{history, ...contexts} }/>
-      <Skills { ...{history, ...contexts} }/>
-      <MyProjects { ...{history, ...contexts} }/>
+      <AboutMe { ...contexts }/>
+      <Skills { ...contexts }/>
+      <MyProjects { ...contexts }/>
     </Page>
     <BackgroundCanvas/>
     <Sidebar/>
