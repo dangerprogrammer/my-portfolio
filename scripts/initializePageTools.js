@@ -73,6 +73,7 @@ function hideScrolling() {
 
     page.onscroll = () => {};
     section.classList.add(contentActive);
+    section.scrollTo(0, 0);
 };
 
 function renderMousemove() {
@@ -217,8 +218,6 @@ function renderSecSection(pageID) {
     setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
     setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
 };
-
-function loadSecPage() {};
 
 function renderPage() {
     renderScrolling();
