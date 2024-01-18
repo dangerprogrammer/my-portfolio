@@ -11,15 +11,15 @@ const listTitles = {
     'about-me': renderedAboutMe
 }, listComponents = {
     'about-me': {
-        // head: AboutMe,
+        head: AboutMe,
         content: PageAboutMe
     },
     'skills': {
-        // head: Skills,
+        head: Skills,
         content: PageSkills
     },
     'my-projects': {
-        // head: MyProjects,
+        head: MyProjects,
         content: PageMyProjects
     }
 };
