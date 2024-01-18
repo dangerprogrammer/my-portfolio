@@ -11,14 +11,6 @@ import Welcome from "@/components/welcome/Welcome";
 import { renderSecPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 
-async function getServerSideProps({ params }) {
-    return {
-        props: params
-    }
-};
-
-export { getServerSideProps };
-
 function SecPage({ params: { pageName } }) {
     const { history, ...contexts } = useContext(ContextApp),
         pageHead = listComponents[pageName], hasComponent = pageHead?.head,
