@@ -21,7 +21,7 @@ function PageContent({ children, id, secPage = !1, history, setHistory, ...conte
                 <div className={[buttonContainer, secPage ? reverseButton : undefined].join(' ')}>
                     <AnimatedButton text={secPage ? 'Back' : 'Show me more'} className={aboutPage} onClick={() => goTo(goToSettings, setHistory)}/>
                     <AnimatedButton text={secPage ? 'Show me more' : 'Back'} className={backPage} onClick={() => goTo(goToSettings2, setHistory)}/>
-                    <AnimatedButton text={'Show me more'} shadow/>
+                    <AnimatedButton text={'Show me more'}/>
                 </div>
             </h1>
             <aside className={[imageContainer, secPage ? fullImage : undefined].join(' ')} onClick={() => secPage ? undefined : goTo(goToSettings, setHistory)}>

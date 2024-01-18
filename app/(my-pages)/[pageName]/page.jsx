@@ -25,7 +25,7 @@ function SecPage({ params: { pageName } }) {
         <Page>
             {hasComponent && <Welcome/>}
             <PageComponent { ...{secPage: !0, ...contexts} }/>
-            {otherComponents.map(Element => <Element { ...{secPage: !0, ...contexts} }/>)}
+            {otherComponents.map((Element, ind) => <Element key={ind} { ...{secPage: !0, ...contexts} }/>)}
         </Page>
         <BackgroundCanvas/>
         <Sidebar noAction/>
