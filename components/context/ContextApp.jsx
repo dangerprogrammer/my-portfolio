@@ -12,8 +12,7 @@ function ContextProvider({ children }) {
         { Provider } = ContextApp;
 
     return <Provider value={values}>
-        <div>Opa!</div>
-        {/* { children } */}
+        { children }
     </Provider>
 };
 
