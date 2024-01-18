@@ -17,7 +17,8 @@ function Home() {
   useEffect(renderPage, []);
   
   return <>
-    <Navbar/>
+  <div>Opa!</div>
+    {/* <Navbar/>
     <Page>
       <Welcome/>
       <AboutMe { ...contexts }/>
@@ -25,7 +26,7 @@ function Home() {
       <MyProjects { ...contexts }/>
     </Page>
     <BackgroundCanvas/>
-    <Sidebar/>
+    <Sidebar/> */}
   </>
 };
 
