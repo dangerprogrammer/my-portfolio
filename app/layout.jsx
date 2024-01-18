@@ -15,9 +15,9 @@ function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body>
-        <ContextProvider>
+        {/* <ContextProvider> */}
           {children}
-        </ContextProvider>
+        {/* </ContextProvider> */}
       </body>
     </html>
   )

@@ -5,13 +5,13 @@ import { useState, createContext } from "react";
 const ContextApp = createContext();
 
 function ContextProvider({ children }) {
-    // const [ history, setHistory ] = useState([]),
-    //     values = { history, setHistory },
-    //     { Provider } = ContextApp;
+    const [ history, setHistory ] = useState([]),
+        values = { history, setHistory },
+        { Provider } = ContextApp;
 
-    return <>
-        {children}
-    </>
+    return <Provider value={values}>
+        { children }
+    </Provider>
 };
 
 export { ContextApp };
