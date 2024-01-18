@@ -16,7 +16,7 @@ function RootLayout({ children }) {
     <html lang="pt-BR">
       <body>
         {/* <ContextProvider> */}
-          {children}
+          {/* {children} */}
         {/* </ContextProvider> */}
       </body>
     </html>
