@@ -11,15 +11,10 @@ import { renderPage } from "@/scripts/initializePageTools";
 import { useContext, useEffect } from "react";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { ContextApp } from "@/components/context/ContextApp";
-import { usePathname } from "next/navigation";
 
 function Home() {
-  const pathname = usePathname(),
-    { ...contexts } = useContext(ContextApp),
-    { history, setHistory } = contexts;
+  const { ...contexts } = useContext(ContextApp);
   useEffect(renderPage, []);
-
-  if (!history.length) setHistory(oldHistory => [...oldHistory, pathname]);
   
   return <>
     <Navbar/>
