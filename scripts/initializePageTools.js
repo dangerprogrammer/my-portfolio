@@ -50,7 +50,7 @@ function renderScrolling() {
         itemPage.classList.add(activePage);
         section.classList.add(rendered);
         if (sectionID == 'welcome') section.classList.add(welcomeActive);
-        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
+        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 5e2);
         renderShowSection(section, firstRender);
     };
 
@@ -80,7 +80,6 @@ function renderMousemove() {
     const canvas = document.getElementById('background-canvas');
 
     let timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 5e3);
-    canvas.classList.add(moving);
 
     console.clear();
     window.onmousemove = ({ clientX: mouseLeft, clientY: mouseTop }) => {
@@ -88,17 +87,17 @@ function renderMousemove() {
         canvas.classList.add(moving);
         clearTimeout(timeoutMoving);
 
-        // dots.forEach(dot => {
-        //     const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
-        //         dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
-        //         limit = 30, range = 1e4,
-        //         sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
+        dots.forEach(dot => {
+            const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
+                dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
+                limit = 30, range = 1e4,
+                sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
 
-        //     dot.style.setProperty('--sLeft', sLeft + 'px');
-        //     dot.style.setProperty('--sTop', sTop + 'px');
-        // });
+            dot.style.setProperty('--sLeft', sLeft + 'px');
+            dot.style.setProperty('--sTop', sTop + 'px');
+        });
 
-        timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 2e3);
+        timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 1e3);
     };
 };
 
@@ -144,7 +143,7 @@ function renderShowSection({ id }, firstRender) {
 let stopDot;
 function renderCanvas() {
     const canvas = document.getElementById('background-canvas'), { offsetWidth, offsetHeight } = canvas;
-    let limit = Math.round((offsetHeight * offsetWidth) / 1e4);
+    let limit = Math.round((offsetHeight * offsetWidth) / 1e5);
     let canvasChildrens = [...canvas.children];
 
     generateDots(limit - canvasChildrens.length);
@@ -161,8 +160,8 @@ function renderCanvas() {
         const myDot = document.createElement('span'), { offsetWidth, offsetHeight } = canvas,
             [left, top, pLeft, pTop] = randomNumbers({}, {}, {}, {}),
             distanceX = (left - pLeft) * offsetWidth, distanceY = (top - pTop) * offsetHeight,
-            distance = (distanceX ** 2 + distanceY ** 2) ** (1 / 2), duration = distance * 50,
-            scale = randomNumber({min: .6, max: 1.2});
+            distance = (distanceX ** 2 + distanceY ** 2) ** (1 / 2), duration = distance * 75,
+            scale = randomNumber({min: 6, max: 12});
 
         myDot.style.setProperty('--left', `${left * 100}%`);
         myDot.style.setProperty('--top', `${top * 100}%`);
@@ -228,7 +227,7 @@ function renderSecSection(pageID) {
     section.classList.add(rendered, contentActive);
     renderShowSection(section, !0);
 
-    setTimeout(() => hoverParent.classList.add(pageRender), 1e3);
+    setTimeout(() => hoverParent.classList.add(pageRender), 5e2);
     setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
 };
 

@@ -18,11 +18,10 @@
 
     &.activeCanvas {
         opacity: .2;
-        transition: opacity 1s ease, filter 1s ease .5s;
-        filter: blur(0em);
+        transition: opacity 1s ease, filter 1s ease;
 
         &.moving {
-            opacity: .5;
+            filter: blur(0em);
         }
     }
 
@@ -36,7 +35,7 @@
         border-radius: 50%;
         background: white;
         translate: var(--sLeft) var(--sTop);
-        transition: translate .5s ease;
+        transition: translate .75s ease-in-out;
         animation: moveDot var(--duration) linear forwards;
     }
 }

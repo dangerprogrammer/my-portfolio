@@ -1,0 +1,12 @@
+.hoverContent {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0;
+    color: transparent;
+
+    * {
+        pointer-events: none;
+    }
+}
