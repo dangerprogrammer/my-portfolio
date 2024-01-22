@@ -50,7 +50,7 @@ function renderScrolling() {
         itemPage.classList.add(activePage);
         section.classList.add(rendered);
         if (sectionID == 'welcome') section.classList.add(welcomeActive);
-        timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 5e2);
+        if (pageRender) timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 5e2);
         renderShowSection(section, firstRender);
     };
 
@@ -74,35 +74,6 @@ function hideScrolling() {
     page.onscroll = () => {};
     section.classList.add(contentActive);
     section.scrollTo(0, 0);
-};
-
-function renderMousemove() {
-    const canvas = document.getElementById('background-canvas');
-
-    let timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 5e3);
-
-    console.clear();
-    window.onmousemove = ({ clientX: mouseLeft, clientY: mouseTop }) => {
-        const dots = [...canvas.children];
-        canvas.classList.add(moving);
-        clearTimeout(timeoutMoving);
-
-        dots.forEach(dot => {
-            const { offsetLeft: dotLeft, offsetTop: dotTop } = dot,
-                dLeft = dotLeft - mouseLeft, dTop = dotTop - mouseTop, dF = (dLeft ** 2 + dTop ** 2) ** 1 / 2,
-                limit = 30, range = 1e4,
-                sLeft = Math.min(Math.max(dLeft / (dF ** 1 / range), -limit), limit), sTop = Math.min(Math.max(dTop / (dF ** 1 / range), -limit), limit)
-
-            dot.style.setProperty('--sLeft', sLeft + 'px');
-            dot.style.setProperty('--sTop', sTop + 'px');
-        });
-
-        timeoutMoving = setTimeout(() => canvas.classList.remove(moving), 1e3);
-    };
-};
-
-function hideMousemove() {
-    window.onmousemove = () => {};
 };
 
 function renderNav() {
@@ -148,8 +119,6 @@ function renderCanvas() {
 
     generateDots(limit - canvasChildrens.length);
 
-    renderMousemove();
-
     canvas.classList.add(activeCanvas);
 
     function generateDots(total) {
@@ -187,8 +156,6 @@ function hideCanvas() {
     if (!canvas) return;
 
     stopDot = !0;
-
-    hideMousemove();
 
     canvas.classList.remove(activeCanvas);
 };
