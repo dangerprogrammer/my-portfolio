@@ -17,7 +17,7 @@
     }
 
     &.activeCanvas {
-        opacity: .2;
+        opacity: 1;
         transition: opacity 1s ease, filter 1s ease;
 
         &.moving {
@@ -33,9 +33,9 @@
         height: $size;
         width: $size;
         border-radius: 50%;
-        background: white;
+        background: #fff4;
         translate: var(--sLeft) var(--sTop);
-        transition: translate .75s ease-in-out;
+        transition: translate 1s ease-in-out;
         animation: moveDot var(--duration) linear forwards;
     }
 }
