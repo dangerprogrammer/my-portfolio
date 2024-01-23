@@ -2,7 +2,7 @@ import { pageStyles, elementViewer } from '@/components/page/Page.module.scss';
 import { preloaderStyles, notRendered } from '@/components/preloader/PreLoader.module.scss';
 import { mediaContainer, showItem } from '@/components/navbar/Navbar.module.scss';
 import { itemPage, showPage, hidePage, activePage, firstSide, hideSidebarStyles } from '@/components/sidebar/Sidebar.module.scss';
-import { canvasDot, moving, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
+import { canvasDot, activeCanvas } from '@/components/background-canvas/BackgroundCanvas.module.scss';
 import randomNumbers, { randomNumber } from '@/tools/randomNumbers';
 import { rendered, contentActive, imageContainer, imgActions } from '@/components/pages-content/PageContent.module.scss';
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
@@ -15,24 +15,55 @@ gsap.registerPlugin(Observer);
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
-        itemPages = document.querySelectorAll(`[class*="${itemPage}"]`), sidebar = itemPages[0].parentElement.parentElement,
+        itemPages = [...document.querySelectorAll(`[class*="${itemPage}"]`)], sidebar = itemPages[0].parentElement.parentElement,
         imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`),
-        hasRender = sections.find(sec => sec.classList.contains(rendered));
+        hasRender = sections.find(sec => sec.classList.contains(rendered)),
+        observerWheel = Observer.getById("wheel"), observerScroll = Observer.getById("scroll");
 
     let timeoutRender = [], timeoutImg = [], canScroll = !0;
 
-    Observer.create({
-        target: page,
-        type: "wheel, touch",
-        onUp: ({ deltaY }) => scrollPage({ dir: deltaY / 100 }),
-        onDown: ({ deltaY }) => scrollPage({ dir: deltaY / 100 }),
-        preventDefault: !0
-    });
+    scrollPage({section: hasRender});
+
+    if (!observerWheel || !observerScroll) {
+        Observer.create({
+            target: page,
+            type: "wheel",
+            id: "wheel",
+            onUp: ({ deltaY }) => clickSidebar({ dir: deltaY / 100 }),
+            onDown: ({ deltaY }) => clickSidebar({ dir: deltaY / 100 }),
+            preventDefault: !0
+        });
+        Observer.create({
+            target: page,
+            type: "scroll, touch",
+            id: "scroll",
+            onUp: ev => scrollPage({scroll: ev}),
+            onDown: ev => scrollPage({scroll: ev}),
+            preventDefault: !0
+        });
+    } else {
+        observerWheel.enable();
+        observerScroll.enable();
+    };
+
+    function clickSidebar({dir}) {
+        const activePageElem = itemPages.find(itemPage => itemPage.classList.contains(activePage)),
+            prevElem = itemPages[itemPages.indexOf(activePageElem) + dir]?.children[0];
+        
+        if (!canScroll) return;
+
+        prevElem?.click();
+        canScroll = !1;
+        setTimeout(() => {
+            canScroll = !0;
+        }, 2e3);
+    };
 
     function scrollPage({section, scroll, dir}) {
+        const oldSection = section;
         section = section || sections.reduce(filterSection, sections[0]);
         section = sections[Math.max(0, Math.min(sections.indexOf(section) + (dir ?? 0), sections.length - 1))];
-        if (!canScroll) return;
+        if (!scroll && !canScroll) return;
         const sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
@@ -44,20 +75,7 @@ function renderScrolling() {
             hoverParent = section.firstChild.lastChild.lastChild;
 
         sidebar.classList.toggle(firstSide, sectionIndex);
-        if (dir) page.scrollTo({left: section.offsetLeft, top: section.offsetTop, baheavior: 'instant'});
-
-        if (canScroll && scroll) {
-            return console.log(scroll);
-            const coords = {left: section.scrollLeft, top: section.scrollTop, behavior: 'instant'};
-            page.onscroll = ev => lockScroll(ev, coords);
-            canScroll = !1;
-
-            setTimeout(() => {
-                page.onscroll = ev => scrollPage({scroll: ev});
-                console.log('unfreeze scroll!', page.onscroll);
-                canScroll = !0;
-            }, 3e3);
-        };
+        if (dir || oldSection) page.scrollTo({left: section.offsetLeft, top: section.offsetTop});
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach((sec, secInd) => {
@@ -96,23 +114,16 @@ function renderScrolling() {
 
         return biggerOnScreen > refOnScreen ? bigger : ref;
     };
-
-    function lockScroll(ev, coords) {
-        page.scrollTo(coords);
-        try {
-            ev.preventDefault();
-        } catch (error) {
-            console.log('deu ruim!');
-        };
-    };
 };
 
 function hideScrolling() {
-    const page = document.querySelector(`[class*="${pageStyles}"]`), section = document.querySelector(`section[class*="${rendered}"]`);
+    const page = document.querySelector(`[class*="${pageStyles}"]`), section = document.querySelector(`section[class*="${rendered}"]`),
+        observerWheel = Observer.getById("wheel"), observerScroll = Observer.getById("scroll");
 
     if (!page) return;
 
-    page.onscroll = () => {};
+    observerWheel.disable();
+    observerScroll.disable();
     section.classList.add(contentActive);
     section.scrollTo(0, 0);
 };
