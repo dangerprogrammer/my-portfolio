@@ -12,7 +12,6 @@ function Sidebar({ noAction }) {
                         <div className={svgContainer}>
                             <Icon/>
                         </div>
-                        <span>{text}</span>
                     </section>
                 </Link>
             </li>)}

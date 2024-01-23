@@ -4,7 +4,7 @@
     background: linear-gradient(45deg, #50f, #02f);
     border: none;
     outline: none;
-    padding: .5em 1.5em;
+    padding: .5em clamp(1em, 3vw, 1.5em);
     border-radius: 4em;
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 700;

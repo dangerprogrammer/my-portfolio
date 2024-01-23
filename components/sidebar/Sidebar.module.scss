@@ -1,9 +1,10 @@
 .sidebarStyles {
     position: fixed;
     z-index: 50;
-    top: 50%;
-    translate: 0 -50%;
-    padding: 2em 1em;
+    left: 50%;
+    bottom: 0;
+    translate: -50% 0;
+    padding: 1em 2em;
 
     &.hideSidebarStyles {
         &, & * {
@@ -13,7 +14,6 @@
 
     ul {
         display: flex;
-        flex-direction: column;
         opacity: .5;
         transition: opacity .5s ease-in-out;
     }
@@ -105,7 +105,7 @@
 
         a {
             text-decoration: none;
-            padding-block: .3em;
+            padding-inline: .3em;
             color: inherit;
             width: 100%;
             gap: 1em;
@@ -169,7 +169,7 @@
 
 @keyframes spawnItem {
     from {
-        translate: min(-100%, -10em);
+        translate: 0 max(100%, 10em);
         scale: 1.3;
         opacity: 0;
     }
@@ -189,7 +189,7 @@
     }
     
     to {
-        translate: min(-100%, -10em);
+        translate: 0 max(100%, 10em);
         scale: 1.3;
         opacity: 0;
     }
@@ -200,9 +200,6 @@
         &:hover:not(.firstSide) {
             .itemPage:is(.showPage, .hidePage).activePage .itemSection {
                 background: #eee;
-            }
-            .svgContainer {
-                padding-left: .75em !important;
             }
         }
 
@@ -220,7 +217,6 @@
                     .svgContainer {
                         scale: .75;
                         background: #457a;
-                        padding-left: .5em;
                     }
                 }
             

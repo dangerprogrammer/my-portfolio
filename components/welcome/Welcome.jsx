@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import { welcomeStyles, imageContainer, textContainer, mainTitle, titleDesc, titleName, buttonScroll } from './Welcome.module.scss';
+import { welcomeStyles, imageContainer, textContainer, mainTitle, titleDesc, titleName } from './Welcome.module.scss';
 import Wallpaper from '@/assets/images/abstract-wallpaper.jpg';
-import ArrowDown from '@/assets/svgs/arrow-down-outline.svg';
 import { renderNavScroll } from '@/scripts/initializePageTools';
 import { useEffect } from 'react';
 import { itemPage } from '../sidebar/Sidebar.module.scss';
@@ -12,10 +11,7 @@ function Welcome() {
 
     useEffect(() => {
         const sideList = [...document.querySelector(`[class*="${itemPage}"]`).parentElement.children],
-            scrollElem = (sideList.find(({ children }) => children[0].href == location.href) || sideList[0]).children[0],
-            aboutSection = sideList[1].children[0], scrollDown = document.getElementById('scroll-down');
-
-        scrollDown.addEventListener('click', () => renderNavScroll(aboutSection));
+            scrollElem = (sideList.find(({ children }) => children[0].href == location.href) || sideList[0]).children[0];
 
         renderNavScroll(scrollElem);
     }, []);
@@ -43,7 +39,6 @@ function Welcome() {
         <article className={imageContainer}>
             <Image {...{...wallpaper, alt: 'Welcome image', priority: !0}}/>
         </article>
-        <button className={buttonScroll} id="scroll-down" data-click>Scroll<ArrowDown/></button>
     </section>
 };
 
