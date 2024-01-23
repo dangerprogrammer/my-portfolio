@@ -2,7 +2,6 @@
     position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
     inset: 0;
     color: transparent;
     background-color: #0008;
@@ -18,7 +17,6 @@
         justify-content: center;
 
         .logo {
-            position: absolute;
             list-style: none;
             display: flex;
             align-items: center;
@@ -26,15 +24,10 @@
 
             img {
                 inset: 0;
-                // height: 100%;
-                // width: 100%;
+                $size: clamp(5em, 10vw, 10em);
+                height: $size;
+                width: $size;
                 object-fit: contain;
-            }
-
-            &.logo1 {
-                top: 0;
-                left: 0;
-                overflow: hidden;
             }
         }
     }
