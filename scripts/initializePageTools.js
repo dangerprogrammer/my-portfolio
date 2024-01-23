@@ -8,6 +8,10 @@ import { rendered, contentActive, imageContainer, imgActions } from '@/component
 import { welcomeActive } from '@/components/welcome/Welcome.module.scss';
 import { listClasses } from '@/components/context/listPages';
 import { titleNav, noClick } from '@/components/navbar/Navbar.module.scss';
+import { gsap } from "gsap";
+import { Observer } from "gsap/Observer";
+
+gsap.registerPlugin(Observer);
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
@@ -15,13 +19,20 @@ function renderScrolling() {
         imgContainers = document.querySelectorAll(`[class*="${imageContainer}"]`),
         hasRender = sections.find(sec => sec.classList.contains(rendered));
 
-    let timeoutRender = [], timeoutImg = [];
+    let timeoutRender = [], timeoutImg = [], canScroll = !0;
 
-    scrollPage(hasRender);
-    page.onscroll = () => scrollPage();
+    Observer.create({
+        target: page,
+        type: "wheel, touch",
+        onUp: ({ deltaY }) => scrollPage({ dir: deltaY / 100 }),
+        onDown: ({ deltaY }) => scrollPage({ dir: deltaY / 100 }),
+        preventDefault: !0
+    });
 
-    function scrollPage(section) {
+    function scrollPage({section, scroll, dir}) {
         section = section || sections.reduce(filterSection, sections[0]);
+        section = sections[Math.max(0, Math.min(sections.indexOf(section) + (dir ?? 0), sections.length - 1))];
+        if (!canScroll) return;
         const sectionIndex = sections.indexOf(section),
             imgContainer = imgContainers[sectionIndex - 1],
             { id: sectionID } = section,
@@ -33,6 +44,20 @@ function renderScrolling() {
             hoverParent = section.firstChild.lastChild.lastChild;
 
         sidebar.classList.toggle(firstSide, sectionIndex);
+        if (dir) page.scrollTo({left: section.offsetLeft, top: section.offsetTop, baheavior: 'instant'});
+
+        if (canScroll && scroll) {
+            return console.log(scroll);
+            const coords = {left: section.scrollLeft, top: section.scrollTop, behavior: 'instant'};
+            page.onscroll = ev => lockScroll(ev, coords);
+            canScroll = !1;
+
+            setTimeout(() => {
+                page.onscroll = ev => scrollPage({scroll: ev});
+                console.log('unfreeze scroll!', page.onscroll);
+                canScroll = !0;
+            }, 3e3);
+        };
 
         anotherPages.forEach(anotherPage => anotherPage.classList.remove(activePage));
         sections.forEach((sec, secInd) => {
@@ -41,9 +66,12 @@ function renderScrolling() {
             sec.classList.remove(contentActive);
         });
         anotherSections.forEach(sec => {
-            sec.firstChild.lastChild.classList.remove(imgActions);
+            let imgContainer = sec.firstChild.lastChild.classList,
+                hoverParent =  sec.firstChild.lastChild.lastChild;
+
+            imgContainer.remove(imgActions);
             sec.classList.remove(rendered, welcomeActive);
-            sec.firstChild.lastChild.lastChild.classList.remove(listClasses[sec.id]);
+            hoverParent.classList.remove(listClasses[sec.id]);
             resetShowSection(sec);
         });
         if (imgContainer) timeoutImg[sectionIndex] = setTimeout(() => imgContainer.classList.add(imgActions), 2e3);
@@ -52,6 +80,10 @@ function renderScrolling() {
         if (sectionID == 'welcome') section.classList.add(welcomeActive);
         if (pageRender) timeoutRender[sectionIndex] = setTimeout(() => hoverParent.classList.add(pageRender), 5e2);
         renderShowSection(section, firstRender);
+        canScroll = !1;
+        setTimeout(() => {
+            canScroll = !0;
+        }, 2e3);
     };
 
     function filterSection(bigger, ref) {
@@ -63,6 +95,15 @@ function renderScrolling() {
             refOnScreen = refBottom <= scrollBottom ? refBottom - scrollTop : scrollBottom - refTop;
 
         return biggerOnScreen > refOnScreen ? bigger : ref;
+    };
+
+    function lockScroll(ev, coords) {
+        page.scrollTo(coords);
+        try {
+            ev.preventDefault();
+        } catch (error) {
+            console.log('deu ruim!');
+        };
     };
 };
 
