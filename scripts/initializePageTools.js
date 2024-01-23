@@ -33,7 +33,7 @@ function renderScrolling() {
             ease: "none",
             scrollTrigger: {
                 trigger: `[class*="${pageStyles}"]`,
-                // pin: !0,
+                pin: !0,
                 scrub: 1,
                 snap: 1 / (sectionsGSAP.length - 1),
                 end: () => `+=${page.offsetWidth}`
