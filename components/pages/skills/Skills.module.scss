@@ -11,24 +11,74 @@
     }
 
     .animateLogo {
-        inset: 0;
+        position: absolute;
+        height: var(--size);
+        width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        overflow: hidden;
+
+        &.animate1 {
+            translate: 0 calc(var(--size) * -.6);
+        }
+
+        &.animate2 {
+            translate: 0 calc(var(--size) * .6);
+        }
 
         .logo {
+            position: absolute;
             list-style: none;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: animateLogo var(--duration) linear infinite;
 
             img {
                 inset: 0;
-                $size: clamp(5em, 10vw, 10em);
-                height: $size;
-                width: $size;
+                height: var(--size);
+                width: var(--size);
                 object-fit: contain;
             }
+        }
+
+        &.reverse {
+            .logo {
+                animation-direction: reverse;
+            }
+        }
+    }
+}
+
+@keyframes animateLogo {
+    from {
+        translate: -100%;
+    }
+    to {
+        translate: calc(var(--dist) + 100%);
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    .animateLogo {
+        --dist: 50vw;
+        --size: clamp(5em, 12vw, 12em);
+
+        .logo {
+            animation-delay: var(--delay1) !important;
+            --duration: 15s;
+        }
+    }
+}
+
+@media screen and (max-width: calc(64rem - 1px)) {
+    .animateLogo {
+        --dist: calc(100vw - 10em);
+        --size: clamp(8em, 18vw, 12em);
+
+        .logo {
+            animation-delay: var(--delay2) !important;
+            --duration: 11s;
         }
     }
 }

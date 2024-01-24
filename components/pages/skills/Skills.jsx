@@ -1,5 +1,5 @@
 import PageContent from '../../pages-content/PageContent';
-import { hoverContent, animateLogo, logo, logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9 } from './Skills.module.scss';
+import { hoverContent, reverse, animateLogo, animate1, animate2, logo } from './Skills.module.scss';
 import LogoNext from '@/assets/images/logo-next.webp';
 import LogoElectron from '@/assets/images/logo-electron.webp';
 import LogoJS from '@/assets/images/logo-js.webp';
@@ -9,30 +9,38 @@ import LogoC from '@/assets/images/logo-c++.webp';
 import LogoIonic from '@/assets/images/logo-ionic.webp';
 import LogoNode from '@/assets/images/logo-node.webp';
 import LogoVBA from '@/assets/images/logo-vba.webp';
+import LogoNodemon from '@/assets/images/logo-nodemon.webp';
+import LogoGCloud from '@/assets/images/logo-g-cloud.webp';
+import LogoAWS from '@/assets/images/logo-aws.webp';
 import Image from 'next/image';
 
 function Skills({ id = "skills", ...contexts }) {
     return <PageContent { ...{id, ...contexts} }>
         <main className={hoverContent}>
-            <section className={[animateLogo].join(' ')}>
-                <SkillImg otherLogo={logo1} LogoContext={LogoNext}/>
-                <SkillImg otherLogo={logo2} LogoContext={LogoElectron}/>
-                <SkillImg otherLogo={logo3} LogoContext={LogoJS}/>
-                <SkillImg otherLogo={logo4} LogoContext={LogoVue}/>
-                <SkillImg otherLogo={logo5} LogoContext={LogoNuxt}/>
-                <SkillImg otherLogo={logo6} LogoContext={LogoC}/>
-                <SkillImg otherLogo={logo7} LogoContext={LogoIonic}/>
-                <SkillImg otherLogo={logo8} LogoContext={LogoNode}/>
-                <SkillImg otherLogo={logo9} LogoContext={LogoVBA}/>
+            <section className={[animateLogo, animate1].join(' ')}>
+                <SkillImg delayAnimation={5} LogoContext={LogoNext}/>
+                <SkillImg delayAnimation={4} LogoContext={LogoElectron}/>
+                <SkillImg delayAnimation={3} LogoContext={LogoJS}/>
+                <SkillImg delayAnimation={2} LogoContext={LogoVue}/>
+                <SkillImg delayAnimation={1} LogoContext={LogoNuxt}/>
+                <SkillImg delayAnimation={0} LogoContext={LogoC}/>
+            </section>
+            <section className={[animateLogo, animate2, reverse].join(' ')}>
+                <SkillImg delayAnimation={5} LogoContext={LogoAWS}/>
+                <SkillImg delayAnimation={4} LogoContext={LogoGCloud}/>
+                <SkillImg delayAnimation={3} LogoContext={LogoIonic}/>
+                <SkillImg delayAnimation={2} LogoContext={LogoNode}/>
+                <SkillImg delayAnimation={1} LogoContext={LogoVBA}/>
+                <SkillImg delayAnimation={0} LogoContext={LogoNodemon}/>
             </section>
         </main>
     </PageContent>
 };
 
-function SkillImg({ LogoContext, title = 'Skill Logo', otherLogo }) {
+function SkillImg({ LogoContext, delayAnimation, title = 'Skill Logo' }) {
     const { blurHeight, blurWidth, height, width, ...logoContext } = LogoContext;
 
-    return <li className={[logo, otherLogo].join(' ')}>
+    return <li className={[logo].join(' ')} style={{'--delay1': `-${delayAnimation * 2.5}s`, '--delay2': `-${delayAnimation * 1.85}s`}}>
         <Image {...{alt: title, height: 250, width: 250, ...logoContext}}/>
     </li>
 };
