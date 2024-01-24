@@ -10,9 +10,8 @@ import { listClasses } from '@/components/context/listPages';
 import { titleNav, noClick } from '@/components/navbar/Navbar.module.scss';
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(Observer, ScrollTrigger);
+gsap.registerPlugin(Observer);
 
 function renderScrolling() {
     const page = document.querySelector(`[class*="${pageStyles}"]`), sections = [...page.children].filter(sec => sec.id),
@@ -26,25 +25,12 @@ function renderScrolling() {
     scrollPage({section: hasRender});
 
     if (!observerScroll) {
-        const sectionsGSAP = gsap.utils.toArray(`[class*="${sectionStyles}"]`);
-        console.log(sectionsGSAP);
-        gsap.to(sectionsGSAP, {
-            xPercent: -100 * (sectionsGSAP.length - 1),
-            ease: "none",
-            scrollTrigger: {
-                trigger: `[class*="${pageStyles}"]`,
-                pin: !0,
-                scrub: 1,
-                snap: 1 / (sectionsGSAP.length - 1),
-                end: () => `+=${page.offsetWidth}`
-            }
-        });
         Observer.create({
             target: page,
             type: "scroll, touch",
             id: "scroll",
-            // onChangeX: ev => scrollPage({scroll: ev}),
-            // preventDefault: !0
+            onChangeY: ev => scrollPage({scroll: ev}),
+            preventDefault: !0
         });
     } else observerScroll.enable();
 
@@ -94,12 +80,17 @@ function renderScrolling() {
     };
 
     function filterSection(bigger, ref) {
-        const { scrollLeft, offsetWidth } = page, scrollRight = scrollLeft + offsetWidth,
-            biggerLeft = bigger.offsetLeft, biggerWidth = bigger.offsetWidth, 
-            biggerRight = biggerLeft + biggerWidth,
-            biggerOnScreen = biggerRight <= scrollRight ? biggerRight - scrollLeft : scrollRight - biggerLeft,
-            refLeft = ref.offsetLeft, refWidth = ref.offsetWidth, refRight = refLeft + refWidth,
-            refOnScreen = refRight <= scrollRight ? refRight - scrollLeft : scrollRight - refLeft;
+        const { scrollLeft, offsetWidth, scrollTop, offsetHeight } = page, scrollRight = scrollLeft + offsetWidth, scrollBottom = scrollTop + offsetHeight,
+            { offsetLeft: biggerLeft, offsetWidth: biggerWidth, offsetTop: biggerTop, offsetHeight: biggerHeight } = bigger,
+            biggerRight = biggerLeft + biggerWidth, biggerBottom = biggerTop + biggerHeight,
+            biggerOnX = biggerRight <= scrollRight ? biggerRight - scrollLeft : scrollRight - biggerLeft,
+            biggerOnY = biggerBottom <= scrollBottom ? biggerBottom - scrollTop : scrollBottom - biggerTop,
+            biggerOnScreen = biggerOnX * biggerOnY,
+            { offsetLeft: refLeft, offsetWidth: refWidth, offsetTop: refTop, offsetHeight: refHeight } = ref,
+            refRight = refLeft + refWidth, refBottom = refTop + refHeight,
+            refOnX = refRight <= scrollRight ? refRight - scrollLeft : scrollRight - refLeft,
+            refOnY = refBottom <= scrollBottom ? refBottom - scrollTop : scrollBottom - refTop,
+            refOnScreen = refOnX * refOnY;
 
         return biggerOnScreen > refOnScreen ? bigger : ref;
     };
