@@ -80,7 +80,8 @@ function renderScrolling() {
     };
 
     function filterSection(bigger, ref) {
-        const { scrollLeft, offsetWidth, scrollTop, offsetHeight } = page, scrollRight = scrollLeft + offsetWidth, scrollBottom = scrollTop + offsetHeight,
+        const { scrollLeft, offsetWidth, scrollTop, offsetHeight } = page,
+            scrollRight = scrollLeft + offsetWidth, scrollBottom = scrollTop + offsetHeight,
             { offsetLeft: biggerLeft, offsetWidth: biggerWidth, offsetTop: biggerTop, offsetHeight: biggerHeight } = bigger,
             biggerRight = biggerLeft + biggerWidth, biggerBottom = biggerTop + biggerHeight,
             biggerOnX = biggerRight <= scrollRight ? biggerRight - scrollLeft : scrollRight - biggerLeft,
