@@ -17,6 +17,7 @@
     "react-dom": "18.2.0",
     "react-router": "^6.21.1",
     "react-router-dom": "^6.21.1",
-    "sass": "^1.63.4"
+    "sass": "^1.63.4",
+    "sharp": "^0.33.2"
   }
 }
