@@ -13,6 +13,7 @@ import LogoNodemon from '@/assets/images/logo-nodemon.webp';
 import LogoGCloud from '@/assets/images/logo-g-cloud.webp';
 import LogoAWS from '@/assets/images/logo-aws.webp';
 import Image from 'next/image';
+import { randomNumber } from '@/tools/randomNumbers';
 
 function Skills({ id = "skills", ...contexts }) {
     return <PageContent { ...{id, ...contexts} }>
@@ -38,9 +39,13 @@ function Skills({ id = "skills", ...contexts }) {
 };
 
 function SkillImg({ LogoContext, delayAnimation, title = 'Skill Logo' }) {
-    const { blurHeight, blurWidth, height, width, ...logoContext } = LogoContext;
+    const { blurHeight, blurWidth, height, width, ...logoContext } = LogoContext,
+        random = randomNumber({ min: 2, max: 6 });
 
-    return <li className={[logo].join(' ')} style={{'--delay1': `-${delayAnimation * 2.5}s`, '--delay2': `-${delayAnimation * 1.85}s`}}>
+    return <li className={[logo].join(' ')} style={{
+        '--delay1': `-${delayAnimation * 2.5}s`,
+        '--delay2': `-${delayAnimation * 1.85}s`,
+        '--delay-show': `${random}s`}}>
         <Image {...{alt: title, height: 250, width: 250, ...logoContext}}/>
     </li>
 };
